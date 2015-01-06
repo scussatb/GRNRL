@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/grneat"/>
+	<classpathentry kind="src" path="src/rlpark/rlpark.example.demos/src"/>
+	<classpathentry kind="src" path="src/rlpark/rlpark.example.javacv/src"/>
+	<classpathentry kind="src" path="src/rlpark/rlpark.plugin.opencv/src"/>
+	<classpathentry kind="src" path="src/rlpark/rlpark.plugin.rltoys/jvsrc"/>
+	<classpathentry kind="src" path="src/rlpark/rlpark.plugin.rltoys/jvsrctests"/>
+	<classpathentry kind="src" path="src/rlpark/rlpark.plugin.rltoysview/src"/>
+	<classpathentry kind="src" path="src/rlpark/rlpark.plugin.rltoysview/srctests"/>
+	<classpathentry kind="src" path="src/rlpark/rlpark.plugin.robot/jvsrc"/>
+	<classpathentry kind="src" path="src/rlpark/rlpark.plugin.robot/jvsrctests"/>
+	<classpathentry kind="lib" path="src/rlpark/rlpark.plugin.apache/apache/commons-io-2.0.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="src/rlpark/rlpark.plugin.apache/apache/commons-io-2.0.1-sources.jar"/>
+	<classpathentry kind="lib" path="src/rlpark/rlpark.plugin.apache/apache/commons-io-2.0.1.jar"/>
+	<classpathentry kind="lib" path="src/rlpark/rlpark.plugin.apache/apache/commons-math-2.0-sources.jar"/>
+	<classpathentry kind="lib" path="src/rlpark/rlpark.plugin.apache/apache/commons-math-2.0.jar"/>
+	<classpathentry kind="lib" path="src/rlpark/rlpark.plugin.opencv/javacv/javacpp.jar"/>
+	<classpathentry kind="lib" path="src/rlpark/rlpark.plugin.opencv/javacv/javacv-android-arm.jar"/>
+	<classpathentry kind="lib" path="src/rlpark/rlpark.plugin.opencv/javacv/javacv-linux-x86_64.jar"/>
+	<classpathentry kind="lib" path="src/rlpark/rlpark.plugin.opencv/javacv/javacv-linux-x86.jar"/>
+	<classpathentry kind="lib" path="src/rlpark/rlpark.plugin.opencv/javacv/javacv-macosx-x86_64.jar"/>
+	<classpathentry kind="lib" path="src/rlpark/rlpark.plugin.opencv/javacv/javacv-windows-x86_64.jar"/>
+	<classpathentry kind="lib" path="src/rlpark/rlpark.plugin.opencv/javacv/javacv-windows-x86.jar"/>
+	<classpathentry kind="lib" path="src/rlpark/rlpark.plugin.opencv/javacv/javacv.jar"/>
+	<classpathentry kind="lib" path="src/rlpark/rlpark.plugin.rltoys/rltoys-client.jar"/>
+	<classpathentry kind="lib" path="/Users/cussat/Recherche/Projets/Neuromodulation/GRNRL/lib/zephyr.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
