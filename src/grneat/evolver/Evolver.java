@@ -25,6 +25,7 @@ import evaluators.MichalSignalProcessExp1;
 import evaluators.MichalSignalProcessExp2;
 import evaluators.MichalSignalProcessExp3;
 import evaluators.NMMultirobotCCP;
+import evaluators.NMSarsaEvaluator;
 import evaluators.PingPrediction;
 import evaluators.RadbotEvaluator;
 import evaluators.RetinaEvaluator;
@@ -525,7 +526,6 @@ public class Evolver {
 		}
 		
 		if( verbose > 0 ) System.err.println( "Speciation: Adding to species" );
-	
 		for (GRNGenome g : population) {
 			Species bestMatch=null;
 			double minDist=Double.MAX_VALUE;
@@ -668,7 +668,8 @@ public class Evolver {
 		
 		if (!customExpName) {
 			//e.evaluator=new CoverageControl( args, e.rng );//new MichalSignalProcessExp3();
-			e.evaluator = new IntertwinedSpirals( args );
+			//e.evaluator = new IntertwinedSpirals( args );
+			e.evaluator = new NMSarsaEvaluator();
 			e.experienceName=e.evaluator.name;
 		} else {
 			if( e.experienceName.compareTo("DoublingFrequencyEvaluator") == 0) e.evaluator=new DoublingFrequencyEvaluator();  

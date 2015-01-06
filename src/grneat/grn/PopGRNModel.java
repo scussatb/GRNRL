@@ -1,7 +1,5 @@
 package grn;
 
-import evolver.GRNGene;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
