@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="true"
+            class="rlpark.plugin.rltoysview.internal.vectors.RealVectorMapView"
+            icon="icons/vectormapview.gif"
+            id="zephyr.rlpark.plugin.rltoysview.vectormapview"
+            name="Vector Map"
+            restorable="true">
+      </view>
+      <view
+            allowMultiple="true"
+            class="rlpark.plugin.rltoysview.internal.nostate.NoStateView"
+            icon="icons/environmentview.png"
+            id="zephyr.rlpark.plugin.rltoysview.notstateview"
+            name="NoState"
+            restorable="true">
+      </view>
+      <view
+            allowMultiple="true"
+            class="rlpark.plugin.rltoysview.internal.pendulum.SwingPendulumView"
+            icon="icons/environmentview.png"
+            id="zephyr.rlpark.plugin.rltoysview.swingpendulumview"
+            name="Swing Pendulum"
+            restorable="true">
+      </view>
+      <view
+            allowMultiple="true"
+            class="rlpark.plugin.rltoysview.internal.vectors.RealVectorBarView"
+            icon="icons/vectorbarview.png"
+            id="zephyr.rlpark.plugin.rltoysview.vectorbarview"
+            name="Vector Bar"
+            restorable="true">
+      </view>
+      <view
+            allowMultiple="true"
+            class="rlpark.plugin.rltoysview.internal.puddleworld.PuddleWorldView"
+            icon="icons/continuousfunctionview.png"
+            id="zephyr.rlpark.plugin.rltoysview.continuousgridworldview"
+            name="Continuous Gridworld"
+            restorable="true">
+      </view>
+      <view
+            allowMultiple="true"
+            class="rlpark.plugin.rltoysview.internal.mountaincar.MountainCarView"
+            icon="icons/environmentview.png"
+            id="zephyr.rlpark.plugin.rltoysview.mountaincarview"
+            name="Mountain Car"
+            restorable="true">
+      </view>
+      <view
+            allowMultiple="true"
+            class="rlpark.plugin.rltoysview.internal.policystructure.NormalDistributionView"
+            icon="icons/policiesview.png"
+            id="zephyr.rlpark.plugin.rltoysview.policyview"
+            name="Policy"
+            restorable="true">
+      </view>
+      <view
+            class="rlpark.plugin.rltoysview.internal.policystructure.PolicyDiscreteActionView"
+            icon="icons/policiesview.png"
+            id="zephyr.rlpark.plugin.rltoysview.discreteactionpolicyview"
+            name="Discrete Action Policy"
+            restorable="true">
+      </view>
+      <view
+            allowMultiple="true"
+            class="rlpark.plugin.rltoysview.internal.helicopter.HelicopterView"
+            icon="icons/environmentview.png"
+            id="zephyr.rlpark.plugin.rltoysview.helicopterview"
+            name="Helicopter"
+            restorable="true">
+      </view>
+      <view
+            allowMultiple="true"
+            class="rlpark.plugin.rltoysview.maze.MazeView"
+            icon="icons/mazeview.png"
+            id="zephyr.rlpark.plugin.rltoysview.mazeview"
+            name="Maze"
+            restorable="true">
+      </view>
+      <view
+            allowMultiple="true"
+            class="rlpark.plugin.rltoysview.internal.vectors.VectorProjectedView"
+            icon="icons/continuousfunctionview.png"
+            id="rlpark.plugin.rltoysview.VectorProjectedView"
+            name="Vector Projected"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="zephyr.viewprovider">
+      <client
+            class="rlpark.plugin.rltoysview.internal.nostate.NoStateView$Provider"
+            icon="icons/environmentview.png"
+            name="NoState View"
+            viewid="zephyr.rlpark.plugin.rltoysview.notstateview">
+      </client>
+      <client
+            class="rlpark.plugin.rltoysview.internal.pendulum.SwingPendulumView$Provider"
+            icon="icons/environmentview.png"
+            name="Swing Pendulum View"
+            viewid="zephyr.rlpark.plugin.rltoysview.swingpendulumview">
+      </client>
+      <client
+            class="rlpark.plugin.rltoysview.internal.policystructure.NormalDistributionView$Provider"
+            icon="icons/policiesview.png"
+            name="Policy View"
+            viewid="zephyr.rlpark.plugin.rltoysview.policyview">
+      </client>
+      <client
+            class="rlpark.plugin.rltoysview.internal.vectors.RealVectorMapView$Provider"
+            icon="icons/vectormapview.gif"
+            name="Vector Map View"
+            viewid="zephyr.rlpark.plugin.rltoysview.vectormapview">
+      </client>
+      <client
+            class="rlpark.plugin.rltoysview.internal.vectors.RealVectorBarView$Provider"
+            icon="icons/vectorbarview.png"
+            name="Vector Bar View"
+            viewid="zephyr.rlpark.plugin.rltoysview.vectorbarview">
+      </client>
+      <client
+            class="rlpark.plugin.rltoysview.internal.puddleworld.PuddleWorldView$Provider"
+            icon="icons/continuousfunctionview.png"
+            name="Continuous Gridworld"
+            viewid="zephyr.rlpark.plugin.rltoysview.continuousgridworldview">
+      </client>
+      <client
+            class="rlpark.plugin.rltoysview.internal.mountaincar.MountainCarView$Provider"
+            icon="icons/environmentview.png"
+            name="Mountain Car View"
+            viewid="zephyr.rlpark.plugin.rltoysview.mountaincarview">
+      </client>
+      <client
+            class="rlpark.plugin.rltoysview.internal.helicopter.HelicopterView$Provider"
+            icon="icons/environmentview.png"
+            name="Helicopter View"
+            viewid="zephyr.rlpark.plugin.rltoysview.helicopterview">
+      </client>
+      <client
+            class="rlpark.plugin.rltoysview.maze.MazeView$Provider"
+            icon="icons/mazeview.png"
+            name="Maze View"
+            viewid="zephyr.rlpark.plugin.rltoysview.mazeview">
+      </client>
+      <client
+            class="rlpark.plugin.rltoysview.internal.policystructure.PolicyDiscreteActionView$Provider"
+            icon="icons/policiesview.png"
+            name="Discrete Action Policy"
+            viewid="zephyr.rlpark.plugin.rltoysview.discreteactionpolicyview">
+      </client>
+      <client
+            class="rlpark.plugin.rltoysview.internal.vectors.VectorProjectedView$Provider"
+            icon="icons/continuousfunctionview.png"
+            name="Vector Projected"
+            viewid="rlpark.plugin.rltoysview.VectorProjectedView">
+      </client>
+   </extension>
+   <extension
+         point="zephyr.classpath">
+      <classpath>
+         classpath body text
+      </classpath>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:window?before=zephyr.plugin.core.separator.closeview">
+         <command
+               commandId="zephyr.plugin.core.views.showView"
+               icon="icons/vectormapview.gif"
+               id="zephyr.plugin.core.views.showvectorview"
+               label="New Vector View"
+               style="push">
+            <parameter
+                  name="org.eclipse.ui.views.showView.viewId"
+                  value="zephyr.rlpark.plugin.rltoysview.vectorview">
+            </parameter>
+         </command>
+         <command
+               commandId="zephyr.plugin.core.views.showView"
+               icon="icons/policiesview.png"
+               id="zephyr.plugin.core.views.showpolicyview"
+               label="New Policy View"
+               style="push">
+            <parameter
+                  name="org.eclipse.ui.views.showView.viewId"
+                  value="zephyr.rlpark.plugin.rltoysview.policyview">
+            </parameter>
+         </command>
+      </menuContribution>
+   </extension>
+
+</plugin>

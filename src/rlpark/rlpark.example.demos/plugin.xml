@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="zephyr.runnable">
+      <client
+            autostart="false"
+            class="rlpark.example.demos.learning.SarsaMountainCar"
+            id="rlpark.example.demos.learning.SarsaMountainCar">
+      </client>
+      <client
+            autostart="false"
+            class="rlpark.example.demos.learning.ActorCriticPendulum"
+            id="rlpark.example.demos.learning.ActorCriticPendulum">
+      </client>
+      <client
+            autostart="false"
+            class="rlpark.example.demos.learning.OffPACPuddleWorld"
+            id="rlpark.example.demos.learning.OffPACPuddleworld">
+      </client>
+      <client
+            autostart="false"
+            class="rlpark.example.demos.learning.QLearningMaze"
+            id="rlpark.example.demos.learning.QLearningMaze">
+      </client>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.main.menu?after=zephyr.mainmenu.end">
+         <menu
+               id="zephyr.rlpark.menu.demos"
+               label="Demos">
+            <command
+                  commandId="zephyr.plugin.core.command.startrunnable"
+                  label="Actor-Critic on Pendulum"
+                  style="push">
+               <parameter
+                     name="zephyr.plugin.core.command.parameter.runnableid"
+                     value="rlpark.example.demos.learning.ActorCriticPendulum">
+               </parameter>
+            </command>
+            <command
+                  commandId="zephyr.plugin.core.command.startrunnable"
+                  label="Sarsa on Mountain Car"
+                  style="push">
+               <parameter
+                     name="zephyr.plugin.core.command.parameter.runnableid"
+                     value="rlpark.example.demos.learning.SarsaMountainCar">
+               </parameter>
+            </command>
+            <command
+                  commandId="zephyr.plugin.core.command.startrunnable"
+                  label="QLearning in a Maze"
+                  style="push">
+               <parameter
+                     name="zephyr.plugin.core.command.parameter.runnableid"
+                     value="rlpark.example.demos.learning.QLearningMaze">
+               </parameter>
+            </command>
+            <command
+                  commandId="zephyr.plugin.core.command.startrunnable"
+                  label="Off-PAC in a Puddle World"
+                  style="push">
+               <parameter
+                     name="zephyr.plugin.core.command.parameter.runnableid"
+                     value="rlpark.example.demos.learning.OffPACPuddleworld">
+               </parameter>
+            </command>
+            <command
+                  commandId="zephyr.plugin.core.command.startrunnable"
+                  label="iRobot Create Surprise"
+                  style="push">
+               <parameter
+                     name="zephyr.plugin.core.command.parameter.runnableid"
+                     value="rlpark.example.surprise.createsurprise">
+               </parameter>
+            </command>
+            <command
+                  commandId="zephyr.plugin.core.command.startrunnable"
+                  label="Motion Detection on the Webcam"
+                  style="push">
+               <parameter
+                     name="zephyr.plugin.core.command.parameter.runnableid"
+                     value="rlpark.example.javacv.motiondetectionrunnable">
+               </parameter>
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+</plugin>
