@@ -62,18 +62,18 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 	public double fitness;
 	public int nEpisode;
 	public boolean displayEpisodes=false;
+	public Vector<String> problems = new Vector<String>();
 	
 	public NMSarsaEvaluator() {
 		numGRNInputs=1;
 		numGRNOutputs=3;
-		name="NMSarsa";
+		problems.add("MountainCar");
+		name="NMSarsa"+problems.toString();
 	}
 
 	@Override
 	public double evaluate(GRNGenome aGenome) {
 		numEvaluations++;
-		Vector<String> problems = new Vector<String>();
-		problems.add("PuddleWorld");
 		double fitness = evaluateGRN(buildGRNFromGenome(aGenome), problems);
 		aGenome.setNewFitness(fitness);
 		return fitness;
@@ -115,6 +115,9 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		double alpha = .15 / projector.vectorNorm();
 		double gamma = 0.99;
 		double lambda = .3;
+//		double alpha = 0.021468632628537543;
+//		double gamma = 0.9785215963986705;
+//		double lambda = 0.0;
 		//System.out.print(numEvaluations+"\t: Evaluate: "+grn);
 		Sarsa sarsa;
 		if (grn != null) {
@@ -163,9 +166,13 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		projector = problem.getMarkovProjector();
 		occupancy = new PVector(projector.vectorSize());
 		TabularAction toStateAction = new TabularAction(problem.actions(), projector.vectorNorm(), projector.vectorSize());
-		double alpha = .15 / projector.vectorNorm();
-		double gamma = 1.0;
-		double lambda = 0.6;
+//		double alpha = .15 / projector.vectorNorm();
+//		double gamma = 1.0;
+//		double lambda = 0.6;
+		double alpha = 0.021468632628537543;
+		double gamma = 0.9785215963986705;
+		double lambda = 0.0;
+		
 		Sarsa sarsa;
 		if (grn == null) {
 			sarsa = new Sarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces());
@@ -325,13 +332,13 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		GRNModel grn = GRNModel.loadFromFile("NMSarsa/run_1420800429910853000/grn_11_1576.5600000000225.grn");
+		GRNModel grn = GRNModel.loadFromFile("NMSarsa/run_1420796734460472000/grn_6_2217.598480124757.grn");
 		NMSarsaEvaluator eval = new NMSarsaEvaluator();
 		eval.displayEpisodes=true;
 		System.out.println("====   Evaluating SARSA  ====");
-		double fSarsa = eval.evaluatePuddleWorld(null);
+		double fSarsa = eval.evaluateMountainCar(null);
 		System.out.println("\n==== Evaluating GRNSARSA ====");
-		double fGRN = eval.evaluatePuddleWorld(grn);
+		double fGRN = eval.evaluateMountainCar(grn);
 		
 		System.out.println("\n====       Averages      ====\nGRNSarsa\tSarsa\n"+fGRN+"\t\t"+fSarsa);
 	}
