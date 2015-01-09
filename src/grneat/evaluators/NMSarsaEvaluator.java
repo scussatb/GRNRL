@@ -32,6 +32,7 @@ import rlpark.plugin.rltoys.envio.policy.Policy;
 import rlpark.plugin.rltoys.envio.rl.TRStep;
 import rlpark.plugin.rltoys.experiments.runners.Runner;
 import rlpark.plugin.rltoys.experiments.runners.AbstractRunner.RunnerEvent;
+import rlpark.plugin.rltoys.junit.problems.puddleworld.PuddleWorldTest;
 import rlpark.plugin.rltoys.math.ranges.Range;
 import rlpark.plugin.rltoys.math.vector.BinaryVector;
 import rlpark.plugin.rltoys.math.vector.RealVector;
@@ -43,6 +44,14 @@ import rlpark.plugin.rltoys.problems.mazes.MazeValueFunction;
 import rlpark.plugin.rltoys.problems.mazes.Mazes;
 import rlpark.plugin.rltoys.problems.mountaincar.MountainCar;
 import rlpark.plugin.rltoys.problems.pendulum.SwingPendulum;
+import rlpark.plugin.rltoys.problems.puddleworld.LocalFeatureSumFunction;
+import rlpark.plugin.rltoys.problems.puddleworld.PuddleWorld;
+import rlpark.plugin.rltoys.problems.puddleworld.RewardWhenTerminated;
+import rlpark.plugin.rltoys.problems.puddleworld.SmoothPuddle;
+import rlpark.plugin.rltoys.problems.puddleworld.TargetReachedL1NormTermination;
+import rlpark.plugin.rltoys.problems.puddleworld.TargetReachedL2NormTermination;
+import rlpark.plugin.rltoys.problems.puddleworld.TerminationFunction;
+import rlpark.plugin.rltoysview.tests.internal.puddleworld.TestPuddleWorldRunnable;
 import zephyr.plugin.core.api.Zephyr;
 import zephyr.plugin.core.api.signals.Listener;
 import zephyr.plugin.core.api.synchronization.Clock;
@@ -52,6 +61,7 @@ import grn.GRNModel;
 public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 	public double fitness;
 	public int nEpisode;
+	public boolean displayEpisodes=false;
 	
 	public NMSarsaEvaluator() {
 		numGRNInputs=1;
@@ -63,7 +73,7 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 	public double evaluate(GRNGenome aGenome) {
 		numEvaluations++;
 		Vector<String> problems = new Vector<String>();
-		problems.add("Maze");
+		problems.add("PuddleWorld");
 		double fitness = evaluateGRN(buildGRNFromGenome(aGenome), problems);
 		aGenome.setNewFitness(fitness);
 		return fitness;
@@ -76,6 +86,12 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		}
 		if (problems.contains("Maze")) {
 			fitness += evaluateMaze(grn);
+		}
+		if (problems.contains("ActorCriticPendulum")) {
+			fitness += evaluateActorCriticPendulum(grn);
+		}
+		if (problems.contains("PuddleWorld")) {
+			fitness += evaluatePuddleWorld(grn);
 		}
 		//System.out.println(grn+" : "+fitness);
 		return fitness;
@@ -121,7 +137,7 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 			Action action = control.step(x_t, step.a_t, x_tp1, step.r_tp1);
 			x_t = Vectors.bufferedCopy(x_tp1, x_t);
 			if (step.isEpisodeEnding() || step.time>5000) {
-				//System.out.println(String.format("%d\t%d", nbEpisode, step.time));
+				if (displayEpisodes) System.out.println(String.format("%d\t%d", nbEpisode, step.time));
 				fitness += step.time;
 				step = problem.initialize();
 				x_t = null;
@@ -170,7 +186,7 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 	    runner.onEpisodeEnd.connect(new Listener<RunnerEvent>() {
 	      @Override
 	      public void listen(RunnerEvent eventInfo) {
-	        //System.out.println(String.format("%d\t%d", eventInfo.nbEpisodeDone, eventInfo.step.time));
+	        if (displayEpisodes) System.out.println(String.format("%d\t%d", eventInfo.nbEpisodeDone, eventInfo.step.time));
 	    	nEpisode++;
 	        fitness+=eventInfo.step.time;
 	      }
@@ -184,6 +200,78 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		return -fitness/100;			
 	}
 
+	public double evaluatePuddleWorld(GRNModel grn) {
+		FunctionProjected2D valueFunction;
+		double reward;
+		Clock clock = new Clock("PuddleWorld");
+		LearnerAgentFA agent;
+		Runner runner;
+	    
+		Random random = new Random(0);
+	    Range observationRange = new Range(-50, 50);
+	    Range actionRange = new Range(-1, 1);
+	    double noise = .1;
+	    PuddleWorld world = new PuddleWorld(random, 2, observationRange, actionRange, noise);
+	    world.setStart(new double[] { -49, -49 });
+	    TargetReachedL2NormTermination termFunc = new TargetReachedL2NormTermination(new double[] { 49, 49 }, actionRange.max() + 2 * noise);
+	    world.setTermination(termFunc);
+	    double weights[]={1,2,3,4,5,6,7,8,9,15};
+	    RewardWhenTerminated features[] = {
+	    		new RewardWhenTerminated(new TargetReachedL2NormTermination(new double[] {-45, -45}, actionRange.max() + 2 * noise)),
+	    		new RewardWhenTerminated(new TargetReachedL2NormTermination(new double[] {-40, -45}, actionRange.max() + 2 * noise)),
+	    		new RewardWhenTerminated(new TargetReachedL2NormTermination(new double[] {-35, 30}, actionRange.max() + 2 * noise)),
+	    		new RewardWhenTerminated(new TargetReachedL2NormTermination(new double[] {-15, 10}, actionRange.max() + 2 * noise)),
+	    		new RewardWhenTerminated(new TargetReachedL2NormTermination(new double[] {0, 0}, actionRange.max() + 2 * noise)),
+	    		new RewardWhenTerminated(new TargetReachedL2NormTermination(new double[] {5, 15}, actionRange.max() + 2 * noise)),
+	    		new RewardWhenTerminated(new TargetReachedL2NormTermination(new double[] {25, 30}, actionRange.max() + 2 * noise)),
+	    		new RewardWhenTerminated(new TargetReachedL2NormTermination(new double[] {40, 35}, actionRange.max() + 2 * noise)),
+	    		new RewardWhenTerminated(new TargetReachedL2NormTermination(new double[] {45, 45}, actionRange.max() + 2 * noise)),
+	    		
+	    		new RewardWhenTerminated(new TargetReachedL2NormTermination(new double[] { 49, 49 }, actionRange.max() + 2 * noise))
+	    };
+	    world.setRewardFunction(new LocalFeatureSumFunction(weights, features, -0.1));
+	    TileCodersNoHashing tileCoders = new TileCodersNoHashing(world.getObservationRanges());
+	    ((AbstractPartitionFactory) tileCoders.discretizerFactory()).setRandom(random, .2);
+	    tileCoders.addFullTilings(10, 10);
+		double alpha = .15 / tileCoders.vectorNorm();
+		double gamma = 1.0;
+		double lambda = 0.6;
+	    double vectorNorm = tileCoders.vectorNorm();
+	    int vectorSize = tileCoders.vectorSize();
+		TabularAction toStateAction = new TabularAction(world.actions(), tileCoders.vectorNorm(), tileCoders.vectorSize());
+		Sarsa sarsa;
+		if (grn == null) {
+			sarsa = new Sarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces());
+		} else {
+			sarsa = new GRNSarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces(), grn);
+		}
+		double epsilon = 0.3;
+		Policy acting = new EpsilonGreedy(new Random(0), world.actions(), toStateAction, sarsa, epsilon);
+		ControlLearner control = new SarsaControl(acting, toStateAction, sarsa);
+		agent = new LearnerAgentFA(control, tileCoders);
+	    valueFunction = new ValueFunction2D(tileCoders, world, sarsa);
+	    runner = new Runner(world, agent, 100, 1000);
+	    nEpisode=0;
+	    fitness=0;
+	    runner.onEpisodeEnd.connect(new Listener<RunnerEvent>() {
+	      @Override
+	      public void listen(RunnerEvent eventInfo) {
+	        if (displayEpisodes) System.out.println(String.format("%d\t%f", eventInfo.nbEpisodeDone, eventInfo.episodeReward));
+	        nEpisode++;
+	        fitness+=eventInfo.episodeReward;
+	      }
+	    });
+	    
+	    Zephyr.advertise(clock, this);
+	    
+	    while (clock.tick() && nEpisode<100) {
+	        runner.step();
+	    }
+	    
+	    return fitness/100;
+
+	}
+	
 	public double evaluateActorCriticPendulum(GRNModel grn) {
 		FunctionProjected2D valueFunction;
 		double reward;
@@ -214,13 +302,13 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		ControlLearner control = new SarsaControl(acting, toStateAction, sarsa);
 		agent = new LearnerAgentFA(control, tileCoders);
 	    valueFunction = new ValueFunction2D(tileCoders, problem, sarsa);
-	    runner = new Runner(problem, agent, 100, 10000);
+	    runner = new Runner(problem, agent, 100, 5000);
 	    nEpisode=0;
 	    fitness=0;
 	    runner.onEpisodeEnd.connect(new Listener<RunnerEvent>() {
 	      @Override
 	      public void listen(RunnerEvent eventInfo) {
-	        System.out.println(String.format("Episode %d: %f", eventInfo.nbEpisodeDone, eventInfo.episodeReward));
+	        if (displayEpisodes) System.out.println(String.format("%d\t%f", eventInfo.nbEpisodeDone, eventInfo.episodeReward));
 	        nEpisode++;
 	        fitness+=eventInfo.episodeReward;
 	      }
@@ -237,11 +325,15 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		GRNModel grn = GRNModel.loadFromFile("NMSarsa/run_1420560446341160000/grn_44_-128.97.grn");
-
-		double fSarsa = new NMSarsaEvaluator().evaluateMaze(null);
-		double fGRN = new NMSarsaEvaluator().evaluateMaze(grn);
-		System.out.println(fGRN+"\t"+fSarsa);
+		GRNModel grn = GRNModel.loadFromFile("NMSarsa/run_1420800429910853000/grn_11_1576.5600000000225.grn");
+		NMSarsaEvaluator eval = new NMSarsaEvaluator();
+		eval.displayEpisodes=true;
+		System.out.println("====   Evaluating SARSA  ====");
+		double fSarsa = eval.evaluatePuddleWorld(null);
+		System.out.println("\n==== Evaluating GRNSARSA ====");
+		double fGRN = eval.evaluatePuddleWorld(grn);
+		
+		System.out.println("\n====       Averages      ====\nGRNSarsa\tSarsa\n"+fGRN+"\t\t"+fSarsa);
 	}
 
 }
