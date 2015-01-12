@@ -63,12 +63,79 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 	public int nEpisode;
 	public boolean displayEpisodes=false;
 	public Vector<String> problems = new Vector<String>();
+
+	double alpha = 0.1;
+	double gamma = 0.9;
+	double lambda = 0.1;		
+	double epsilon = 0.1;
 	
-	public NMSarsaEvaluator() {
+	public NMSarsaEvaluator(  ) {
 		numGRNInputs=1;
 		numGRNOutputs=3;
-		problems.add("MountainCar");
-		name="NMSarsa"+problems.toString();
+		//problems.add("MountainCar");
+		//problems.add( problem );
+		//problems = inProblems;
+		//name="NMSarsa"+problems.toString();
+		name="NMSarsa_uninitialized";
+		alpha = 0.15;
+		gamma = 1.0;
+		lambda = 0.6;		
+		epsilon = 0.3;
+	}
+	
+	public void setSarsaDefaults( String problem ) {
+		if (problems.contains("MountainCar")) {
+			alpha = .15;// / projector.vectorNorm();
+			gamma = 0.99;
+			lambda = .3;
+			epsilon = 0.01;
+		}
+		if (problems.contains("Maze")) {
+			alpha = 0.15;
+			gamma = 1.0;
+			lambda = 0.6;		
+			epsilon = 0.3;
+		}
+		if (problems.contains("ActorCriticPendulum")) {
+			alpha = 0.15;
+			gamma = 1.0;
+			lambda = 0.6;		
+			epsilon = 0.3;
+		}
+		if (problems.contains("PuddleWorld")) {
+			alpha = .15;
+			gamma = 1.0;
+			lambda = 0.6;
+			epsilon = 0.3;
+		}		
+
+	}
+	
+	public void readArgs( String[] args ) {
+		for (int k = 0; k < args.length; k++ ) {
+//			System.err.print("\t" + args[k]);
+
+			if ( args[k].compareTo("alpha") == 0) {
+				alpha = Double.parseDouble( args[k+1] );
+			} else if ( args[k].compareTo("gamma") == 0) {
+				gamma = Double.parseDouble( args[k+1] );
+			} else if ( args[k].compareTo("lambda") == 0) {
+				lambda = Double.parseDouble( args[k+1] );
+			} else if ( args[k].compareTo("epsilon") == 0) {
+				epsilon = Double.parseDouble( args[k+1] );
+			} else if ( args[k].compareTo("problems") == 0) {
+				while( args[k+1].compareTo("endProblems") != 0 ) {
+					problems.add( args[k+1] );
+					k++;
+				}
+				name="NMSarsa"+problems.toString();
+			}
+			
+		}
+		System.out.println("alpha =" + alpha);
+		System.out.println("gamma =" + gamma);
+		System.out.println("lambda =" + lambda);
+		System.out.println("epsilon =" + epsilon);
 	}
 
 	@Override
@@ -112,9 +179,10 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 
 		TabularAction toStateAction = new TabularAction(problem.actions(), projector.vectorNorm(), projector.vectorSize());
 		toStateAction.includeActiveFeature();
-		double alpha = .15 / projector.vectorNorm();
-		double gamma = 0.99;
-		double lambda = .3;
+		alpha /= projector.vectorNorm();
+//		double alpha = .15 / projector.vectorNorm();
+//		double gamma = 0.99;
+//		double lambda = .3;
 //		double alpha = 0.021468632628537543;
 //		double gamma = 0.9785215963986705;
 //		double lambda = 0.0;
@@ -125,7 +193,7 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		} else {
 			sarsa = new Sarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces());
 		}
-		double epsilon = 0.01;
+		//double epsilon = 0.01;
 		Policy acting = new EpsilonGreedy(new Random(0), problem.actions(), toStateAction, sarsa, epsilon);
 		control = new SarsaControl(acting, toStateAction, sarsa);
 		valueFunctionDisplay = new ValueFunction2D(projector, problem, sarsa);
@@ -166,12 +234,13 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		projector = problem.getMarkovProjector();
 		occupancy = new PVector(projector.vectorSize());
 		TabularAction toStateAction = new TabularAction(problem.actions(), projector.vectorNorm(), projector.vectorSize());
+		alpha /= projector.vectorNorm();
 //		double alpha = .15 / projector.vectorNorm();
 //		double gamma = 1.0;
 //		double lambda = 0.6;
-		double alpha = 0.021468632628537543;
-		double gamma = 0.9785215963986705;
-		double lambda = 0.0;
+//		double alpha = 0.021468632628537543;
+//		double gamma = 0.9785215963986705;
+//		double lambda = 0.0;
 		
 		Sarsa sarsa;
 		if (grn == null) {
@@ -179,7 +248,7 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		} else {
 			sarsa = new GRNSarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces(), grn);
 		}
-		double epsilon = 0.3;
+//		double epsilon = 0.3;
 		Policy acting = new EpsilonGreedy(new Random(0), problem.actions(), toStateAction, sarsa, epsilon);
 		control = new SarsaControl(acting, toStateAction, sarsa);
 		agent = new LearnerAgentFA(control, projector);
@@ -240,9 +309,10 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 	    TileCodersNoHashing tileCoders = new TileCodersNoHashing(world.getObservationRanges());
 	    ((AbstractPartitionFactory) tileCoders.discretizerFactory()).setRandom(random, .2);
 	    tileCoders.addFullTilings(10, 10);
-		double alpha = .15 / tileCoders.vectorNorm();
-		double gamma = 1.0;
-		double lambda = 0.6;
+//		double alpha = .15 / tileCoders.vectorNorm();
+//		double gamma = 1.0;
+//		double lambda = 0.6;
+	    alpha /= tileCoders.vectorNorm();	    
 	    double vectorNorm = tileCoders.vectorNorm();
 	    int vectorSize = tileCoders.vectorSize();
 		TabularAction toStateAction = new TabularAction(world.actions(), tileCoders.vectorNorm(), tileCoders.vectorSize());
@@ -252,7 +322,7 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		} else {
 			sarsa = new GRNSarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces(), grn);
 		}
-		double epsilon = 0.3;
+//		double epsilon = 0.3;
 		Policy acting = new EpsilonGreedy(new Random(0), world.actions(), toStateAction, sarsa, epsilon);
 		ControlLearner control = new SarsaControl(acting, toStateAction, sarsa);
 		agent = new LearnerAgentFA(control, tileCoders);
@@ -292,9 +362,10 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 	    TileCodersNoHashing tileCoders = new TileCodersNoHashing(problem.getObservationRanges());
 	    ((AbstractPartitionFactory) tileCoders.discretizerFactory()).setRandom(random, .2);
 	    tileCoders.addFullTilings(10, 10);
-		double alpha = .15 / tileCoders.vectorNorm();
-		double gamma = 1.0;
-		double lambda = 0.6;
+	    alpha /= tileCoders.vectorNorm();
+//		double alpha = .15 / tileCoders.vectorNorm();
+//		double gamma = 1.0;
+//		double lambda = 0.6;
 	    double vectorNorm = tileCoders.vectorNorm();
 	    int vectorSize = tileCoders.vectorSize();
 		TabularAction toStateAction = new TabularAction(problem.actions(), tileCoders.vectorNorm(), tileCoders.vectorSize());
@@ -304,7 +375,7 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		} else {
 			sarsa = new GRNSarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces(), grn);
 		}
-		double epsilon = 0.3;
+//		double epsilon = 0.3;
 		Policy acting = new EpsilonGreedy(new Random(0), problem.actions(), toStateAction, sarsa, epsilon);
 		ControlLearner control = new SarsaControl(acting, toStateAction, sarsa);
 		agent = new LearnerAgentFA(control, tileCoders);
@@ -333,14 +404,19 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 	
 	public static void main(String[] args) throws Exception {
 		GRNModel grn = GRNModel.loadFromFile("NMSarsa/run_1420796734460472000/grn_6_2217.598480124757.grn");
-		NMSarsaEvaluator eval = new NMSarsaEvaluator();
-		eval.displayEpisodes=true;
-		System.out.println("====   Evaluating SARSA  ====");
-		double fSarsa = eval.evaluateMountainCar(null);
-		System.out.println("\n==== Evaluating GRNSARSA ====");
-		double fGRN = eval.evaluateMountainCar(grn);
+		//Vector<String> problems = ;
 		
-		System.out.println("\n====       Averages      ====\nGRNSarsa\tSarsa\n"+fGRN+"\t\t"+fSarsa);
+		NMSarsaEvaluator eval = new NMSarsaEvaluator();
+		eval.readArgs( args );		
+		eval.displayEpisodes=true;
+		
+		System.out.println("====   Evaluating SARSA  ====");
+		double fSarsa = eval.evaluateGRN( null, eval.problems );
+		System.out.println("fSarsa = " + fSarsa);
+		//System.out.println("\n==== Evaluating GRNSARSA ====");
+		//double fGRN = eval.evaluateMountainCar(grn);
+		
+		//System.out.println("\n====       Averages      ====\nGRNSarsa\tSarsa\n"+fGRN+"\t\t"+fSarsa);
 	}
 
 }
