@@ -75,7 +75,7 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 	
 	public NMSarsaEvaluator(  ) {
 		numGRNInputs=1;
-		numGRNOutputs=3;
+		numGRNOutputs=6;
 		//problems.add("MountainCar");
 		//problems.add( problem );
 		//problems = inProblems;
@@ -199,6 +199,9 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		Sarsa sarsa;
 		if (grn != null) {
 			sarsa = new GRNSarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces(), grn);
+			setSarsaDefaults("MountainCar");
+			((GRNSarsa)sarsa).minDelta=-33.5031963543928;
+			((GRNSarsa)sarsa).maxDelta=17.841888320550;
 		} else {
 			sarsa = new Sarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces());
 		}
@@ -257,6 +260,10 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 			sarsa = new Sarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces());
 		} else {
 			sarsa = new GRNSarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces(), grn);
+			setSarsaDefaults("Maze");
+			((GRNSarsa)sarsa).minDelta=-5.285246761385281;
+			((GRNSarsa)sarsa).maxDelta=3.4911249865196456;
+			
 		}
 //		double epsilon = 0.3;
 		//Policy acting = new EpsilonGreedy(new Random(0), problem.actions(), toStateAction, sarsa, epsilon);
@@ -333,6 +340,9 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 			sarsa = new Sarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces());
 		} else {
 			sarsa = new GRNSarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces(), grn);
+			setSarsaDefaults("PuddleWorld");
+			((GRNSarsa)sarsa).minDelta=-6442.566526517287;
+			((GRNSarsa)sarsa).maxDelta=10611.01805647782;
 		}
 //		double epsilon = 0.3;
 		//Policy acting = new EpsilonGreedy(new Random(0), world.actions(), toStateAction, sarsa, epsilon);
@@ -388,6 +398,9 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 			sarsa = new Sarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces());
 		} else {
 			sarsa = new GRNSarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces(), grn);
+			setSarsaDefaults("ActorCriticPendulum");
+			((GRNSarsa)sarsa).minDelta=-318.8166143617434;
+			((GRNSarsa)sarsa).maxDelta=321.8407343516526;
 		}
 //		double epsilon = 0.3;
 		//Policy acting = new EpsilonGreedy(new Random(0), problem.actions(), toStateAction, sarsa, epsilon);
@@ -418,21 +431,22 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		GRNModel grn = GRNModel.loadFromFile("NMSarsa/run_1420796734460472000/grn_6_2217.598480124757.grn");
+		GRNModel grn = GRNModel.loadFromFile("NMSarsa_Maze/run_1421075785493904000/grn_31_-32.42.grn");
 		//Vector<String> problems = ;
 		
 		NMSarsaEvaluator eval = new NMSarsaEvaluator();
 		eval.readArgs( args );		
 		eval.displayEpisodes=true;
+		eval.setSarsaDefaults(eval.problems.get(0));
 		
-		System.out.println("====   Evaluating SARSA  ====");
+		//System.out.println("====   Evaluating SARSA  ====");
 		double fSarsa = eval.evaluateGRN( null, eval.problems );
-		System.out.println("fSarsa = " + fSarsa);
-		//System.out.println("\n==== Evaluating GRNSARSA ====");
-		//double fGRN = eval.evaluateMountainCar(grn);
+		//System.out.println("fSarsa = " + fSarsa);
+		System.out.println("\n==== Evaluating GRNSARSA ====");
+		double fGRN = eval.evaluateGRN(grn, eval.problems);
 		
-		//System.out.println("\n====       Averages      ====\nGRNSarsa\tSarsa\n"+fGRN+"\t\t"+fSarsa);
-		System.out.println( "0\t" + eval.alpha + "\t" + eval.gamma + "\t" + eval.lambda + "\t" + eval.epsilon + "\t" + eval.randomSeed + "\t" + fSarsa );
+		System.out.println("\n====       Averages      ====\nGRNSarsa\tSarsa\n"+fGRN+"\t\t"+fSarsa);
+		//System.out.println( "0\t" + eval.alpha + "\t" + eval.gamma + "\t" + eval.lambda + "\t" + eval.epsilon + "\t" + eval.randomSeed + "\t" + fSarsa );
 	}
 
 }

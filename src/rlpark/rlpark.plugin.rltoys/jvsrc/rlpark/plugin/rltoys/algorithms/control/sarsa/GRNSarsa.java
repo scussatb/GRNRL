@@ -7,8 +7,8 @@ import grn.GRNModel;
 
 public class GRNSarsa extends Sarsa {
 	private static final long serialVersionUID = 4783867207342502849L;
-	static double minDelta = -100.0;
-	static double maxDelta = +100.0;
+	public static double minDelta = -100.0;
+	public static double maxDelta = +100.0;
 
 	protected GRNModel grn;
 	
@@ -30,16 +30,18 @@ public class GRNSarsa extends Sarsa {
 	@Override
 	public double update(RealVector phi_t, RealVector phi_tp1, double r_tp1) {
 		// updating parameters
-//		grn.proteins.get(0).concentration = this.delta;
-		minDelta = Math.min(minDelta, delta);
-		maxDelta = Math.max(maxDelta, delta);
-		
-		grn.proteins.get(0).concentration = (delta+minDelta)/(maxDelta+minDelta);
+		/*if (delta>maxDelta || delta<minDelta) {
+			System.err.println("Delta error : "+delta+"\t"+minDelta+"\t"+maxDelta);
+		}*/
+		if (delta!=delta) delta=minDelta;
+		delta=Math.max(delta, minDelta);
+		delta=Math.min(delta, maxDelta);
+		grn.proteins.get(0).concentration = Math.min(1.0, Math.max(0.0, (delta-minDelta)/(maxDelta-minDelta)));
 		grn.evolve(1);
-		this.alpha=grn.proteins.get(1).concentration;
-		this.gamma=grn.proteins.get(2).concentration;
-		this.lambda=grn.proteins.get(3).concentration;
-		//System.out.println(grn.proteins.get(0).concentration+"\t"+grn.proteins.get(1).concentration+"\t"+grn.proteins.get(2).concentration+"\t"+grn.proteins.get(3).concentration);
+		this.alpha=grn.proteins.get(1).concentration/(grn.proteins.get(1).concentration+grn.proteins.get(2).concentration+0.001);
+		this.gamma=grn.proteins.get(3).concentration/(grn.proteins.get(3).concentration+grn.proteins.get(4).concentration+0.001);
+		this.lambda=grn.proteins.get(5).concentration/(grn.proteins.get(5).concentration+grn.proteins.get(6).concentration+0.001);
+		System.out.println(grn+" : \t"+delta+"\t"+this.alpha+"\t"+this.gamma+"\t"+this.lambda);
 		
 		return super.update(phi_t, phi_tp1, r_tp1);
 	}

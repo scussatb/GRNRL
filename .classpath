@@ -24,7 +24,7 @@
 	<classpathentry kind="lib" path="src/rlpark/rlpark.plugin.opencv/javacv/javacv-windows-x86.jar"/>
 	<classpathentry kind="lib" path="src/rlpark/rlpark.plugin.opencv/javacv/javacv.jar"/>
 	<classpathentry kind="lib" path="src/rlpark/rlpark.plugin.rltoys/rltoys-client.jar"/>
-	<classpathentry kind="lib" path="/Users/kyle/git/GRNRL/jars/zephyr.jar"/>
+	<classpathentry kind="lib" path="/Users/cussat/Recherche/Projets/Neuromodulation/GRNRL/lib/zephyr.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -670,6 +670,12 @@ public class Evolver {
 			//e.evaluator=new CoverageControl( args, e.rng );//new MichalSignalProcessExp3();
 			//e.evaluator = new IntertwinedSpirals( args );
 			e.evaluator = new NMSarsaEvaluator();
+			((NMSarsaEvaluator)e.evaluator).problems.add("MountainCar");
+			((NMSarsaEvaluator)e.evaluator).problems.add("Maze");
+			((NMSarsaEvaluator)e.evaluator).rngRL=e.rng;
+			((NMSarsaEvaluator)e.evaluator).setSarsaDefaults("MoutainCar");
+			e.evaluator.name="NMSarsa_MoutainCar-Maze";
+			
 			e.experienceName=e.evaluator.name;
 		} else {
 			if( e.experienceName.compareTo("DoublingFrequencyEvaluator") == 0) e.evaluator=new DoublingFrequencyEvaluator();  

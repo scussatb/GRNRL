@@ -21,6 +21,8 @@ public class Sarsa implements Predictor, ParameterizedFunction {
   protected double delta;
   protected double v_t;
   protected double v_tp1;
+  protected double minDeltaSeen=Double.MAX_VALUE;
+  protected double maxDeltaSeen=Double.MIN_VALUE;
 
   public Sarsa(double alpha, double gamma, double lambda, int nbFeatures) {
     this(alpha, gamma, lambda, nbFeatures, new ATraces());
@@ -44,6 +46,9 @@ public class Sarsa implements Predictor, ParameterizedFunction {
     v_tp1 = phi_tp1 != null ? q.dotProduct(phi_tp1) : 0;
     v_t = q.dotProduct(phi_t);
     delta = r_tp1 + gamma * v_tp1 - v_t;
+    //minDeltaSeen=Math.min(delta, minDeltaSeen);
+    //maxDeltaSeen=Math.max(delta, maxDeltaSeen);
+    //System.out.println(delta+"\t"+minDeltaSeen+"\t"+maxDeltaSeen);
     e.update(gamma * lambda, phi_t);
     q.addToSelf(alpha * delta, e.vect());
     return delta;
