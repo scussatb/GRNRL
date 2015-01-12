@@ -63,11 +63,15 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 	public int nEpisode;
 	public boolean displayEpisodes=false;
 	public Vector<String> problems = new Vector<String>();
+	
+	//e.rng = new java.util.Random( e.randomSeed );
+	public Random rngRL;
 
 	double alpha = 0.1;
 	double gamma = 0.9;
 	double lambda = 0.1;		
 	double epsilon = 0.1;
+	int randomSeed = 0;
 	
 	public NMSarsaEvaluator(  ) {
 		numGRNInputs=1;
@@ -129,13 +133,18 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 					k++;
 				}
 				name="NMSarsa"+problems.toString();
+			} else if ( args[k].compareTo("randomSeed") == 0) {
+				randomSeed = Integer.parseInt( args[k+1] );
+				rngRL = new java.util.Random( randomSeed );
 			}
 			
+			
 		}
-		System.out.println("alpha =" + alpha);
-		System.out.println("gamma =" + gamma);
-		System.out.println("lambda =" + lambda);
-		System.out.println("epsilon =" + epsilon);
+		System.out.println("alpha = " + alpha);
+		System.out.println("gamma = " + gamma);
+		System.out.println("lambda = " + lambda);
+		System.out.println("epsilon = " + epsilon);
+		System.out.println("randomSeed = " + randomSeed);
 	}
 
 	@Override
@@ -194,7 +203,8 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 			sarsa = new Sarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces());
 		}
 		//double epsilon = 0.01;
-		Policy acting = new EpsilonGreedy(new Random(0), problem.actions(), toStateAction, sarsa, epsilon);
+		//Policy acting = new EpsilonGreedy(new Random(0), problem.actions(), toStateAction, sarsa, epsilon);
+		Policy acting = new EpsilonGreedy(rngRL, problem.actions(), toStateAction, sarsa, epsilon);
 		control = new SarsaControl(acting, toStateAction, sarsa);
 		valueFunctionDisplay = new ValueFunction2D(projector, problem, sarsa);
 		Zephyr.advertise(clock, this);
@@ -249,7 +259,8 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 			sarsa = new GRNSarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces(), grn);
 		}
 //		double epsilon = 0.3;
-		Policy acting = new EpsilonGreedy(new Random(0), problem.actions(), toStateAction, sarsa, epsilon);
+		//Policy acting = new EpsilonGreedy(new Random(0), problem.actions(), toStateAction, sarsa, epsilon);
+		Policy acting = new EpsilonGreedy(rngRL, problem.actions(), toStateAction, sarsa, epsilon);
 		control = new SarsaControl(acting, toStateAction, sarsa);
 		agent = new LearnerAgentFA(control, projector);
 		mazeValueFunction = new MazeValueFunction(problem, sarsa, toStateAction, acting);
@@ -283,7 +294,8 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		LearnerAgentFA agent;
 		Runner runner;
 	    
-		Random random = new Random(0);
+		//Random random = new Random(0);
+		Random random = rngRL;
 	    Range observationRange = new Range(-50, 50);
 	    Range actionRange = new Range(-1, 1);
 	    double noise = .1;
@@ -323,7 +335,8 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 			sarsa = new GRNSarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces(), grn);
 		}
 //		double epsilon = 0.3;
-		Policy acting = new EpsilonGreedy(new Random(0), world.actions(), toStateAction, sarsa, epsilon);
+		//Policy acting = new EpsilonGreedy(new Random(0), world.actions(), toStateAction, sarsa, epsilon);
+		Policy acting = new EpsilonGreedy(rngRL, world.actions(), toStateAction, sarsa, epsilon);
 		ControlLearner control = new SarsaControl(acting, toStateAction, sarsa);
 		agent = new LearnerAgentFA(control, tileCoders);
 	    valueFunction = new ValueFunction2D(tileCoders, world, sarsa);
@@ -357,7 +370,8 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		LearnerAgentFA agent;
 		Runner runner;
 	    
-		Random random = new Random(0);
+		//Random random = new Random(0);
+		Random random = rngRL;
 	    problem = new SwingPendulum(null, false);
 	    TileCodersNoHashing tileCoders = new TileCodersNoHashing(problem.getObservationRanges());
 	    ((AbstractPartitionFactory) tileCoders.discretizerFactory()).setRandom(random, .2);
@@ -376,7 +390,8 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 			sarsa = new GRNSarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces(), grn);
 		}
 //		double epsilon = 0.3;
-		Policy acting = new EpsilonGreedy(new Random(0), problem.actions(), toStateAction, sarsa, epsilon);
+		//Policy acting = new EpsilonGreedy(new Random(0), problem.actions(), toStateAction, sarsa, epsilon);
+		Policy acting = new EpsilonGreedy(rngRL, problem.actions(), toStateAction, sarsa, epsilon);
 		ControlLearner control = new SarsaControl(acting, toStateAction, sarsa);
 		agent = new LearnerAgentFA(control, tileCoders);
 	    valueFunction = new ValueFunction2D(tileCoders, problem, sarsa);
