@@ -432,6 +432,7 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		//double fGRN = eval.evaluateMountainCar(grn);
 		
 		//System.out.println("\n====       Averages      ====\nGRNSarsa\tSarsa\n"+fGRN+"\t\t"+fSarsa);
+		System.out.println( "0\t" + eval.alpha + "\t" + eval.gamma + "\t" + eval.lambda + "\t" + eval.epsilon + "\t" + eval.randomSeed + "\t" + fSarsa );
 	}
 
 }
