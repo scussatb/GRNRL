@@ -48,7 +48,7 @@ public class Sarsa implements Predictor, ParameterizedFunction {
     delta = r_tp1 + gamma * v_tp1 - v_t;
     //minDeltaSeen=Math.min(delta, minDeltaSeen);
     //maxDeltaSeen=Math.max(delta, maxDeltaSeen);
-    //System.out.println(delta+"\t"+minDeltaSeen+"\t"+maxDeltaSeen);
+//    System.out.println(delta+"\t"+r_tp1+"\t"+v_tp1+"\t"+v_t);
     e.update(gamma * lambda, phi_t);
     q.addToSelf(alpha * delta, e.vect());
     return delta;

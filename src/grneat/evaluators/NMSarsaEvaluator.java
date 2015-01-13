@@ -198,8 +198,8 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		//System.out.print(numEvaluations+"\t: Evaluate: "+grn);
 		Sarsa sarsa;
 		if (grn != null) {
-			sarsa = new GRNSarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces(), grn);
 			setSarsaDefaults("MountainCar");
+			sarsa = new GRNSarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces(), grn, projector.vectorNorm());
 			((GRNSarsa)sarsa).minDelta=-33.5031963543928;
 			((GRNSarsa)sarsa).maxDelta=17.841888320550;
 		} else {
@@ -259,8 +259,8 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		if (grn == null) {
 			sarsa = new Sarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces());
 		} else {
-			sarsa = new GRNSarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces(), grn);
 			setSarsaDefaults("Maze");
+			sarsa = new GRNSarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces(), grn, projector.vectorNorm());
 			((GRNSarsa)sarsa).minDelta=-5.285246761385281;
 			((GRNSarsa)sarsa).maxDelta=3.4911249865196456;
 			
@@ -339,8 +339,8 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		if (grn == null) {
 			sarsa = new Sarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces());
 		} else {
-			sarsa = new GRNSarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces(), grn);
 			setSarsaDefaults("PuddleWorld");
+			sarsa = new GRNSarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces(), grn, tileCoders.vectorNorm());
 			((GRNSarsa)sarsa).minDelta=-6442.566526517287;
 			((GRNSarsa)sarsa).maxDelta=10611.01805647782;
 		}
@@ -397,8 +397,8 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		if (grn == null) {
 			sarsa = new Sarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces());
 		} else {
-			sarsa = new GRNSarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces(), grn);
 			setSarsaDefaults("ActorCriticPendulum");
+			sarsa = new GRNSarsa(alpha, gamma, lambda, toStateAction.vectorSize(), new RTraces(), grn, tileCoders.vectorNorm());
 			((GRNSarsa)sarsa).minDelta=-318.8166143617434;
 			((GRNSarsa)sarsa).maxDelta=321.8407343516526;
 		}
@@ -431,7 +431,7 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		GRNModel grn = GRNModel.loadFromFile("NMSarsa_Maze/run_1421075785493904000/grn_31_-32.42.grn");
+		GRNModel grn = GRNModel.loadFromFile("NMSarsa_MoutainCar-Maze/run_1421086564518518000/grn_156_-213.77.grn");
 		//Vector<String> problems = ;
 		
 		NMSarsaEvaluator eval = new NMSarsaEvaluator();
