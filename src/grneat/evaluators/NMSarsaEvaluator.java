@@ -483,7 +483,8 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 	}
 
 	public static void main(String[] args) throws Exception {
-		GRNModel grn = GRNModel.loadFromFile("/Users/cussat/Recherche/Projets/Neuromodulation/GRNRL/Results/run_2015-01-13/NMSarsa_ActorCriticPendulum/run_351995723965078/grn_142_3066.5005810613216.grn");
+//		GRNModel grn = GRNModel.loadFromFile("/Users/cussat/Recherche/Projets/Neuromodulation/GRNRL/Results/run_2015-01-13/NMSarsa_ActorCriticPendulum/run_682678625846967/grn_123_3307.894503933453.grn");
+		GRNModel grn = GRNModel.loadFromFile("/Users/cussat/Recherche/Projets/Neuromodulation/GRNRL/Results/run_2015-01-13/NMSarsa_PuddleWorld/run_880170525011422/grn_17_2320.32000000003.grn");
 
 		float sumGRN=0;
 		float sumSarsa=0;
@@ -504,16 +505,16 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 //			eval.gamma = 0.928571428571;
 //			eval.lambda = 0.928571428571;
 //			eval.epsilon = 0.01;
-//			eval.problems.add("PuddleWorld");
+			eval.problems.add("PuddleWorld");
+			eval.alpha =   0.0571428571429;
+			eval.gamma = 0.928571428571;
+			eval.lambda = 0.5;
+			eval.epsilon = 0.01;
+//			eval.problems.add("ActorCriticPendulum");
 //			eval.alpha =   0.05;
 //			eval.gamma = 0.928571428571;
 //			eval.lambda = 0.785714285714;
 //			eval.epsilon = 0.01;
-			eval.problems.add("ActorCriticPendulum");
-			eval.alpha =   0.05;
-			eval.gamma = 0.928571428571;
-			eval.lambda = 0.785714285714;
-			eval.epsilon = 0.01;
 		
 			
 			eval.rngRL = new java.util.Random(i*1000);
