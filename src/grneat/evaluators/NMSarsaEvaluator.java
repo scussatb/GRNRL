@@ -188,7 +188,7 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		TabularAction toStateAction = new TabularAction(problem.actions(),
 				projector.vectorNorm(), projector.vectorSize());
 		toStateAction.includeActiveFeature();
-		alpha /= projector.vectorNorm();
+//		alpha /= projector.vectorNorm();
 		// double alpha = .15 / projector.vectorNorm();
 		// double gamma = 0.99;
 		// double lambda = .3;
@@ -332,29 +332,29 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		RewardWhenTerminated features[] = {
 				new RewardWhenTerminated(new TargetReachedL2NormTermination(
 						new double[] { -45, -45 }, actionRange.max() + 2
+						* noise)),
+						new RewardWhenTerminated(new TargetReachedL2NormTermination(
+								new double[] { -40, -45 }, actionRange.max() + 2
 								* noise)),
-				new RewardWhenTerminated(new TargetReachedL2NormTermination(
-						new double[] { -40, -45 }, actionRange.max() + 2
-								* noise)),
-				new RewardWhenTerminated(
-						new TargetReachedL2NormTermination(new double[] { -35,
-								30 }, actionRange.max() + 2 * noise)),
-				new RewardWhenTerminated(
-						new TargetReachedL2NormTermination(new double[] { -15,
-								10 }, actionRange.max() + 2 * noise)),
-				new RewardWhenTerminated(new TargetReachedL2NormTermination(
-						new double[] { 0, 0 }, actionRange.max() + 2 * noise)),
-				new RewardWhenTerminated(new TargetReachedL2NormTermination(
-						new double[] { 5, 15 }, actionRange.max() + 2 * noise)),
-				new RewardWhenTerminated(new TargetReachedL2NormTermination(
-						new double[] { 25, 30 }, actionRange.max() + 2 * noise)),
-				new RewardWhenTerminated(new TargetReachedL2NormTermination(
-						new double[] { 40, 35 }, actionRange.max() + 2 * noise)),
-				new RewardWhenTerminated(new TargetReachedL2NormTermination(
-						new double[] { 45, 45 }, actionRange.max() + 2 * noise)),
+								new RewardWhenTerminated(
+										new TargetReachedL2NormTermination(new double[] { -35,
+												30 }, actionRange.max() + 2 * noise)),
+												new RewardWhenTerminated(
+														new TargetReachedL2NormTermination(new double[] { -15,
+																10 }, actionRange.max() + 2 * noise)),
+																new RewardWhenTerminated(new TargetReachedL2NormTermination(
+																		new double[] { 0, 0 }, actionRange.max() + 2 * noise)),
+																		new RewardWhenTerminated(new TargetReachedL2NormTermination(
+																				new double[] { 5, 15 }, actionRange.max() + 2 * noise)),
+																				new RewardWhenTerminated(new TargetReachedL2NormTermination(
+																						new double[] { 25, 30 }, actionRange.max() + 2 * noise)),
+																						new RewardWhenTerminated(new TargetReachedL2NormTermination(
+																								new double[] { 40, 35 }, actionRange.max() + 2 * noise)),
+																								new RewardWhenTerminated(new TargetReachedL2NormTermination(
+																										new double[] { 45, 45 }, actionRange.max() + 2 * noise)),
 
-				new RewardWhenTerminated(new TargetReachedL2NormTermination(
-						new double[] { 49, 49 }, actionRange.max() + 2 * noise)) };
+																										new RewardWhenTerminated(new TargetReachedL2NormTermination(
+																												new double[] { 49, 49 }, actionRange.max() + 2 * noise)) };
 		world.setRewardFunction(new LocalFeatureSumFunction(weights, features,
 				-0.1));
 		TileCodersNoHashing tileCoders = new TileCodersNoHashing(
@@ -365,7 +365,7 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		// double alpha = .15 / tileCoders.vectorNorm();
 		// double gamma = 1.0;
 		// double lambda = 0.6;
-//		alpha /= tileCoders.vectorNorm();
+		//		alpha /= tileCoders.vectorNorm();
 		double vectorNorm = tileCoders.vectorNorm();
 		int vectorSize = tileCoders.vectorSize();
 		TabularAction toStateAction = new TabularAction(world.actions(),
@@ -430,7 +430,7 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		((AbstractPartitionFactory) tileCoders.discretizerFactory()).setRandom(
 				random, .2);
 		tileCoders.addFullTilings(10, 10);
-		alpha /= tileCoders.vectorNorm();
+//		alpha /= tileCoders.vectorNorm();
 		// double alpha = .15 / tileCoders.vectorNorm();
 		// double gamma = 1.0;
 		// double lambda = 0.6;
@@ -483,31 +483,56 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 	}
 
 	public static void main(String[] args) throws Exception {
-		GRNModel grn = GRNModel
-				.loadFromFile("NMSarsa_MoutainCar-Maze/run_1421086564518518000/grn_156_-213.77.grn");
-		// Vector<String> problems = ;
+		GRNModel grn = GRNModel.loadFromFile("/Users/cussat/Recherche/Projets/Neuromodulation/GRNRL/Results/run_2015-01-13/NMSarsa_ActorCriticPendulum/run_351995723965078/grn_142_3066.5005810613216.grn");
 
-		NMSarsaEvaluator eval = new NMSarsaEvaluator();
-		// eval.readArgs( args );
-		eval.displayEpisodes = true;
-		// eval.setSarsaDefaults(eval.problems.get(0));
-		eval.alpha = 0.0571428571429;
-		eval.gamma = 0.928571428571;
-		eval.lambda = 0.5;
-		eval.epsilon = 0.01;
-		eval.problems.add("PuddleWorld");
-		eval.rngRL = new java.util.Random(213494);
+		float sumGRN=0;
+		float sumSarsa=0;
+		int maxEval=100;
+		for (int i=0; i<maxEval; i++) {
+			NMSarsaEvaluator eval = new NMSarsaEvaluator();
+			// eval.readArgs( args );
+			eval.displayEpisodes = false;
+			// eval.setSarsaDefaults(eval.problems.get(0));
+			
+//			eval.problems.add("MountainCar");
+//			eval.alpha =  0.07142857142854546;
+//			eval.gamma = 1.0;
+//			eval.lambda = 0.928571428571;
+//			eval.epsilon = 0.01;
+//			eval.problems.add("Maze");
+//			eval.alpha =  1.0;
+//			eval.gamma = 0.928571428571;
+//			eval.lambda = 0.928571428571;
+//			eval.epsilon = 0.01;
+//			eval.problems.add("PuddleWorld");
+//			eval.alpha =   0.05;
+//			eval.gamma = 0.928571428571;
+//			eval.lambda = 0.785714285714;
+//			eval.epsilon = 0.01;
+			eval.problems.add("ActorCriticPendulum");
+			eval.alpha =   0.05;
+			eval.gamma = 0.928571428571;
+			eval.lambda = 0.785714285714;
+			eval.epsilon = 0.01;
+		
+			
+			eval.rngRL = new java.util.Random(i*1000);
 
-		// System.out.println("====   Evaluating SARSA  ====");
-		double fSarsa = eval.evaluateGRN(null, eval.problems);
-		System.out.println("fSarsa = " + fSarsa);
-		// System.out.println("\n==== Evaluating GRNSARSA ====");
-		// double fGRN = eval.evaluateGRN(grn, eval.problems);
-
-		// System.out.println("\n====       Averages      ====\nGRNSarsa\tSarsa\n"+fGRN+"\t\t"+fSarsa);
-		// System.out.println( "0\t" + eval.alpha + "\t" + eval.gamma + "\t" +
-		// eval.lambda + "\t" + eval.epsilon + "\t" + eval.randomSeed + "\t" +
-		// fSarsa );
+			// System.out.println("====   Evaluating SARSA  ====");
+//			double fSarsa = eval.evaluateGRN(null, eval.problems);
+			//			System.out.println("fSarsa = " + fSarsa);
+			// System.out.println("\n==== Evaluating GRNSARSA ====");
+			double fGRN = eval.evaluateGRN(grn, eval.problems);
+			sumGRN+=fGRN;
+//			sumSarsa+=fSarsa;
+			System.out.println(i+"\t"+fGRN/*+"\t"+fSarsa/**/);
+			// System.out.println("\n====       Averages      ====\nGRNSarsa\tSarsa\n"+fGRN+"\t\t"+fSarsa);
+			// System.out.println( "0\t" + eval.alpha + "\t" + eval.gamma + "\t" +
+			// eval.lambda + "\t" + eval.epsilon + "\t" + eval.randomSeed + "\t" +
+			// fSarsa );
+		}
+		System.out.println("\n====       Averages      ====");
+		System.out.println("\t"+sumGRN/maxEval/*+"\t"+sumSarsa/maxEval/**/);
 	}
 
 }
