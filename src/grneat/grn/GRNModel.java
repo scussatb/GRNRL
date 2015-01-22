@@ -14,7 +14,7 @@ public class GRNModel implements Serializable {
 
 	double beta;
 	double delta;
-	int currentStep;
+	public int currentStep;
 	double maxEnhance;
 	double maxInhibit;
 	double enhanceMatching[][];

@@ -673,8 +673,9 @@ public class Evolver {
 //			((NMSarsaEvaluator)e.evaluator).problems.add("MountainCar");
 //			((NMSarsaEvaluator)e.evaluator).problems.add("Maze");
 //			((NMSarsaEvaluator)e.evaluator).problems.add("ActorCriticPendulum");
-			((NMSarsaEvaluator)e.evaluator).problems.add("PuddleWorld");
+//			((NMSarsaEvaluator)e.evaluator).problems.add("PuddleWorld");
 			((NMSarsaEvaluator)e.evaluator).rngRL=e.rng;
+			((NMSarsaEvaluator)e.evaluator).readArgs(args);
 			e.evaluator.name="NMSarsa_"+((NMSarsaEvaluator)e.evaluator).problems.get(0);
 			
 			e.experienceName=e.evaluator.name;
@@ -690,7 +691,13 @@ public class Evolver {
 			else if( e.experienceName.compareTo("WeatherPrediction") == 0 ) e.evaluator=new WeatherPrediction(1);
 			else if( e.experienceName.compareTo("Radbot") == 0 ) e.evaluator=new RadbotEvaluator();
 			else if( e.experienceName.compareTo("PingPrediction") == 0 ) e.evaluator=new PingPrediction(0);
-			//e.experienceName=e.evaluator.name;
+			else if (e.experienceName.compareTo("NMSarsa") == 0) {
+				e.evaluator = new NMSarsaEvaluator();
+				((NMSarsaEvaluator)e.evaluator).rngRL=e.rng;
+				((NMSarsaEvaluator)e.evaluator).readArgs(args);
+				e.evaluator.name="NMSarsa_"+((NMSarsaEvaluator)e.evaluator).problems.get(0);
+				e.experienceName=e.evaluator.name;
+			}
 		}
 		
 		if (e.greatActivated) {

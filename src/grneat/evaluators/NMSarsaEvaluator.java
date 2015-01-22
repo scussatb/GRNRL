@@ -74,8 +74,9 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 	int randomSeed = 0;
 
 	public NMSarsaEvaluator() {
-		numGRNInputs = 1;
-		numGRNOutputs = 6;
+		numGRNInputs = 3;
+		numGRNOutputs = 4;
+		nonCacheable=true;
 		// problems.add("MountainCar");
 		// problems.add( problem );
 		// problems = inProblems;
@@ -483,9 +484,9 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 	}
 
 	public static void main(String[] args) throws Exception {
-//		GRNModel grn = GRNModel.loadFromFile("/Users/cussat/Recherche/Projets/Neuromodulation/GRNRL/Results/run_2015-01-13/NMSarsa_ActorCriticPendulum/run_682678625846967/grn_123_3307.894503933453.grn");
-		GRNModel grn = GRNModel.loadFromFile("/Users/cussat/Recherche/Projets/Neuromodulation/GRNRL/Results/run_2015-01-13/NMSarsa_PuddleWorld/run_880170525011422/grn_17_2320.32000000003.grn");
-
+//		GRNModel grn = GRNModel.loadFromFile("/Users/cussat/Recherche/Projets/Neuromodulation/GRNRL/NMSarsa_PuddleWorld/run_1421850433035169000/grn_7_1579.530000000022.grn");
+//		GRNModel grn = GRNModel.loadFromFile("/Users/cussat/Recherche/Projets/Neuromodulation/GRNRL/Results/run_2015-01-13/NMSarsa_Maze-ActorCriticPendulum/run_769851943476400/grn_81_2504.806138294125.grn");
+		GRNModel grn = GRNModel.loadFromFile("/Users/cussat/Recherche/Projets/Neuromodulation/GRNRL/NMSarsa_Maze/run_1421926719262292000/grn_67_-33.27.grn");		
 		float sumGRN=0;
 		float sumSarsa=0;
 		int maxEval=100;
@@ -495,17 +496,19 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 			eval.displayEpisodes = false;
 			// eval.setSarsaDefaults(eval.problems.get(0));
 			
+//			eval.problems.add("PuddleWorld");
+
 //			eval.problems.add("MountainCar");
 //			eval.alpha =  0.07142857142854546;
 //			eval.gamma = 1.0;
 //			eval.lambda = 0.928571428571;
 //			eval.epsilon = 0.01;
-//			eval.problems.add("Maze");
+			eval.problems.add("Maze");
 //			eval.alpha =  1.0;
 //			eval.gamma = 0.928571428571;
 //			eval.lambda = 0.928571428571;
 //			eval.epsilon = 0.01;
-			eval.problems.add("PuddleWorld");
+//			eval.problems.add("PuddleWorld");
 			eval.alpha =   0.0571428571429;
 			eval.gamma = 0.928571428571;
 			eval.lambda = 0.5;
