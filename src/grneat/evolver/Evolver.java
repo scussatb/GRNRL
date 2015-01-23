@@ -161,7 +161,7 @@ public class Evolver {
 		// Building species
 		//speciation(offsprings);
 		//System.err.println(species.size());
-		System.out.println("IT\tNanotime\t#Eval\t#Species\tSpecies size\tPopSize\tBest\tAvg\tWorst\tBest GRN Size\tAvg GRN size\tMax GRN size\tMin GRN size\tSpecies avgdist2rep");
+		System.out.println("IT\tNanotime\t#Eval\t#Species\tPopSize\tBest\tAvg\tWorst\tBest GRN Size\tAvg GRN size\tMax GRN size\tMin GRN size");
 		while (currentGen<maxNumGen) {
 			evaluator.generation = currentGen;
 			if ( evaluator.nonCacheable ) {
@@ -444,7 +444,7 @@ public class Evolver {
 		speciesSizes+=")";
 		avgdist2rep+=")";
 //		return "Species: " +species.size()+speciesSizes+" -- PopSize: "+nGenomes+" -- FitMax/Avg/Min: "+fitMax+"/"+fitSum/nGenomes+"/"+fitMin;
-		return species.size()+"\t"+speciesSizes+"\t"+nGenomes+"\t"+fitMax+"\t"+fitSum/nGenomes+"\t"+fitMin+"\t"+bestGRNSize+"\t"+avgGRNSize/populationSize+"\t"+maxGRNSize+"\t"+minGRNSize+"\t"+avgdist2rep;
+		return species.size()+"\t"+/*speciesSizes+"\t"+*/nGenomes+"\t"+fitMax+"\t"+fitSum/nGenomes+"\t"+fitMin+"\t"+bestGRNSize+"\t"+avgGRNSize/populationSize+"\t"+maxGRNSize+"\t"+minGRNSize/*+"\t"+avgdist2rep*/;
 
 	}
 

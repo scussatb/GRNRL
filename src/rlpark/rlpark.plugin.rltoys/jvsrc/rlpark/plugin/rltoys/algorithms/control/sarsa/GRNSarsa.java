@@ -13,13 +13,16 @@ public class GRNSarsa extends Sarsa {
 	public static double maxDelta = +100.0;
 	public double alphaNorm=1.0;
 	public int step=0;
+	public int stepMax=100;
+	public int episode=0;
 	public double sumAvgE=0.0;
 	public ArrayList<Double> avgsE=new ArrayList<Double>();
 	public double sumD=0.0;
 	public ArrayList<Double> sumsD=new ArrayList<Double>();
 	public double sumQE=0.0;
 	public ArrayList<Double> sumsQE=new ArrayList<Double>();
-	
+	public boolean displayGRN=true;
+
 	protected GRNModel grn;
 
 	public GRNSarsa(double alpha, double gamma, double lambda, int nbFeatures, GRNModel grn) {
@@ -41,91 +44,83 @@ public class GRNSarsa extends Sarsa {
 	@Override
 	public double update(RealVector phi_t, RealVector phi_tp1, double r_tp1) {
 		// updating parameters
-		/*if (delta>maxDelta || delta<minDelta) {
-			System.err.println("Delta error : "+delta+"\t"+minDelta+"\t"+maxDelta);
-		}*/
-		//		if (delta!=delta) delta=minDelta;
-		//		delta=Math.max(delta, minDelta);
-		//		delta=Math.min(delta, maxDelta);
-		
-		//double norm = q.dotProduct(q)*e.vect().dotProduct(e.vect());
-		//System.out.println((q.dotProduct(e.vect())/(Math.abs(norm)<0.00001?0.00001:norm)+1)/2.0);
-		
-//		double maxE=-Double.MAX_VALUE;
-//		double minE=Double.MAX_VALUE;
-//		for (double v : e.vect().accessData()) {
-//			maxE=Math.max(maxE, v);
-//			minE=Math.min(minE, v);
+		int smoothingSize=25;	
+		step++;
+
+//		double d=(delta-minDelta)/(maxDelta-minDelta);
+//		if (sumsD.size()>smoothingSize) {
+//			sumD-=sumsD.get(0);
+//			sumsD.remove(0);
+//			sumsD.add(d);
+//			sumD+=d;
+//		} else {
+//			sumsD.add(d);
+//			sumD+=d;
 //		}
-		
-//		System.out.println(minE+"\t"+maxE+"\t"+e.vect().sum()/e.vect().accessData().length);
-		int smoothingSize=25;		
-		
-		double d=(delta-minDelta)/(maxDelta-minDelta);
-		if (sumsD.size()>smoothingSize) {
-			sumD-=sumsD.get(0);
-			sumsD.remove(0);
-			sumsD.add(d);
-			sumD+=d;
-		} else {
-			sumsD.add(d);
-			sumD+=d;
-		}
-		grn.proteins.get(0).concentration = Math.min(1.0, Math.max(0.0, sumD/sumsD.size()));
-		
+//		grn.proteins.get(0).concentration = 0.0;// Math.min(1.0, Math.max(0.0, sumD/sumsD.size()));
+	
 		double norm = q.dotProduct(q)*e.vect().dotProduct(e.vect());
 		double qe=(q.dotProduct(e.vect())/(Math.abs(norm)<0.00001?0.00001:norm)+1.0)/2.0;
-		double qeModif = qe<0.4975?0:(qe-0.4975)/(0.5-0.4975);
+		double qeRate=0.4995;
+		double qeModif = qe<qeRate?0:(qe-qeRate)/(0.5-qeRate);
+//		System.out.println(qe+"\t"+qeModif);
+		int div=0;
+		sumQE=0;
+		sumsQE.add(qeModif);
 		if (sumsQE.size()>smoothingSize) {
-			sumQE-=sumsQE.get(0);
 			sumsQE.remove(0);
-			sumsQE.add(qeModif);
-			sumQE+=qeModif;
-		} else {
-			sumsQE.add(qeModif);
-			sumQE+=qeModif;
 		}
-		grn.proteins.get(1).concentration = Math.min(1.0, Math.max(0.0, sumQE/sumsQE.size()));
-		
+		for (int i=0; i<sumsQE.size(); i++) {
+			sumQE+=sumsQE.get(i)*(i+1);
+			div+=(i+1);
+		}
+		grn.proteins.get(0).concentration = Math.min(1.0, Math.max(0.0, sumQE/div));
+
 		double avgE=e.vect().sum()/e.vect().accessData().length;
+		sumAvgE=0;
+		div=0;
+		avgsE.add(avgE);
 		if (avgsE.size()>smoothingSize) {
-			sumAvgE-=avgsE.get(0);
 			avgsE.remove(0);
-			avgsE.add(avgE);
-			sumAvgE+=avgE;
-		} else {
-			avgsE.add(avgE);
-			sumAvgE+=avgE;
 		}
-		grn.proteins.get(2).concentration = Math.min(1.0, Math.max(0.0, sumAvgE/avgsE.size()*50));
+		for (int i=0; i<avgsE.size(); i++) {
+			sumAvgE+=avgsE.get(i)*(i+1);
+			div+=(i+1);
+		}
+		grn.proteins.get(1).concentration = 1.0-Math.min(1.0, Math.max(0.0, (sumAvgE/div)*(sumAvgE/div)*2500));
+
+//		grn.proteins.get(2).concentration = Math.min(1.0, Math.max(0.0, step<stepMax?(0.5*Math.cos(((double)step)*Math.PI/stepMax)+0.5):0));
+		grn.proteins.get(2).concentration = 1.0-Math.min(1.0, Math.max(0.0, Math.exp(-((double)(step*step))/((double)(stepMax*stepMax)))));
+		
 		grn.evolve(1);
-		if (grn.currentStep%5==0) {
-			this.alpha=grn.proteins.get(3).concentration/(grn.proteins.get(3).concentration+grn.proteins.get(6).concentration+0.001)/alphaNorm;
-			this.gamma=grn.proteins.get(4).concentration/(grn.proteins.get(4).concentration+grn.proteins.get(6).concentration+0.001);
-			this.lambda=grn.proteins.get(5).concentration/(grn.proteins.get(5).concentration+grn.proteins.get(6).concentration+0.001);
+
+//		if (grn.proteins.get(3).concentration>grn.proteins.get(9).concentration) {
+			this.alpha=grn.proteins.get(4).concentration/(grn.proteins.get(4).concentration+grn.proteins.get(3).concentration+0.001)/alphaNorm;
+			this.gamma=grn.proteins.get(5).concentration/(grn.proteins.get(5).concentration+grn.proteins.get(3).concentration+0.001);
+			this.lambda=grn.proteins.get(6).concentration/(grn.proteins.get(6).concentration+grn.proteins.get(3).concentration+0.001);
+//		}
+			
+		if (displayGRN) {
+			for (int i=0; i<3; i++) {
+				System.out.print(grn.proteins.get(i).concentration+"\t");
+			}
+			System.out.println(this.alpha+"\t"+this.gamma+"\t"+this.lambda+"\t"+episode);
 		}
-		//		if (grn.currentStep%25==0) {
-		//			this.alpha=grn.proteins.get(1).concentration/(grn.proteins.get(1).concentration+grn.proteins.get(4).concentration+0.001)/alphaNorm;
-		//			this.gamma=grn.proteins.get(2).concentration/(grn.proteins.get(2).concentration+grn.proteins.get(4).concentration+0.001);
-		//			this.lambda=grn.proteins.get(3).concentration/(grn.proteins.get(3).concentration+grn.proteins.get(4).concentration+0.001);
-		//		}
-/*		for (int i=0; i<3; i++) {
-			System.out.print(grn.proteins.get(i).concentration+"\t");
-		}
-		System.out.println(this.alpha+"\t"+this.gamma+"\t"+this.lambda);
-/**/		
+		
 		return super.update(phi_t, phi_tp1, r_tp1);
 	}
 
 	@Override
 	protected double initEpisode() {
-/**/		sumAvgE=0.0;
+		/**/		sumAvgE=0.0;
 		avgsE=new ArrayList<Double>();
 		sumD=0.0;
 		sumsD=new ArrayList<Double>();
 		sumQE=0.0;
-		sumsQE=new ArrayList<Double>();
-		grn.reset();
+		sumsQE=new ArrayList<Double>();/**/
+		step=0;
+		episode++;
+		/*		grn.reset();
 		grn.evolve(25);/**/
 		return super.initEpisode();
 	}
