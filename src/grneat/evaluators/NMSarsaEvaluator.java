@@ -6,6 +6,7 @@ import java.util.Vector;
 
 import javax.print.DocFlavor.STRING;
 
+import rlpark.example.demos.learning.ActorCriticPendulum;
 import rlpark.plugin.rltoys.agents.functions.FunctionProjected2D;
 import rlpark.plugin.rltoys.agents.functions.ValueFunction2D;
 import rlpark.plugin.rltoys.agents.rl.LearnerAgentFA;
@@ -66,6 +67,7 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 	public boolean displayEpisodes = false;
 	public Vector<String> problems = new Vector<String>();
 	public boolean displayGRN=false;
+	public Vector<Double> avgFitPerEpisode = new Vector<Double>();
 
 	// e.rng = new java.util.Random( e.randomSeed );
 	public Random rngRL;
@@ -161,20 +163,20 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 	@Override
 	public double evaluate(GRNGenome aGenome) {
 		numEvaluations++;
-		double fitness = evaluateGRN(buildGRNFromGenome(aGenome), problems);
+		double fitness = evaluateGRN(buildGRNFromGenome(aGenome), problems, 25, false);
 		aGenome.setNewFitness(fitness);
 		return fitness;
 	}
 
-	public double evaluateGRN(GRNModel grn, Vector<String> problems) {
+	public double evaluateGRN(GRNModel grn, Vector<String> problems, int nEval, boolean statistics) {
 		double fitness = 0;
 		if (problems.contains("MountainCar")) {
 			int eval=1;
 			double fit;
-			double fitMC=evaluateMountainCar(grn);
+			double fitMC=evaluateMountainCar(grn, statistics);
 			if (fitMC>-400) {
-				for (int i=0; i<24; i++) {
-					fit=evaluateMountainCar(grn);
+				for (int i=0; i<nEval-1; i++) {
+					fit=evaluateMountainCar(grn, statistics);
 					fitMC+=fit;
 					eval++;
 				}
@@ -184,10 +186,10 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		if (problems.contains("Maze")) {
 			int eval=1;
 			double fit;
-			double fitMaze=evaluateMaze(grn);
+			double fitMaze=evaluateMaze(grn, statistics);
 			if (fitMaze>-100) {
-				for (int i=0; i<24; i++) {
-					fit=evaluateMaze(grn);
+				for (int i=0; i<nEval-1; i++) {
+					fit=evaluateMaze(grn, statistics);
 					fitMaze+=fit;
 					eval++;
 				}
@@ -195,16 +197,36 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 			fitness+=fitMaze/eval;
 		}
 		if (problems.contains("ActorCriticPendulum")) {
-			fitness += evaluateActorCriticPendulum(grn);
+			int eval=1;
+			double fit;
+			double fitACP=evaluateActorCriticPendulum(grn, statistics);
+			if (fitACP>300) {
+				for (int i=0; i<nEval-1; i++) {
+					fit=evaluateActorCriticPendulum(grn, statistics);
+					fitACP+=fit;
+					eval++;
+				}
+			}
+			fitness+=fitACP/eval;
 		}
 		if (problems.contains("PuddleWorld")) {
-			fitness += evaluatePuddleWorld(grn);
+			int eval=1;
+			double fit;
+			double fitPW=evaluatePuddleWorld(grn, statistics);
+			if (fitPW>300) {
+				for (int i=0; i<nEval-1; i++) {
+					fit=evaluatePuddleWorld(grn, statistics);
+					fitPW+=fit;
+					eval++;
+				}
+			}
+			fitness+=fitPW/eval;
 		}
 		// System.out.println(grn+" : "+fitness);
 		return fitness;
 	}
 
-	public double evaluateMountainCar(GRNModel grn) {
+	public double evaluateMountainCar(GRNModel grn, boolean stats) {
 
 		FunctionProjected2D valueFunctionDisplay;
 		MountainCar problem;
@@ -247,14 +269,22 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		nEpisode = 0;
 		fitness = 0;
 		nMaxEpisode=25;
+		if (stats) {
+			avgFitPerEpisode=new Vector<Double>(nMaxEpisode);
+		}
 		while (clock.tick() && nEpisode < nMaxEpisode) {
 			BinaryVector x_tp1 = projector.project(step.o_tp1);
 			Action action = control.step(x_t, step.a_t, x_tp1, step.r_tp1);
 			x_t = Vectors.bufferedCopy(x_tp1, x_t);
 			if (step.isEpisodeEnding() || step.time > 2500) {
-				if (displayEpisodes)
+				if (displayEpisodes) {
 					System.out.println(String.format("%d\t%d", nEpisode, step.time));
+//					System.out.println(step.time);
+				}
 				fitness += step.time;
+				if (stats) {
+					avgFitPerEpisode.add(new Double(step.time));
+				}
 				step = problem.initialize();
 				x_t = null;
 				nEpisode++;
@@ -266,7 +296,7 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 
 	}
 
-	public double evaluateMaze(GRNModel grn) {
+	public double evaluateMaze(GRNModel grn, boolean stats) {
 		MazeValueFunction mazeValueFunction;
 		Maze problem = Mazes.createBookMaze();
 		ControlLearner control;
@@ -307,7 +337,11 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		nMaxEpisode=30;
 		Runner runner = new Runner(problem, agent, nMaxEpisode, 3000);
 		fitness = 0;
+		if (stats) {
+			avgFitPerEpisode=new Vector<Double>(nMaxEpisode);
+		}
 		runner.onEpisodeEnd.connect(new Listener<RunnerEvent>() {
+			public boolean stats = true;
 			@Override
 			public void listen(RunnerEvent eventInfo) {
 				if (displayEpisodes)
@@ -315,6 +349,9 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 							eventInfo.nbEpisodeDone, eventInfo.step.time));
 				nEpisode++;
 				fitness += eventInfo.step.time;
+				if (stats) {
+					avgFitPerEpisode.add(new Double(eventInfo.step.time));
+				}
 			}
 		});
 		while (clock.tick() && nEpisode < nMaxEpisode) {
@@ -325,7 +362,7 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		return -fitness / nMaxEpisode;
 	}
 
-	public double evaluatePuddleWorld(GRNModel grn) {
+	public double evaluatePuddleWorld(GRNModel grn, boolean stats) {
 		FunctionProjected2D valueFunction;
 		double reward;
 		Clock clock = new Clock("PuddleWorld");
@@ -393,6 +430,7 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 			((GRNSarsa) sarsa).minDelta = -6442.566526517287;
 			((GRNSarsa) sarsa).maxDelta = 10611.01805647782;
 			((GRNSarsa) sarsa).displayGRN=displayGRN;
+			((GRNSarsa) sarsa).stepMax=300;
 		}
 		Policy acting = new EpsilonGreedy(rngRL, world.actions(),
 				toStateAction, sarsa, epsilon);
@@ -400,11 +438,16 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		agent = new LearnerAgentFA(control, tileCoders);
 		valueFunction = new ValueFunction2D(tileCoders, world, sarsa);
 		
-		nMaxEpisode=50;
+		nMaxEpisode=40;
 		nEpisode = 0;
 		fitness = 0;
 		runner = new Runner(world, agent, nMaxEpisode, 500);
+		if (stats) {
+			avgFitPerEpisode=new Vector<Double>(nMaxEpisode);
+		}
 		runner.onEpisodeEnd.connect(new Listener<RunnerEvent>() {
+			public boolean stats = true;
+
 			@Override
 			public void listen(RunnerEvent eventInfo) {
 				if (displayEpisodes)
@@ -412,6 +455,9 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 							eventInfo.nbEpisodeDone, eventInfo.episodeReward));
 				nEpisode++;
 				fitness += eventInfo.episodeReward;
+				if (stats) {
+					avgFitPerEpisode.add(new Double(eventInfo.step.time));
+				}
 			}
 		});
 
@@ -425,7 +471,7 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 
 	}
 
-	public double evaluateActorCriticPendulum(GRNModel grn) {
+	public double evaluateActorCriticPendulum(GRNModel grn, boolean stats) {
 		FunctionProjected2D valueFunction;
 		double reward;
 		SwingPendulum problem;
@@ -457,6 +503,7 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 			((GRNSarsa) sarsa).minDelta = -318.8166143617434;
 			((GRNSarsa) sarsa).maxDelta = 321.8407343516526;
 			((GRNSarsa) sarsa).displayGRN=displayGRN;
+			((GRNSarsa) sarsa).stepMax=600;
 		}
 
 		Policy acting = new EpsilonGreedy(rngRL, problem.actions(),
@@ -467,8 +514,13 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		nEpisode = 0;
 		nMaxEpisode=30;
 		fitness = 0;
-		runner = new Runner(problem, agent, nMaxEpisode, 2500);
+		runner = new Runner(problem, agent, nMaxEpisode, 1000);
+		if (stats) {
+			avgFitPerEpisode=new Vector<Double>(nMaxEpisode);
+		}
 		runner.onEpisodeEnd.connect(new Listener<RunnerEvent>() {
+			public boolean stats = true;
+
 			@Override
 			public void listen(RunnerEvent eventInfo) {
 				if (displayEpisodes)
@@ -476,12 +528,16 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 							eventInfo.nbEpisodeDone, eventInfo.episodeReward));
 				nEpisode++;
 				fitness += eventInfo.episodeReward;
+				if (stats) {
+					avgFitPerEpisode.add(new Double(eventInfo.step.time));
+				}
+
 			}
 		});
 
 		Zephyr.advertise(clock, this);
 
-		while (clock.tick() && nMaxEpisode < 100) {
+		while (clock.tick() && nEpisode < nMaxEpisode) {
 			runner.step();
 		}
 
@@ -490,29 +546,32 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 	}
 
 	public static void main(String[] args) throws Exception {
-//		GRNModel grn = GRNModel.loadFromFile("/Users/cussat/Recherche/Projets/Neuromodulation/GRNRL/NMSarsa_PuddleWorld/run_1421850433035169000/grn_7_1579.530000000022.grn");
-//		GRNModel grn = GRNModel.loadFromFile("/Users/cussat/Recherche/Projets/Neuromodulation/GRNRL/Results/run_2015-01-13/NMSarsa_Maze-ActorCriticPendulum/run_769851943476400/grn_81_2504.806138294125.grn");
-//		GRNModel grn = GRNModel.loadFromFile("/Users/cussat/Recherche/Projets/Neuromodulation/GRNRL/Results/run_2015-01-21/NMSarsa_Maze/run_2603473139168546/grn_77_-31.15.grn");		
-		GRNModel grn = GRNModel.loadFromFile("/Users/cussat/Recherche/Projets/Neuromodulation/GRNRL/NMSarsa_MountainCar/run_1422026694970598000/grn_49_-187.416.grn");		
+		GRNModel grnMAZE = GRNModel.loadFromFile("/Users/cussat/Recherche/Projets/Neuromodulation/GRNRL/Results/run_2015-01-23/NMSarsa_Maze/run_2784148435803090/grn_369_-54.001333333333335.grn");	
+		GRNModel grn = GRNModel.loadFromFile("/Users/cussat/Recherche/Projets/Neuromodulation/GRNRL/Results/run_2015-01-23/NMSarsa_MountainCar/run_2784175489273741/grn_105_-167.6384.grn");
+		
 		
 		float sumGRN=0;
 		float sumSarsa=0;
-		int maxEval=1;
+		float sumGRNMaze=0;
+		int maxEval=100;
+		Vector<Double> avgFitGRN=new Vector<Double>();
+		Vector<Double> avgFitSARSA=new Vector<Double>();
+		Vector<Double> avgFitGRNMAZE=new Vector<Double>();
 		for (int i=0; i<maxEval; i++) {
-			NMSarsaEvaluator eval = new NMSarsaEvaluator(true);
+			NMSarsaEvaluator eval = new NMSarsaEvaluator(/**/false/*maxEval==1/**/);
 			eval.displayEpisodes = false;
 			
 
-			eval.problems.add("MountainCar");
+//			eval.problems.add("MountainCar");
 //			eval.alpha =  0.07142857142854546;
 //			eval.gamma = 1.0;
 //			eval.lambda = 0.928571428571;
 //			eval.epsilon = 0.01;
-//			eval.problems.add("Maze");
+			eval.problems.add("Maze");
 			eval.alpha =  1.0;
 			eval.gamma = 0.928571428571;
 			eval.lambda = 0.928571428571;
-//			eval.epsilon = 0.01;
+			eval.epsilon = 0.01;
 //			eval.problems.add("PuddleWorld");
 //			eval.alpha =   0.0571428571429;
 //			eval.gamma = 0.928571428571;
@@ -529,20 +588,48 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 
 //			 System.out.println("====   Evaluating SARSA  ====");
 			double fSarsa=0;
-//			fSarsa = eval.evaluateGRN(null, eval.problems);
-//						System.out.println("fSarsa = " + fSarsa);
+			fSarsa = eval.evaluateGRN(null, eval.problems, 1, true);
+			for (int ep=0;ep<eval.avgFitPerEpisode.size(); ep++) {
+				if (avgFitSARSA.size()<=ep) {
+					avgFitSARSA.add(eval.avgFitPerEpisode.get(ep));
+				} else {
+					avgFitSARSA.set(ep, avgFitSARSA.get(ep)+eval.avgFitPerEpisode.get(ep));
+				}
+			}
+
 //			 System.out.println("\n==== Evaluating GRNSARSA ====");
-			double fGRN = eval.evaluateGRN(grn, eval.problems);
+			double fGRN = eval.evaluateGRN(grnMAZE, eval.problems, 1, true);
+			for (int ep=0;ep<eval.avgFitPerEpisode.size(); ep++) {
+				if (avgFitGRN.size()<=ep) {
+					avgFitGRN.add(eval.avgFitPerEpisode.get(ep));
+				} else {
+					avgFitGRN.set(ep, avgFitGRN.get(ep)+eval.avgFitPerEpisode.get(ep));
+				}
+			}
+			
+//			 System.out.println("\n==== Evaluating GRNSARSA_MAZE ====");
+			double fGRNMaze;
+			fGRNMaze = eval.evaluateGRN(grnMAZE, eval.problems, 1, true);
+			for (int ep=0;ep<eval.avgFitPerEpisode.size(); ep++) {
+				if (avgFitGRNMAZE.size()<=ep) {
+					avgFitGRNMAZE.add(eval.avgFitPerEpisode.get(ep));
+				} else {
+					avgFitGRNMAZE.set(ep, avgFitGRNMAZE.get(ep)+eval.avgFitPerEpisode.get(ep));
+				}
+			}
+			
 			sumGRN+=fGRN;
 			sumSarsa+=fSarsa;
-			System.out.println(i+"\t"/**/+fGRN/**/+"\t"+fSarsa/**/);
-			// System.out.println("\n====       Averages      ====\nGRNSarsa\tSarsa\n"+fGRN+"\t\t"+fSarsa);
-			// System.out.println( "0\t" + eval.alpha + "\t" + eval.gamma + "\t" +
-			// eval.lambda + "\t" + eval.epsilon + "\t" + eval.randomSeed + "\t" +
-			// fSarsa );
+//			sumGRNMaze+=fGRNMaze;
+			
+			System.out.println(i+"\t"+fGRN+"\t"+fSarsa+"\t"+fGRNMaze);
 		}
 		System.out.println("\n====       Averages      ====");
-		System.out.println("\t"+sumGRN/maxEval/**/+"\t"+sumSarsa/maxEval/**/);
+		System.out.println("\t"+sumGRN/maxEval+"\t"+sumSarsa/maxEval+"\t"+sumGRNMaze/maxEval);
+
+		for (int i=0; i<Math.min(avgFitGRN.size(), avgFitSARSA.size()); i++) {
+			System.out.println(i+"\t"+avgFitGRN.get(i)/maxEval+"\t"+avgFitSARSA.get(i)/maxEval+"\t"+avgFitGRNMAZE.get(i)/maxEval);
+		}
 	}
 
 }

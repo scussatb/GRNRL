@@ -1,0 +1,34 @@
+alpha = 0.15
+gamma = 1.0
+lambda = 0.6
+epsilon = 0.3
+randomSeed = 999
+GREAT!
+Xover: 4
+---- Evolution parameters ----
+Folder name:          NMSarsa_PuddleWorld/run_3027640991969757
+Random seed:          999
+GREAT activated:      true
+Max iterations:       500
+Population size:      500
+GREAT initialization  true
+Speciation threshold: 0.15
+Species min size:     15
+Tournament size:      3
+Crossover rate:       0.2
+Mutation rate:        0.8
+Crossovers:
+	AligningCrossover_v4(0.15)
+Mutations:
+	AddGeneMutation(maxSize=2147483647, prob=0.33)
+	DeleteGeneMutation(minSize=8, prob=0.33)
+	ChangeGeneMutation(prob=0.33)
+------------------------------
+
+---- Starting evolution ----
+IT	Nanotime	#Eval	#Species	PopSize	Best	Avg	Worst	Best GRN Size	Avg GRN size	Max GRN size	Min GRN size
+0	3039279939458488	997	1	499	567.3109999999956	289.65209619238357	-50.100000000000406	12	9.248	13	8
+1	3050030763831407	1505	3	501	591.2189999999954	342.20532135728394	-50.100000000000406	10	9.618	14	8
+2	3062060463273506	2010	4	503	593.4559999999954	381.58335188866573	-50.100000000000406	9	9.438	14	8
+3	3075080376837557	2524	5	504	596.4759999999955	426.99483531745784	-50.100000000000406	8	9.898	15	8
+4	3089162425208310	3048	6	505	628.714999999995	459.0110693069278	-50.100000000000406	9	9.982	16	8
