@@ -1,0 +1,59 @@
+ \documentclass{sig-alternate-2}
+   
+   
+ \conferenceinfo{GECCO'15,} {July 11-15, 2015, Madrid, Spain.}
+ \CopyrightYear{2015}
+ \crdata{TBA}
+ \clubpenalty=10000
+ \widowpenalty = 10000
+    
+    \title{Genetically-regulated Neuromodulation\\
+    Facilitates Multi-Task Learning}
+    
+\numberofauthors{2}
+\author{
+\alignauthor
+Sylvain Cussat-Blanc\\
+\affaddr{University of Toulouse}\\
+\affaddr{21 All\'ee de Brienne} \\
+\affaddr{31042 Toulouse, France}
+\email{cussat@irit.fr}
+\and
+\alignauthor
+Kyle Harrington\\
+\affaddr{Harvard Medical School}\\
+\affaddr{???} \\
+\affaddr{???} \\
+\email{kharrin3@bidmc.harvard.edu}
+}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+In this paper, we use a gene regulatory network (GRN) to regulate the learning parameters of State-Action-Reward-State-Action (SARSA) algorithm. The GRN modulates the SARSA parameters: learning rate, discount factor, and memory depth. We have optimized GRNs with a genetic algorithm to regulate these parameters on specific problems but with no knowledge of problem structure. We show that GRN-regulated SARSA performs equally or better than the SARSA with fixed parameters. We then extend the GRN-regulated SARSA algorithm to multi-domain problem generalization, and show that GRNs trained on multiple problem domains can generalize to previously unknown problems with no further optimization. 
+\end{abstract}
+
+\category{I.2.6}{Learning}
+\keywords{Reinforcement learning, Gene regulatory network, Parameter control}
+
+\input{01_introduction}
+
+\input{02_SARSA}
+
+\input{03_GRN}
+
+\input{04_GRNSARSA}
+
+\input{05_experiences}
+
+\input{06_conclusion}
+
+\bibliographystyle{abbrv}
+\bibliography{bibtex}
+
+
+\end{document}
+

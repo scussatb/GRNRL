@@ -1,0 +1,55 @@
+This is BibTeX, Version 0.99d (TeX Live 2013)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: paper.aux
+The style file: abbrv.bst
+Database file #1: bibtex.bib
+Warning--I didn't find a database entry for "Destexhe2004"
+Warning--I didn't find a database entry for "Marder2012"
+Warning--I didn't find a database entry for "Marder2002"
+Warning--I didn't find a database entry for "Katz1995"
+Warning--I didn't find a database entry for "Zhurov2006"
+Warning--I didn't find a database entry for "Schultz1993"
+Warning--I didn't find a database entry for "Montague1996"
+Warning--I didn't find a database entry for "Fellous1998"
+You've used 14 entries,
+            2118 wiz_defined-function locations,
+            607 strings with 6393 characters,
+and the built_in function-call counts, 4754 in all, are:
+= -- 482
+> -- 199
+< -- 4
++ -- 79
+- -- 64
+* -- 302
+:= -- 776
+add.period$ -- 45
+call.type$ -- 14
+change.case$ -- 73
+chr.to.int$ -- 0
+cite$ -- 14
+duplicate$ -- 199
+empty$ -- 384
+format.name$ -- 64
+if$ -- 1019
+int.to.chr$ -- 0
+int.to.str$ -- 14
+missing$ -- 15
+newline$ -- 73
+num.names$ -- 28
+pop$ -- 80
+preamble$ -- 1
+purify$ -- 60
+quote$ -- 0
+skip$ -- 145
+stack$ -- 0
+substring$ -- 291
+swap$ -- 52
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 54
+warning$ -- 0
+while$ -- 49
+width$ -- 16
+write$ -- 154
+(There were 8 warnings)

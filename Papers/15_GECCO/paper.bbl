@@ -1,0 +1,83 @@
+\begin{thebibliography}{10}
+
+\bibitem{Banzhaf03}
+W.~Banzhaf.
+\newblock Artificial regulatory networks and genetic programming.
+\newblock {\em Genetic Programming Theory and Practice}, pages 43--62, 2003.
+
+\bibitem{cussatblanc2015grneat}
+S.~Cussat-Blanc, K.~Harrington, and J.~Pollack.
+\newblock Gene regulatory network evolution through augmenting topologies.
+\newblock {\em IEEE Transaction on Evolutionary Computation}, 2015, to be
+  published.
+
+\bibitem{CussatBlanc2012a}
+S.~Cussat-Blanc, J.~Pascalie, S.~Mazac, H.~Luga, and Y.~Duthen.
+\newblock {A synthesis of the Cell2Organ developmental model}.
+\newblock {\em Morphogenetic Engineering}, 2012.
+
+\bibitem{CussatBlanc2012b}
+S.~Cussat-Blanc, S.~Sanchez, and Y.~Duthen.
+\newblock Controlling cooperative and conflicting continuous actions with a
+  gene regulatory network.
+\newblock In {\em Conference on Computational Intelligence in Games (CIG'12)}.
+  IEEE, 2012.
+
+\bibitem{Doursat09}
+R.~Doursat.
+\newblock {Facilitating evolutionary innovation by developmental modularity and
+  variability}.
+\newblock In {\em Proceedings of the 11th Annual conference on Genetic and
+  evolutionary computation}, pages 683--690. ACM, 2009.
+
+\bibitem{haber2009reward}
+S.~N. Haber and B.~Knutson.
+\newblock The reward circuit: linking primate anatomy and human imaging.
+\newblock {\em Neuropsychopharmacology}, 35(1):4--26, 2009.
+
+\bibitem{Joachimczak08}
+M.~Joachimczak and B.~Wr{\'{o}}bel.
+\newblock Evo-devo in silico: a model of a gene network regulating
+  multicellular development in 3d space with artificial physics.
+\newblock In {\em Proceedings of the 11th International Conference on
+  Artificial Life}, pages 297--304. MIT Press, 2008.
+
+\bibitem{Joachimczak10}
+M.~Joachimczak and B.~Wr{\'o}bel.
+\newblock {Evolving Gene Regulatory Networks for Real Time Control of Foraging
+  Behaviours}.
+\newblock In {\em Proceedings of the 12th International Conference on
+  Artificial Life}, 2010.
+
+\bibitem{Nicolau10}
+M.~Nicolau, M.~Schoenauer, and W.~Banzhaf.
+\newblock {Evolving genes to balance a pole}.
+\newblock {\em Genetic Programming}, pages 196--207, 2010.
+
+\bibitem{schultz1993responses}
+W.~Schultz, P.~Apicella, and T.~Ljungberg.
+\newblock Responses of monkey dopamine neurons to reward and conditioned
+  stimuli during successive steps of learning a delayed response task.
+\newblock {\em The Journal of Neuroscience}, 13(3):900--913, 1993.
+
+\bibitem{stanley2002evolving}
+K.~Stanley and R.~Miikkulainen.
+\newblock {Evolving neural networks through augmenting topologies}.
+\newblock {\em Evolutionary computation}, 10(2):99--127, 2002.
+
+\bibitem{sutton1988learning}
+R.~S. Sutton.
+\newblock Learning to predict by the methods of temporal differences.
+\newblock {\em Machine learning}, 3(1):9--44, 1988.
+
+\bibitem{sutton1998introduction}
+R.~S. Sutton and A.~G. Barto.
+\newblock {\em Introduction to reinforcement learning}.
+\newblock MIT Press, 1998.
+
+\bibitem{ziegler2001evolving}
+J.~Ziegler and W.~Banzhaf.
+\newblock Evolving control metabolisms for a robot.
+\newblock {\em Artificial Life}, 7(2):171--190, 2001.
+
+\end{thebibliography}

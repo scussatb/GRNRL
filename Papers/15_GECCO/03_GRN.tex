@@ -1,0 +1,82 @@
+\section{Gene Regulatory Network}
+%%%% FROM IJCNN %%%%
+Our model uses an optimized network of abstract proteins. The inputs of the
+agent are translated to protein concentrations that feed the GRN. Output
+proteins regulate the reinforcement learning parameters previously described.
+This kind of controller has been used in many developmental models of the
+literature \cite{Joachimczak08, Doursat09, CussatBlanc2012a} and to control
+virtual and real robots \cite{ziegler2001evolving, Nicolau10, Joachimczak10, CussatBlanc2012b}.
+
+We have based our regulatory network on Banzhaf's model
+\cite{Banzhaf03}. It is designed to be as close as possible to a real
+gene regulatory network but neither to be evolved nor to control any kind of
+agent. However, Nicolau used an evolution strategy to evolve the GRN to control
+a pole-balancing cart \cite{Nicolau10}. Though this experiment behaved
+consistently, the evolution of the GRN has been an issue. We have decided to
+modify the encoding of the regulatory network and its dynamics. In our model, a
+gene regulatory network is defined as a set of proteins. Each protein has the
+following properties:
+
+\begin{itemize}
+
+\item The protein \emph{tag} coded as an integer between 0 and $p$. The
+	upper value $p$ of the domain can be changed in order to control the
+	precision of the GRN. In Banzhaf's work, $p$ is equivalent to the size
+of a site, 16 bits. 
+% We have reduced the precision to 16 because the
+% precision of the output values are not a particular requirement in that
+% particular application.
+
+\item The \emph{enhancer tag} coded as an integer between 0 and $p$. The
+	enhancer tag is used to calculate the enhancing matching factor
+	between two proteins.
+
+\item The \emph{inhibitor tag} coded as an integer between 0 and $p$. The
+	inhibitor tag is used to calculate the inhibiting matching factor
+	between two proteins.
+
+\item The \emph{type} determines if the protein is an \emph{input} protein, the
+	concentration of which is given by the environment of the GRN and which
+	regulates other proteins but is not regulated, an \emph{output} protein,
+	the concentration of which is used as output of the network and which is
+	regulated but does not regulate other proteins, or a \emph{regulatory}
+	protein, an internal protein that regulates and is regulated by other
+	proteins.
+
+\end{itemize}
+
+The dynamics of the GRN is calculated as follow. First, the affinity of a
+protein $a$ with another protein $b$ is given by the enhancing factor
+$u^{+}_{ab}$ and the inhibiting $u^{-}_{ab}$:
+\begin{equation}
+u^{+}_{ab}=p-|enh_a-id_b|~~;~~u^{-}_{ab}=p-|inh_a-id_b|
+\end{equation}
+where $id_x$ is the tag, $enh_x$ is the enhancer tag and $inh_x$
+is the inhibiting tag of protein $x$.
+
+The GRN's dynamics are calculated by comparing the proteins two by two using the
+enhancing and the inhibiting matching factors. For each protein in the network,
+the global enhancing value is given by the following equation:
+\begin{equation}
+g_i=\frac{1}{N}\sum_j^N{c_je^{\beta (u^{+}_{ij}-u_{max}^{+})}}~~;~~h_i=\frac{1}{N}\sum_j^N{c_je^{\beta (u^{-}_{ij}-u_{max}^{-})}}
+\end{equation}
+where $g_i$ (or $h_i$) is the enhancing (or inhibiting) value for a
+protein $i$, $N$ is the number of proteins in the network, $c_j$ is the
+concentration of protein $j$ and $u_{max}^{+}$ (or $u_{max}^{-}$) is the
+maximum enhancing (or inhibiting) matching factor observed. $\beta$ is a
+control parameter described hereafter.
+
+The final modification of protein $i$ concentration is given by the following
+differential equation:
+\begin{equation}
+\frac{dc_i}{dt}=\frac{\delta(g_i-h_i)}{\Phi}
+\end{equation}
+where $\Phi$ is a function that keeps the sum of all protein concentrations
+equal to 1.
+
+$\beta$ and $\delta$ are two constants that set up the speed of reaction of the
+regulatory network. In other words, they modify the dynamics of the network. $\beta$
+affects the importance of the matching factor and $\delta$ affects the level of
+production of the protein in the differential equation. The lower both values,
+the smoother the regulation. Similarly, the higher the values, the more sudden
+the regulation. 
