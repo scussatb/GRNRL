@@ -4,8 +4,11 @@
 \citation{schultz1993responses}
 \citation{haber2009reward}
 \citation{sutton1998introduction}
+\citation{Li2009}
+\citation{Taylor2009}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{\thepage }}
-\@writefile{toc}{\contentsline {section}{\numberline {2}SARSA Algorithm}{\thepage }}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Reinforcement Learning}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}SARSA Algorithm}{\thepage }}
 \citation{Joachimczak08}
 \citation{Doursat09}
 \citation{CussatBlanc2012a}
@@ -24,50 +27,53 @@
 \citation{Montague1996}
 \citation{Fellous1998}
 \citation{Marder2012}
+\citation{Harrington2013}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Gene Regulatory Network}{\thepage }}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Neuromodulation}{\thepage }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Regulating parameters}{\thepage }}
 \citation{stanley2002evolving}
 \citation{cussatblanc2015grneat}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Regulating parameters}{\thepage }}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces At every time step, SARSA updates the GRN inputs. The GRN returns updated learning parameters that will be used by the SARSA algorithm.}}{\thepage }}
 \newlabel{fig:GRNSARSA}{{1}{\thepage }}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}GRN Optimization}{\thepage }}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Experiences}{\thepage }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Problems}{\thepage }}
+\citation{Sutton1990}
+\citation{Handa2007}
+\citation{sutton1996generalization}
+\citation{sutton1996generalization}
+\citation{sutton1998introduction}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces In the mountain car problem, a car must escape from a valey. It cannot climp the hill without moving backward first to gain speed. The agent receives a reward only when it escapes.}}{\thepage }}
 \newlabel{fig:MC:problem}{{2}{\thepage }}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces In the maze problem, the agent have to find its way in a maze from the start (in red) to the end (in green). The agent receives a reward only when it escapes.}}{\thepage }}
 \newlabel{fig:MC:problem}{{3}{\thepage }}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Problems}{\thepage }}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}Mountain Car}{\thepage }}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}Maze}{\thepage }}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.3}Puddle World}{\thepage }}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.4}Actor critic pendulum}{\thepage }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Training GRN on one specific problem}{\thepage }}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Mountain car}{\thepage }}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.4}Maze}{\thepage }}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.5}Mountain Car}{\thepage }}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.6}Puddle World}{\thepage }}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.7}Actor critic pendulum}{\thepage }}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces In the puddle world problem, the agent have to find its way in a dark environment from the start (in red) to the end (in green). Local rewards are given all along its exploration and when it escapes.}}{\thepage }}
 \newlabel{fig:MC:problem}{{4}{\thepage }}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces In the actor critic pendulum, the agent has to balance a pendulum to the highest possible position. The reward is given by the cosinus of the angle between the pendulum and the resting position.}}{\thepage }}
 \newlabel{fig:MC:problem}{{5}{\thepage }}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Fixed learning parameters for SARSA obtained by parameter sampling}}{\thepage }}
 \newlabel{tab:SARSAFixedParams}{{1}{\thepage }}
-\bibstyle{abbrv}
-\bibdata{bibtex}
-\bibcite{Banzhaf03}{1}
-\bibcite{cussatblanc2015grneat}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Training GRN on one specific problem}{\thepage }}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Mountain car}{\thepage }}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}Maze}{\thepage }}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Moutain car: Regulation of the learning parameters of the best GRN obtained.}}{\thepage }}
 \newlabel{fig:MC:GRNBehavior}{{6}{\thepage }}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Mountain car: Convergence curve of the genetic algorithm (lower is better - time to escape the valley).}}{\thepage }}
 \newlabel{fig:MC:Convergence}{{7}{\thepage }}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}Maze}{\thepage }}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Mountain car: Comparison of the fitnesses per episode (abscissa) obtained by our neuromodulation with a GRN trained on mountain car (green), with a GRN trained on maze (blue) and with parameter-fixed SARSA (red). Results are averaged on 100 independent runs.}}{\thepage }}
 \newlabel{fig:MC:GRNvsSARSA}{{8}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Maze: Regulation of the learning parameters of the besst GRN obtained.}}{\thepage }}
-\newlabel{fig:MZ:GRNBehavior}{{9}{\thepage }}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.3}Puddle world}{\thepage }}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.4}Actor critic pendulum}{\thepage }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Generalization of the regulation}{\thepage }}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{\thepage }}
-\@writefile{toc}{\contentsline {section}{\numberline {7}References}{\thepage }}
+\citation{Gold2014}
+\bibstyle{abbrv}
+\bibdata{bibtex}
+\bibcite{Banzhaf03}{1}
+\bibcite{cussatblanc2015grneat}{2}
 \bibcite{CussatBlanc2012a}{3}
 \bibcite{CussatBlanc2012b}{4}
 \bibcite{Doursat09}{5}
@@ -80,5 +86,14 @@
 \bibcite{sutton1988learning}{12}
 \bibcite{sutton1998introduction}{13}
 \bibcite{ziegler2001evolving}{14}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Maze: Regulation of the learning parameters of the besst GRN obtained.}}{\thepage }}
+\newlabel{fig:MZ:GRNBehavior}{{9}{\thepage }}
 \@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Maze: Comparison of the fitnesses per episode (abscissa) obtained by our neuromodulation with a GRN trained on maze (green) and with parameter-fixed SARSA (red). Results are averaged on 100 independent runs.}}{\thepage }}
 \newlabel{fig:MC:GRNvsSARSA}{{10}{\thepage }}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.3}Puddle world}{\thepage }}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.4}Actor critic pendulum}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Generalization of the regulation}{\thepage }}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{\thepage }}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Future Work}{\thepage }}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Acknowledgements}{\thepage }}
+\@writefile{toc}{\contentsline {section}{\numberline {9}References}{\thepage }}

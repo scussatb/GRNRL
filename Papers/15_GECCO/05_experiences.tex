@@ -1,4 +1,7 @@
-\section{Experiences}
+\section{Experiments}
+
+Parameter sampling for SARSA. Range sampled over $\alpha$, $\gamma$, and $\lambda$. What $\epsilon$ was used.
+
 \subsection{Problems}
 \subsubsection{Mountain Car}
 \begin{figure}
@@ -21,6 +24,22 @@
 \caption{In the puddle world problem, the agent have to find its way in a dark environment from the start (in red) to the end (in green). Local rewards are given all along its exploration and when it escapes.}\label{fig:MC:problem}
 \end{figure}
 
+\subsubsection{Maze}
+
+Originally introduced by Sutton as an example for deterministic problem solving with RL, maze \cite{Sutton1990}.
+
+Evolutionary programming has previously been applied to a multi-task version of Sutton's maze problem \cite{Handa2007}.
+
+\subsubsection{Mountain Car}
+
+Introduced to test RL in sparse coding \cite{sutton1996generalization}
+
+\subsubsection{Puddle World}
+
+Stochastic
+
+Introduced to test RL in sparse coding \cite{sutton1996generalization}
+
 \subsubsection{Actor critic pendulum}
 \begin{figure}
 \center
@@ -28,6 +47,8 @@
 \caption{In the actor critic pendulum, the agent has to balance a pendulum to the highest possible position. The reward is given by the cosinus of the angle between the pendulum and the resting position.}\label{fig:MC:problem}
 \end{figure}
 
+
+citation \cite{sutton1998introduction}. 
 
 \subsection{Training GRN on one specific problem}
 In this first experience, we have trained our GRN-based neuromodulation model independently on each problem above mentionned. To evaluate the gain provided by neuromodulation, we first determine the best fixed learning parameter to use with SARSA on each problem. We use parameter sampling on $\alpha$, $\gamma$ and $\lambda$ in $[0, 1]$ with 0.0714 steps (15 evaluations). Each evaluation is averaged on 10 replicates in order to reduce the randomness of the problems. At the end of the parameter sampling stage, we chose the best fixed learning parameters for a given problem by selecting the tuple with the highest fitness. These parameters are given in table \ref{tab:SARSAFixedParams}.
@@ -89,4 +110,9 @@ When compared to parameter-fixed SARSA (figure \ref{fig:MZ:GRNvsSARSA}), we can 
 
 \subsubsection{Actor critic pendulum}
 
+Number of GRN runs, number of generations
+
 \subsection{Generalization of the regulation}
+
+Generalizing from which problems to which other problems. Does training on stochastic and testing on deterministic lead to better GRNs than training on
+deterministic then testing on stochastic?
