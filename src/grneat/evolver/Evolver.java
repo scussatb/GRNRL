@@ -1,5 +1,6 @@
 package evolver;
 
+import java.sql.NClob;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,6 +10,10 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.text.DateFormatter;
 
@@ -53,7 +58,8 @@ public class Evolver {
 	public static double mutationProbabilitySum=-1;
 
 	ArrayList<Species> species = new ArrayList<Species>();
-	
+	public ExecutorService executor;
+
 
 	public Random rng;
 	public int randomSeed=(int)(new Date().getTime());
@@ -76,21 +82,38 @@ public class Evolver {
 	public long uuid;
 	public int speciesSizeAdjustingMethod=2;
 	public boolean useDynamicsGenomeForDistance=true;
+	public int nCPU=Runtime.getRuntime().availableProcessors();
 
 	public static int verbose = 0;// 0 is silent
-	
+
+	// Worker class for parallel evaluation
+	private class Worker implements Callable<Double> {
+		private final GRNGenome g;
+		public Worker(GRNGenome genome) {
+			g=genome;
+		}
+		@Override
+		public Double call() {
+			if (!g.hasBeenEvaluated) {
+				g.setNewFitness(evaluator.clone().evaluate(g));
+			}
+			return g.getLastFitness();
+		}
+	}
+
+
 	private void adjustSpeciationThresholds() {
 		// Adjusting speciation threshold to regulate the sizes
 		double speciesAvgSize=populationSize/species.size();
 		for (Species s:species) {
 			if (s.size()<speciesAvgSize) {
-                s.speciationThreshold=Math.min(0.5,s.speciationThreshold+0.01);//speciationThreshold/10;
-            } else {
-                s.speciationThreshold=Math.max(0.03, s.speciationThreshold-0.01);//speciationThreshold/10;
-            }
+				s.speciationThreshold=Math.min(0.5,s.speciationThreshold+0.01);//speciationThreshold/10;
+			} else {
+				s.speciationThreshold=Math.max(0.03, s.speciationThreshold-0.01);//speciationThreshold/10;
+			}
 		}
 	}
-	
+
 	public void run() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
 		uuid = System.nanoTime();
@@ -101,17 +124,24 @@ public class Evolver {
 			// TODO: handle exception
 		}
 		System.out.println("---- Evolution parameters ----");
-		System.out.println("Folder name:          "+folderName);
-		System.out.println("Random seed:          "+randomSeed);
-		System.out.println("GREAT activated:      "+greatActivated);
-		System.out.println("Max iterations:       "+maxNumGen);
-		System.out.println("Population size:      "+populationSize);
-		System.out.println("GREAT initialization  "+greatInit);
-		System.out.println("Speciation threshold: "+speciationThreshold);
-		System.out.println("Species min size:     "+speciesMinSize);
-		System.out.println("Tournament size:      "+tournamentSize);
-		System.out.println("Crossover rate:       "+crossoverRate);
-		System.out.println("Mutation rate:        "+mutationRate);
+		System.out.println("Folder name:                        "+folderName);
+		System.out.println("Evaluator name:                     "+evaluator.name);
+		System.out.println("Random seed:                        "+randomSeed);
+		System.out.println("GREAT activated:                    "+greatActivated);
+		System.out.println("Max iterations:                     "+maxNumGen);
+		System.out.println("Population size:                    "+populationSize);
+		System.out.println("Save Population:                    "+saveAllPopulation);
+		System.out.println("Representative method:              "+representativeMethod);
+		System.out.println("Species size adjusting methods:     "+speciesSizeAdjustingMethod);
+		System.out.println("Dynamics coeff for genome distance: "+useDynamicsGenomeForDistance);
+		System.out.println("GREAT initialization                "+greatInit);
+		System.out.println("Number of CPUs                      "+nCPU);
+		System.out.println("Speciation threshold:               "+speciationThreshold);
+		System.out.println("Species min size:                   "+speciesMinSize);
+		System.out.println("Initial duplicates:                 "+duplicateInit);
+		System.out.println("Tournament size:                    "+tournamentSize);
+		System.out.println("Crossover rate:                     "+crossoverRate);
+		System.out.println("Mutation rate:                      "+mutationRate);
 		System.out.println("Crossovers:");
 		for (GRNCrossoverOperator cross : crossovers) {
 			System.out.println("\t"+cross.name);
@@ -119,17 +149,20 @@ public class Evolver {
 		System.out.println("Mutations:");
 		for (GRNMutationOperator mut : mutations) {
 			System.out.println("\t"+mut.name);
-		}
+		}		
 		System.out.println("------------------------------\n\n---- Starting evolution ----");
-		
+
 		// initialization
+		if (nCPU>1) {
+			executor = Executors.newFixedThreadPool(nCPU);
+		}
 		currentGen=0;
 		ArrayList<GRNGenome> offsprings=new ArrayList<GRNGenome>();
 		while (offsprings.size()<populationSize-duplicateInit-1) {
 			GRNGenome g = new GRNGenome();
 			for (int i=0; i<evaluator.numGRNInputs; i++) {
 				GRNGene gene=GRNGene.generateRandomGene(GRNProtein.INPUT_PROTEIN, i, rng);
-//					System.err.print(gene+" ");
+				//					System.err.print(gene+" ");
 				g.addGene(gene);
 			}
 			for (int i=0; i<evaluator.numGRNOutputs; i++) {
@@ -172,12 +205,19 @@ public class Evolver {
 				//					species.get(i).recomputeFitness();
 				//				}
 			}
+			
+			
+			// Parallel evaluation if necessary
+			if (nCPU>1) {
+				parallelEvaluation(offsprings);
+			}
 
-			if( verbose > 0 ) System.err.println( "Speciation" );
 			// speciation
+			if( verbose > 0 ) System.err.println( "Speciation" );
 			speciation(offsprings);
+			
 			System.out.println(currentGen+"\t"+System.nanoTime()+"\t"+GRNGenomeEvaluator.numEvaluations+"\t"+statistics());
-//			System.out.println("IT: "+currentGen+ " "+ System.nanoTime() + "("+GRNGenomeEvaluator.numEvaluations+") === "+ statistics()+ " ===");
+			//			System.out.println("IT: "+currentGen+ " "+ System.nanoTime() + "("+GRNGenomeEvaluator.numEvaluations+") === "+ statistics()+ " ===");
 			saveBestGRN();
 			if (saveAllPopulation) {
 				saveAllPopulation();
@@ -202,7 +242,7 @@ public class Evolver {
 								sh++;
 							}
 						}
-//						System.err.println(sh+"  "+species.size());
+						//						System.err.println(sh+"  "+species.size());
 						gi.setAdjustedFitness(gi.getLastFitness()/sh);
 						sumAdjFit[i]+=gi.getAdjustedFitness();
 					}
@@ -316,14 +356,14 @@ public class Evolver {
 					numOff[i]++;
 					sumNumOff++;
 				}
-/*				for (int i=0; i<species.size(); i++) {
+				/*				for (int i=0; i<species.size(); i++) {
 					//numOff[i]=(int)((1.0-sumAdjFit[i]/species.get(i).size()/sumSumAdjFit)*populationSize);
 					//sumNumOff+=numOff[i];
 					System.err.print(numOff[i]+" ");
 				}*/			
 			}
-//			System.err.println();
-			
+			//			System.err.println();
+
 			// correcting approximation errors
 			while (sumNumOff<populationSize) {
 				//int rnd=(int)(Math.random()*species.size());
@@ -388,7 +428,7 @@ public class Evolver {
 			currentGen++;
 		}
 	}
-	
+
 	protected int selectMutationOperator() {
 		double rnd=rng.nextDouble()*mutationProbabilitySum;
 		int mutIndex=0;
@@ -401,7 +441,7 @@ public class Evolver {
 	}
 
 	protected String statistics() {
-/*		String res="";
+		/*		String res="";
 		for (int i=0; i<Species.speciesNextId; i++) {
 			Species fs=null;
 			for (Species s:species) {
@@ -413,7 +453,7 @@ public class Evolver {
 			else res+=fs.size()+"\t";
 		}
 		return res;
-*/		
+		 */		
 		int nGenomes=0;
 		double fitMax=-Double.MAX_VALUE;
 		double fitMin=Double.MAX_VALUE;
@@ -435,7 +475,7 @@ public class Evolver {
 				minGRNSize=Math.min(minGRNSize, g.size());
 				maxGRNSize=Math.max(maxGRNSize, g.size());
 			}
-			
+
 			fitMin=Math.min(s.getWorstFitness(), fitMin);
 			fitSum+=s.getFitnessSum();
 			speciesSizes+=s.speciesId+":"+s.size()+"["+s.speciationThreshold+"],";
@@ -443,7 +483,7 @@ public class Evolver {
 		}
 		speciesSizes+=")";
 		avgdist2rep+=")";
-//		return "Species: " +species.size()+speciesSizes+" -- PopSize: "+nGenomes+" -- FitMax/Avg/Min: "+fitMax+"/"+fitSum/nGenomes+"/"+fitMin;
+		//		return "Species: " +species.size()+speciesSizes+" -- PopSize: "+nGenomes+" -- FitMax/Avg/Min: "+fitMax+"/"+fitSum/nGenomes+"/"+fitMin;
 		return species.size()+"\t"+/*speciesSizes+"\t"+*/nGenomes+"\t"+fitMax+"\t"+fitSum/nGenomes+"\t"+fitMin+"\t"+bestGRNSize+"\t"+avgGRNSize/populationSize+"\t"+maxGRNSize+"\t"+minGRNSize/*+"\t"+avgdist2rep*/;
 
 	}
@@ -515,6 +555,20 @@ public class Evolver {
 		}
 	}
 
+	protected void parallelEvaluation(List<GRNGenome> population) {
+		// Parallel evaluation (far from optimal)
+		// Master worker evaluation
+		List<Callable<Double>> genomesToEvaluate = new ArrayList<Callable<Double>>();
+		for (GRNGenome g : population) {
+			genomesToEvaluate.add(new Worker(g));
+		}
+		try {
+			executor.invokeAll(genomesToEvaluate);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+	}
+
 	protected void speciation(List<GRNGenome> population) {
 		for (Species s : species) {
 			if( representativeMethod == 1 ) {
@@ -524,7 +578,7 @@ public class Evolver {
 			}
 			s.removeAllGenomes();
 		}
-		
+
 		if( verbose > 0 ) System.err.println( "Speciation: Adding to species" );
 		for (GRNGenome g : population) {
 			Species bestMatch=null;
@@ -545,7 +599,7 @@ public class Evolver {
 				bestMatch.addGenome(g, false);
 			}
 		}
-	
+
 		if (verbose>0) System.err.println("Speciation: "+statistics());
 
 		if( verbose > 0 ) System.err.println( "Speciation: Removing empty species" );
@@ -565,6 +619,7 @@ public class Evolver {
 		if( verbose > 0 ) System.err.println( "Speciation: "+numSpeciesDeleted+" species deleted");
 		if( verbose > 0 ) System.err.println( "Speciation: Adding " + numGenomeDelete + " genomes" );
 		// creating new genomes to keep the popSize constant
+		ArrayList<GRNGenome> addedGenomes = new ArrayList<GRNGenome>();
 		while (numGenomeDelete>0) {
 			//int rnd=(int)(Math.random()*species.size());
 			int rnd=(int)(rng.nextDouble()*species.size());
@@ -580,10 +635,16 @@ public class Evolver {
 				if (mutatedGen!=null) {
 					geneAdd=s.addGenome(mutatedGen, true);
 				}
+				if (geneAdd) {
+					addedGenomes.add(mutatedGen);
+				}
 			}
 			if (geneAdd) {
 				numGenomeDelete--;
 			}
+		}
+		if (nCPU>1) {
+			parallelEvaluation(addedGenomes);
 		}
 		if( verbose > 0 ) System.err.println( "Speciation: complete" );
 	}
@@ -600,18 +661,18 @@ public class Evolver {
 		Evolver e=new Evolver();
 		boolean customExpName=false;
 		String sshTarget = "";
-		
+
 		int xover = 1;
-		
+
 		double addMutationProb=0.33;
 		double delMutationProb=0.33;
 		double changeMutationProb=0.33;
 		int addMutationMaxSize=Integer.MAX_VALUE;
 		int delMutationMinSize=0;
-		
+
 		// CL-arguments
 		for (int k = 0; k < args.length; k++ ) {
-//			System.err.print("\t" + args[k]);
+			//			System.err.print("\t" + args[k]);
 
 			if ( args[k].compareTo("maxNumGen") == 0) {
 				e.maxNumGen = Integer.parseInt( args[k+1] );
@@ -660,24 +721,26 @@ public class Evolver {
 				addMutationMaxSize=Integer.parseInt(args[k+1]);
 			} else if (args[k].compareTo("deleteMutationMinSize")==0) {
 				delMutationMinSize=Integer.parseInt(args[k+1]);
+			} else if (args[k].compareTo("nCPU")==0) {
+				e.nCPU=Integer.parseInt(args[k+1]);
 			}
 		}
 
 		e.rng = new java.util.Random( e.randomSeed );
 		//e.greatActivated=false;
-		
+
 		if (!customExpName) {
 			//e.evaluator=new CoverageControl( args, e.rng );//new MichalSignalProcessExp3();
 			//e.evaluator = new IntertwinedSpirals( args );
 			e.evaluator = new NMSarsaEvaluator();
-//			((NMSarsaEvaluator)e.evaluator).problems.add("MountainCar");
-//			((NMSarsaEvaluator)e.evaluator).problems.add("Maze");
-//			((NMSarsaEvaluator)e.evaluator).problems.add("ActorCriticPendulum");
-//			((NMSarsaEvaluator)e.evaluator).problems.add("PuddleWorld");
+			//			((NMSarsaEvaluator)e.evaluator).problems.add("MountainCar");
+			//			((NMSarsaEvaluator)e.evaluator).problems.add("Maze");
+			//			((NMSarsaEvaluator)e.evaluator).problems.add("ActorCriticPendulum");
+			//			((NMSarsaEvaluator)e.evaluator).problems.add("PuddleWorld");
 			((NMSarsaEvaluator)e.evaluator).rngRL=e.rng;
 			((NMSarsaEvaluator)e.evaluator).readArgs(args);
 			e.evaluator.name="NMSarsa_"+((NMSarsaEvaluator)e.evaluator).problems.get(0);
-			
+
 			e.experienceName=e.evaluator.name;
 		} else {
 			if( e.experienceName.compareTo("DoublingFrequencyEvaluator") == 0) e.evaluator=new DoublingFrequencyEvaluator();  
@@ -699,10 +762,11 @@ public class Evolver {
 				e.experienceName=e.evaluator.name;
 			}
 		}
-		
+
 		if (e.greatActivated) {
-			System.out.println("GREAT!");
-			System.out.println("Xover: " + xover);
+			System.out.println("**********************************");
+			System.out.println("*   Optimizing GRN with GRNEAT   *");
+			System.out.println("**********************************\n");
 			if( xover==0 )
 				e.crossovers.add(new GRNAligningCrossoverOperator_v1());
 			else if (xover==1)
@@ -718,7 +782,9 @@ public class Evolver {
 			e.mutations.add(new GRNGeneMutationOperator(changeMutationProb));
 			e.greatInit=true;
 		} else {
-			System.out.println("GRN+AG");
+			System.out.println("***************************************");
+			System.out.println("*   Optimizing GRN with standard GA   *");
+			System.out.println("***************************************\n");
 			if( xover==0 )
 				e.crossovers.add(new GRNAligningCrossoverOperator_v1());
 			else if (xover==1)
@@ -740,8 +806,8 @@ public class Evolver {
 
 
 
-//		e.verbose=1;
-		
+		//		e.verbose=1;
+
 		//e.evaluator=new NMMultirobotCCP(args,e.rng);
 		//e.evaluator=new RetinaEvaluator();
 		//e.evaluator=new GRNSinusEvaluator();
@@ -756,5 +822,5 @@ public class Evolver {
 			}
 		}
 	}
-	
+
 }

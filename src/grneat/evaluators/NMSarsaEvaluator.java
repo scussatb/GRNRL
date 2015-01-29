@@ -89,6 +89,26 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 		epsilon = 0.3;
 	}
 	
+	public NMSarsaEvaluator(NMSarsaEvaluator eval) {
+		this.fitness=eval.fitness;
+		this.nEpisode=eval.nEpisode;
+		this.nMaxEpisode=eval.nMaxEpisode;
+		this.displayEpisodes=eval.displayEpisodes;
+		this.problems=new Vector<String>(eval.problems);
+		this.displayGRN=eval.displayGRN;
+		this.avgFitPerEpisode=new Vector<Double>(eval.avgFitPerEpisode);
+		this.rngRL=eval.rngRL;
+		this.alpha=eval.alpha;
+		this.gamma=eval.gamma;
+		this.lambda=eval.lambda;
+		this.epsilon=eval.epsilon;
+		this.randomSeed=eval.randomSeed;
+	}
+	
+	public NMSarsaEvaluator clone() {
+		return new NMSarsaEvaluator(this);
+	}
+	
 	public NMSarsaEvaluator(boolean displayGRN) {
 		this.displayGRN=displayGRN;
 		
@@ -153,17 +173,17 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 			}
 		}
 		rngRL = new java.util.Random(randomSeed);
-		System.out.println("alpha = " + alpha);
+/*		System.out.println("alpha = " + alpha);
 		System.out.println("gamma = " + gamma);
 		System.out.println("lambda = " + lambda);
 		System.out.println("epsilon = " + epsilon);
-		System.out.println("randomSeed = " + randomSeed);
+		System.out.println("randomSeed = " + randomSeed);*/
 	}
 
 	@Override
 	public double evaluate(GRNGenome aGenome) {
 		numEvaluations++;
-		double fitness = evaluateGRN(buildGRNFromGenome(aGenome), problems, 25, false);
+		double fitness = evaluateGRN(buildGRNFromGenome(aGenome), problems, 15, false);
 		aGenome.setNewFitness(fitness);
 		return fitness;
 	}
@@ -200,7 +220,7 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 			int eval=1;
 			double fit;
 			double fitACP=evaluateActorCriticPendulum(grn, statistics);
-			if (fitACP>300) {
+			if (fitACP>200) {
 				for (int i=0; i<nEval-1; i++) {
 					fit=evaluateActorCriticPendulum(grn, statistics);
 					fitACP+=fit;
@@ -547,18 +567,18 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 
 	public static void main(String[] args) throws Exception {
 		GRNModel grnMAZE = GRNModel.loadFromFile("/Users/cussat/Recherche/Projets/Neuromodulation/GRNRL/Results/run_2015-01-23/NMSarsa_Maze/run_2784148435803090/grn_369_-54.001333333333335.grn");	
-		GRNModel grn = GRNModel.loadFromFile("/Users/cussat/Recherche/Projets/Neuromodulation/GRNRL/Results/run_2015-01-23/NMSarsa_MountainCar/run_2784175489273741/grn_105_-167.6384.grn");
+		GRNModel grn = GRNModel.loadFromFile("/Users/cussat/Recherche/Projets/Neuromodulation/GRNRL/Results/run_2015-01-23/NMSarsa_Maze/run_2784148435803090/grn_492_-54.70933333333333.grn");
 		
 		
 		float sumGRN=0;
 		float sumSarsa=0;
 		float sumGRNMaze=0;
-		int maxEval=100;
+		int maxEval=1;
 		Vector<Double> avgFitGRN=new Vector<Double>();
 		Vector<Double> avgFitSARSA=new Vector<Double>();
 		Vector<Double> avgFitGRNMAZE=new Vector<Double>();
 		for (int i=0; i<maxEval; i++) {
-			NMSarsaEvaluator eval = new NMSarsaEvaluator(/**/false/*maxEval==1/**/);
+			NMSarsaEvaluator eval = new NMSarsaEvaluator(/**/true/*maxEval==1/**/);
 			eval.displayEpisodes = false;
 			
 
@@ -588,17 +608,17 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 
 //			 System.out.println("====   Evaluating SARSA  ====");
 			double fSarsa=0;
-			fSarsa = eval.evaluateGRN(null, eval.problems, 1, true);
-			for (int ep=0;ep<eval.avgFitPerEpisode.size(); ep++) {
-				if (avgFitSARSA.size()<=ep) {
-					avgFitSARSA.add(eval.avgFitPerEpisode.get(ep));
-				} else {
-					avgFitSARSA.set(ep, avgFitSARSA.get(ep)+eval.avgFitPerEpisode.get(ep));
-				}
-			}
+//			fSarsa = eval.evaluateGRN(null, eval.problems, 1, true);
+//			for (int ep=0;ep<eval.avgFitPerEpisode.size(); ep++) {
+//				if (avgFitSARSA.size()<=ep) {
+//					avgFitSARSA.add(eval.avgFitPerEpisode.get(ep));
+//				} else {
+//					avgFitSARSA.set(ep, avgFitSARSA.get(ep)+eval.avgFitPerEpisode.get(ep));
+//				}
+//			}
 
 //			 System.out.println("\n==== Evaluating GRNSARSA ====");
-			double fGRN = eval.evaluateGRN(grnMAZE, eval.problems, 1, true);
+			double fGRN = eval.evaluateGRN(grn, eval.problems, 1, true);
 			for (int ep=0;ep<eval.avgFitPerEpisode.size(); ep++) {
 				if (avgFitGRN.size()<=ep) {
 					avgFitGRN.add(eval.avgFitPerEpisode.get(ep));
@@ -608,27 +628,27 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 			}
 			
 //			 System.out.println("\n==== Evaluating GRNSARSA_MAZE ====");
-			double fGRNMaze;
-			fGRNMaze = eval.evaluateGRN(grnMAZE, eval.problems, 1, true);
-			for (int ep=0;ep<eval.avgFitPerEpisode.size(); ep++) {
-				if (avgFitGRNMAZE.size()<=ep) {
-					avgFitGRNMAZE.add(eval.avgFitPerEpisode.get(ep));
-				} else {
-					avgFitGRNMAZE.set(ep, avgFitGRNMAZE.get(ep)+eval.avgFitPerEpisode.get(ep));
-				}
-			}
+			double fGRNMaze=0.0;
+//			fGRNMaze = eval.evaluateGRN(grnMAZE, eval.problems, 1, true);
+//			for (int ep=0;ep<eval.avgFitPerEpisode.size(); ep++) {
+//				if (avgFitGRNMAZE.size()<=ep) {
+//					avgFitGRNMAZE.add(eval.avgFitPerEpisode.get(ep));
+//				} else {
+//					avgFitGRNMAZE.set(ep, avgFitGRNMAZE.get(ep)+eval.avgFitPerEpisode.get(ep));
+//				}
+//			}
 			
 			sumGRN+=fGRN;
 			sumSarsa+=fSarsa;
 //			sumGRNMaze+=fGRNMaze;
 			
-			System.out.println(i+"\t"+fGRN+"\t"+fSarsa+"\t"+fGRNMaze);
+			System.out.println(i+"\t"+fGRN);//+"\t"+fSarsa+"\t"+fGRNMaze);
 		}
 		System.out.println("\n====       Averages      ====");
-		System.out.println("\t"+sumGRN/maxEval+"\t"+sumSarsa/maxEval+"\t"+sumGRNMaze/maxEval);
+		System.out.println("\t"+sumGRN/maxEval);//+"\t"+sumSarsa/maxEval+"\t"+sumGRNMaze/maxEval);
 
-		for (int i=0; i<Math.min(avgFitGRN.size(), avgFitSARSA.size()); i++) {
-			System.out.println(i+"\t"+avgFitGRN.get(i)/maxEval+"\t"+avgFitSARSA.get(i)/maxEval+"\t"+avgFitGRNMAZE.get(i)/maxEval);
+		for (int i=0; i<Math.min(avgFitGRN.size(), 100/*avgFitSARSA.size()*/); i++) {
+			System.out.println(i+"\t"+avgFitGRN.get(i)/maxEval);//+"\t"+avgFitSARSA.get(i)/maxEval+"\t"+avgFitGRNMAZE.get(i)/maxEval);
 		}
 	}
 

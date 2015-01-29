@@ -34,5 +34,7 @@ public abstract class GRNGenomeEvaluator {
 		GRNModel p=new GRNModel(prots, aGenome.getBeta(), aGenome.getDelta());
 		return p;
 	}
+	
+	public abstract GRNGenomeEvaluator clone();
 
 }
