@@ -3,53 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: paper.aux
 The style file: abbrv.bst
 Database file #1: bibtex.bib
-Warning--I didn't find a database entry for "Destexhe2004"
-Warning--I didn't find a database entry for "Marder2012"
-Warning--I didn't find a database entry for "Marder2002"
-Warning--I didn't find a database entry for "Katz1995"
-Warning--I didn't find a database entry for "Zhurov2006"
-Warning--I didn't find a database entry for "Schultz1993"
-Warning--I didn't find a database entry for "Montague1996"
-Warning--I didn't find a database entry for "Fellous1998"
-You've used 14 entries,
+You've used 33 entries,
             2118 wiz_defined-function locations,
-            607 strings with 6393 characters,
-and the built_in function-call counts, 4754 in all, are:
-= -- 482
-> -- 199
-< -- 4
-+ -- 79
-- -- 64
-* -- 302
-:= -- 776
-add.period$ -- 45
-call.type$ -- 14
-change.case$ -- 73
+            712 strings with 9011 characters,
+and the built_in function-call counts, 11615 in all, are:
+= -- 1204
+> -- 434
+< -- 9
++ -- 172
+- -- 138
+* -- 783
+:= -- 1849
+add.period$ -- 102
+call.type$ -- 33
+change.case$ -- 167
 chr.to.int$ -- 0
-cite$ -- 14
-duplicate$ -- 199
-empty$ -- 384
-format.name$ -- 64
-if$ -- 1019
+cite$ -- 33
+duplicate$ -- 467
+empty$ -- 960
+format.name$ -- 138
+if$ -- 2483
 int.to.chr$ -- 0
-int.to.str$ -- 14
-missing$ -- 15
-newline$ -- 73
-num.names$ -- 28
-pop$ -- 80
+int.to.str$ -- 33
+missing$ -- 34
+newline$ -- 168
+num.names$ -- 66
+pop$ -- 158
 preamble$ -- 1
-purify$ -- 60
+purify$ -- 135
 quote$ -- 0
-skip$ -- 145
+skip$ -- 352
 stack$ -- 0
-substring$ -- 291
-swap$ -- 52
-text.length$ -- 4
+substring$ -- 907
+swap$ -- 122
+text.length$ -- 9
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 54
+type$ -- 130
 warning$ -- 0
-while$ -- 49
-width$ -- 16
-write$ -- 154
-(There were 8 warnings)
+while$ -- 130
+width$ -- 35
+write$ -- 363

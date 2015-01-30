@@ -23,6 +23,11 @@ S.~Cussat-Blanc, S.~Sanchez, and Y.~Duthen.
 \newblock In {\em Conference on Computational Intelligence in Games (CIG'12)}.
   IEEE, 2012.
 
+\bibitem{Destexhe2004}
+A.~Destexhe and E.~Marder.
+\newblock {Plasticity in single neuron and circuit computations}.
+\newblock {\em Nature}, 431(7010):789--795, 2004.
+
 \bibitem{Doursat09}
 R.~Doursat.
 \newblock {Facilitating evolutionary innovation by developmental modularity and
@@ -30,10 +35,42 @@ R.~Doursat.
 \newblock In {\em Proceedings of the 11th Annual conference on Genetic and
   evolutionary computation}, pages 683--690. ACM, 2009.
 
+\bibitem{Doya2002}
+K.~Doya.
+\newblock {Metalearning and neuromodulation}.
+\newblock {\em Neural Networks}, 15(4):495--506, 2002.
+
+\bibitem{Doya2008}
+K.~Doya.
+\newblock {Modulators of decision making}.
+\newblock {\em Nature neuroscience}, 11(4):410--416, 2008.
+
+\bibitem{Fellous1998}
+J.~Fellous and C.~Linster.
+\newblock {Computational models of neuromodulation}.
+\newblock {\em Neural computation}, 10(4):771--805, 1998.
+
+\bibitem{Gold2014}
+J.~Gold, A.~Wang, and K.~Harrington.
+\newblock {Feedback Control of Evolving Swarms}.
+\newblock In {\em Proceedings of Artificial Life XIV}, pages 884--891, 2014.
+
 \bibitem{haber2009reward}
 S.~N. Haber and B.~Knutson.
 \newblock The reward circuit: linking primate anatomy and human imaging.
 \newblock {\em Neuropsychopharmacology}, 35(1):4--26, 2009.
+
+\bibitem{Handa2007}
+H.~Handa.
+\newblock {Evolutionary Computation on Multitask Reinforcement Learning
+  Problems}.
+\newblock In {\em Networking, Sensing and Control, 2007 IEEE International
+  Conference on}, pages 685--688, 2007.
+
+\bibitem{Harrington2013}
+K.~I. Harrington, E.~Awa, S.~Cussat-Blanc, and J.~Pollack.
+\newblock {Robot Coverage Control by Evolved Neuromodulation}.
+\newblock In {\em IJCNN 2013}, pages 543--550, 2013.
 
 \bibitem{Joachimczak08}
 M.~Joachimczak and B.~Wr{\'{o}}bel.
@@ -49,10 +86,44 @@ M.~Joachimczak and B.~Wr{\'o}bel.
 \newblock In {\em Proceedings of the 12th International Conference on
   Artificial Life}, 2010.
 
+\bibitem{Katz1995}
+P.~Katz.
+\newblock {Intrinsic and extrinsic neuromodulation of motor circuits}.
+\newblock {\em Current opinion in neurobiology}, 5(6):799--808, 1995.
+
+\bibitem{Li2009}
+H.~Li, X.~Liao, and L.~Carin.
+\newblock {Multi-task reinforcement learning in partially observable stochastic
+  environments}.
+\newblock {\em The Journal of Machine Learning Research}, 10:1131--1186, 2009.
+
+\bibitem{Marder2012}
+E.~Marder.
+\newblock {Neuromodulation of neuronal circuits: back to the future}.
+\newblock {\em Neuron}, 76(1):1--11, 2012.
+
+\bibitem{Marder2002}
+E.~Marder and V.~Thirumalai.
+\newblock {Cellular, synaptic and network effects of neuromodulation}.
+\newblock {\em Neural Networks}, 15(4):479--493, 2002.
+
+\bibitem{Montague1996}
+P.~Montague, P.~Dayan, and T.~Sejnowski.
+\newblock {A framework for mesencephalic dopamine systems based on predictive
+  Hebbian learning}.
+\newblock {\em The Journal of Neuroscience}, 16(5):1936--1947, 1996.
+
 \bibitem{Nicolau10}
 M.~Nicolau, M.~Schoenauer, and W.~Banzhaf.
 \newblock {Evolving genes to balance a pole}.
 \newblock {\em Genetic Programming}, pages 196--207, 2010.
+
+\bibitem{sanchez2014gene}
+S.~Sanchez and S.~Cussat-Blanc.
+\newblock Gene regulated car driving: using a gene regulatory network to drive
+  a virtual car.
+\newblock {\em Genetic Programming and Evolvable Machines}, 15(4):477--511,
+  2014.
 
 \bibitem{schultz1993responses}
 W.~Schultz, P.~Apicella, and T.~Ljungberg.
@@ -60,20 +131,56 @@ W.~Schultz, P.~Apicella, and T.~Ljungberg.
   stimuli during successive steps of learning a delayed response task.
 \newblock {\em The Journal of Neuroscience}, 13(3):900--913, 1993.
 
+\bibitem{Schultz1993}
+W.~Schultz, P.~Apicella, and T.~Ljungberg.
+\newblock {Responses of monkey dopamine neurons to reward and conditioned
+  stimuli during successive steps of learning a delayed response task}.
+\newblock {\em The Journal of Neuroscience}, 13(3):900--913, 1993.
+
+\bibitem{Schweighofer2003}
+N.~Schweighofer and K.~Doya.
+\newblock {Meta-learning in reinforcement learning}.
+\newblock {\em Neural Networks}, 16(1):5--9, 2003.
+
 \bibitem{stanley2002evolving}
 K.~Stanley and R.~Miikkulainen.
 \newblock {Evolving neural networks through augmenting topologies}.
 \newblock {\em Evolutionary computation}, 10(2):99--127, 2002.
+
+\bibitem{Sutton1990}
+R.~Sutton.
+\newblock {Integrated architectures for learning, planning, and reacting based
+  on approximating dynamic programming.}
+\newblock In {\em Proceedings of the seventh international conference on
+  Machine learning}, pages 216--224, 1990.
 
 \bibitem{sutton1988learning}
 R.~S. Sutton.
 \newblock Learning to predict by the methods of temporal differences.
 \newblock {\em Machine learning}, 3(1):9--44, 1988.
 
+\bibitem{sutton1996generalization}
+R.~S. Sutton.
+\newblock Generalization in reinforcement learning: Successful examples using
+  sparse coarse coding.
+\newblock {\em Advances in neural information processing systems}, pages
+  1038--1044, 1996.
+
 \bibitem{sutton1998introduction}
 R.~S. Sutton and A.~G. Barto.
 \newblock {\em Introduction to reinforcement learning}.
 \newblock MIT Press, 1998.
+
+\bibitem{Taylor2009}
+M.~Taylor and P.~Stone.
+\newblock {Transfer learning for reinforcement learning domains: A survey}.
+\newblock {\em The Journal of Machine Learning Research}, 10:1633--1685, 2009.
+
+\bibitem{Zhurov2006}
+Y.~Zhurov and V.~Brezina.
+\newblock {Variability of motor neuron spike timing maintains and shapes
+  contractions of the accessory radula closer muscle of Aplysia}.
+\newblock {\em The Journal of neuroscience}, 26(26):7056--7070, 2006.
 
 \bibitem{ziegler2001evolving}
 J.~Ziegler and W.~Banzhaf.
