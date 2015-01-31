@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.12.11)  30 JAN 2015 13:39
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.12.11)  31 JAN 2015 17:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -402,58 +402,64 @@ Package pdftex.def Info: MZ_GRNvsSARSA.pdf used on input line 104.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [5 <./MC_GRNBehavior.pdf> <./MC_convergence.pdf> <./MC_GRNvsSARSA.pdf> <./MZ_GR
-NBehavior.pdf>] <ACP_GRNBehavior.pdf, id=698, 1043.9pt x 523.9575pt>
+NBehavior.pdf>] <PW_GRNvsSARSA.pdf, id=705, 779.91376pt x 347.2975pt>
+File: PW_GRNvsSARSA.pdf Graphic file (type pdf)
+
+<use PW_GRNvsSARSA.pdf>
+Package pdftex.def Info: PW_GRNvsSARSA.pdf used on input line 111.
+(pdftex.def)             Requested size: 240.0pt x 106.8715pt.
+ <ACP_GRNBehavior.pdf, id=706, 1043.9pt x 523.9575pt>
 File: ACP_GRNBehavior.pdf Graphic file (type pdf)
 
 <use ACP_GRNBehavior.pdf>
-Package pdftex.def Info: ACP_GRNBehavior.pdf used on input line 114.
+Package pdftex.def Info: ACP_GRNBehavior.pdf used on input line 120.
 (pdftex.def)             Requested size: 240.0pt x 120.45972pt.
 
-<ACP_GRNvsSARSA.pdf, id=699, 779.91376pt x 347.2975pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<ACP_GRNvsSARSA.pdf, id=707, 779.91376pt x 347.2975pt>
 File: ACP_GRNvsSARSA.pdf Graphic file (type pdf)
 
 <use ACP_GRNvsSARSA.pdf>
-Package pdftex.def Info: ACP_GRNvsSARSA.pdf used on input line 119.
+Package pdftex.def Info: ACP_GRNvsSARSA.pdf used on input line 125.
 (pdftex.def)             Requested size: 240.0pt x 106.8715pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<MC_GRNMazeBehavior.pdf, id=700, 1043.9pt x 523.9575pt>
+<MC_GRNMazeBehavior.pdf, id=708, 1043.9pt x 523.9575pt>
 File: MC_GRNMazeBehavior.pdf Graphic file (type pdf)
 
 <use MC_GRNMazeBehavior.pdf>
-Package pdftex.def Info: MC_GRNMazeBehavior.pdf used on input line 151.
+Package pdftex.def Info: MC_GRNMazeBehavior.pdf used on input line 157.
 (pdftex.def)             Requested size: 161.28369pt x 80.94873pt.
 
-<PW_GRNMazeBehavior.pdf, id=701, 1043.9pt x 523.9575pt>
+<PW_GRNMazeBehavior.pdf, id=709, 1043.9pt x 523.9575pt>
 File: PW_GRNMazeBehavior.pdf Graphic file (type pdf)
 
 <use PW_GRNMazeBehavior.pdf>
-Package pdftex.def Info: PW_GRNMazeBehavior.pdf used on input line 152.
+Package pdftex.def Info: PW_GRNMazeBehavior.pdf used on input line 158.
 (pdftex.def)             Requested size: 161.28369pt x 80.94873pt.
 
-<ACP_GRNMazeBehavior.pdf, id=702, 1043.9pt x 523.9575pt>
+<ACP_GRNMazeBehavior.pdf, id=710, 1043.9pt x 523.9575pt>
 File: ACP_GRNMazeBehavior.pdf Graphic file (type pdf)
 
 <use ACP_GRNMazeBehavior.pdf>
-Package pdftex.def Info: ACP_GRNMazeBehavior.pdf used on input line 153.
+Package pdftex.def Info: ACP_GRNMazeBehavior.pdf used on input line 159.
 (pdftex.def)             Requested size: 161.28369pt x 80.94873pt.
 
-Overfull \hbox (12.25104pt too wide) in paragraph at lines 150--156
+Overfull \hbox (12.25104pt too wide) in paragraph at lines 156--162
  [] 
  []
 
-) (./06_conclusion.tex)
+) (./06_conclusion.tex [6 <./MZ_GRNvsSARSA.pdf> <./PW_GRNvsSARSA.pdf> <./ACP_GR
+NBehavior.pdf> <./ACP_GRNvsSARSA.pdf>])
 Overfull \hbox (5.38876pt too wide) in paragraph at lines 9--53
 []\T1/aer/m/n/9 Kyle Har-ring-ton is sup-ported by NIH grant 2T32HL007893-
  []
 
-(./paper.bbl [6 <./MZ_GRNvsSARSA.pdf> <./ACP_GRNBehavior.pdf> <./ACP_GRNvsSARSA
-.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
+(./paper.bbl
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [7 <./MC_GRNMazeBehavior.pdf> <./PW_GRNMazeBehavior.pdf> <./ACP_GRNMazeBehavio
@@ -469,10 +475,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2919 strings out of 493315
- 37818 string characters out of 6137903
- 104944 words of memory out of 5000000
- 6266 multiletter control sequences out of 15000+600000
+ 2925 strings out of 493315
+ 37941 string characters out of 6137903
+ 104953 words of memory out of 5000000
+ 6271 multiletter control sequences out of 15000+600000
  54309 words of font info for 71 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  41i,14n,28p,953b,337s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -494,10 +500,10 @@ type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/times/u
 tmr8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/times/utmri8a.pfb
 >
-Output written on paper.pdf (8 pages, 1775863 bytes).
+Output written on paper.pdf (8 pages, 1836091 bytes).
 PDF statistics:
- 946 PDF objects out of 1000 (max. 8388607)
- 582 compressed objects within 6 object streams
+ 999 PDF objects out of 1000 (max. 8388607)
+ 616 compressed objects within 7 object streams
  0 named destinations out of 1000 (max. 500000)
- 76 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)
 
