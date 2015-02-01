@@ -3,52 +3,49 @@
 Parameter sampling for SARSA. Range sampled over $\alpha$, $\gamma$, and $\lambda$. What $\epsilon$ was used.
 
 \subsection{Problems}
-\subsubsection{Mountain Car}
-\begin{figure}[h]
-\center
-\includegraphics[width=0.75\linewidth]{MC_problem.pdf}
-\caption{In the mountain car problem, a car must escape from a valey. It cannot climp the hill without moving backward first to gain speed. The agent receives a reward only when it escapes.}\label{fig:MC:problem}
-\end{figure}
+
+In all cases agents do not have prior information about the specific task.
 
 \subsubsection{Maze}
 \begin{figure}[h]
 \center
 \includegraphics[width=0.75\linewidth]{MZ_problem.pdf}
-\caption{In the maze problem, the agent have to find its way in a maze from the start (in red) to the end (in green). The agent receives a reward only when it escapes.}\label{fig:MC:problem}
+\caption{In the maze problem, the agent's task is to find its way in a maze from start (in red) to finish (in green). The agent receives a reward only when it escapes.}\label{fig:MC:problem}
 \end{figure}
+
+The maze task was originally introduced by Sutton as an example problem for demonstrating the capabilities of initial reinforcement learning algorithms \cite{Sutton1990}. The maze is a 6 by 9 grid with 7 obstacles, a start, and a goal position. From any position, the agent may take any of 4 actions (right, left, up, and down); however, when the action would move the agent out-of-bounds or onto an obstacle, the agent remains in place. The only time a reward is received is when the agent reaches the goal, at which point the episode is completed. Although this problem and its variants have been studied by a number of groups, of particular interest is the Hanada's study which applies evolutionary programming to a multi-task version of Sutton's maze \cite{Handa2007}.
+
+\subsubsection{Mountain Car}
+\begin{figure}[h]
+\center
+\includegraphics[width=0.75\linewidth]{MC_problem.pdf}
+\caption{In the mountain car problem, a car must escape from a valley. It cannot climb the hill without moving backward first to gain speed. The agent receives a reward only when it escapes.}\label{fig:MC:problem}
+\end{figure}
+
+The mountain car problem was introduced by Moore to help broad applicability of dynamic programming \cite{Moore1991}. In the mountain car problem, the agent is placed at the bottom of a valley with no initial velocity and must drive to the top of the right hill. The agent can take one of 3 actions: full thrust forward, full thrust in reverse, or no thrust. The difficulty of the task lies in the fact that the right hill is too steep to be climbed at full thrust, and thus the agent must first reverse up the left hill to gain sufficient momentum to climb the right hill. The agent experiences a negative reward for all time steps that it has not reached the top of the right hill, at which point the episode is completed.
+
+%Used to test RL in sparse coding \cite{sutton1996generalization}
 
 \subsubsection{Puddle World}
 \begin{figure}[h]
 \center
 \includegraphics[width=0.75\linewidth]{PW_problem.pdf}
-\caption{In the puddle world problem, the agent have to find its way in a dark environment from the start (in red) to the end (in green). Local rewards are given all along its exploration and when it escapes.}\label{fig:MC:problem}
+\caption{In the puddle world problem, the agent must navigate without sensor information with stochastic movements from start (in red) to finish (in green). Local rewards are given all along its exploration and when it escapes.}\label{fig:MC:problem}
 \end{figure}
 
-\subsubsection{Maze}
+The puddle world problem was also introduced by Boyan and Moore \cite{Boyan1995}, but was later presented in greater detail by Sutton \cite{sutton1996generalization}. Agents solving the puddle world task exist in a 2D continuous space. Agents may take 4 actions as in the maze problem (left, right, up, and down), but as opposed to the maze problem, actions in puddle world are stochastic. For these experiments the world is 100 by 100, and an agent action moves a unit distance $\pm$ noise taken uniformly from [-0.1,0.1]. The agent experiences a reward of -1 for each timestep until the episode is complete, and, if within either puddle, $-400*d$, where $d$ is the closest distance to a puddle's edge.
 
-Originally introduced by Sutton as an example for deterministic problem solving with RL, maze \cite{Sutton1990}.
+%Used to test RL in sparse coding \cite{sutton1996generalization}
 
-Evolutionary programming has previously been applied to a multi-task version of Sutton's maze problem \cite{Handa2007}.
+\subsubsection{Acrobat}
 
-\subsubsection{Mountain Car}
-
-Introduced to test RL in sparse coding \cite{sutton1996generalization}
-
-\subsubsection{Puddle World}
-
-Stochastic
-
-Introduced to test RL in sparse coding \cite{sutton1996generalization}
-
-\subsubsection{Actor critic pendulum}
 \begin{figure}[h]
 \center
 \includegraphics[width=0.5\linewidth]{ACP_problem.pdf}
-\caption{In the actor critic pendulum, the agent has to balance a pendulum to the highest possible position. The reward is given by the cosinus of the angle between the pendulum and the resting position.}\label{fig:MC:problem}
+\caption{In the acrobat problem, the agent has to balance a pendulum in a perfectly upright position. The reward is given by the cosine of the angle between the pendulum and the resting position.}\label{fig:MC:problem}
 \end{figure}
 
-
-citation \cite{sutton1998introduction}. 
+The acrobat problem has a long-standing history in robotics and control, some references to which may be found in \cite{sutton1998introduction}. The agent controls 2 segments with 2 joints, where the first joint represents attachment to the bar, and the second joint represents the waist of the acrobat. The agent can only control the second joint, and the corresponding actions are: apply a fixed amount of positive torque, apply a fixed amount of negative torque, or apply no torque. The agent is initialized in a downward vertical position and must reach an upward vertical position. The agent receives a reward of -1 for each timestep until the episode is complete.
 
 \subsection{Training GRN on one specific problem}
 In this first experience, we have trained our GRN-based neuromodulation model independently on each problem above mentionned. To evaluate the gain provided by neuromodulation, we first determine the best fixed learning parameter to use with SARSA on each problem. We use parameter sampling on $\alpha$, $\gamma$ and $\lambda$ in $[0, 1]$ with 0.0714 steps (15 evaluations). Each evaluation is averaged on 10 replicates in order to reduce the randomness of the problems. At the end of the parameter sampling stage, we chose the best fixed learning parameters for a given problem by selecting the tuple with the highest fitness. These parameters are given in table \ref{tab:SARSAFixedParams}.

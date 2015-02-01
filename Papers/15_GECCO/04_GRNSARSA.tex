@@ -51,7 +51,7 @@ where $e$ is the vector of current possible rewards. This input informs the GRN 
 
 In addition to these inputs, the GRN uses four output proteins to regulate the learning parameters:
 \begin{itemize}
-\item the output protein $O_{n}$, which concentration $C_{n}$ normalizes the concentration of other outputs\footnote{this is generally used in regulatory networks to obtain output values in $[0, 1]$},
+\item the output protein $O_{n}$, which concentration $C_{n}$ normalizes the concentration of other outputs\footnote{This is generally used in regulatory networks to obtain output values in $[0, 1]$.},
 \item the output protein $O_{\alpha}$ of concentration $C_{\alpha}$, which provides the value for $\alpha$ to the SARSA algorithm with $\alpha=C_{\alpha}/(C_\alpha+C_{n})$,
 \item the output protein $O_\gamma$ of concentration $C_{\gamma}$, which provides the value for $\gamma$ to the SARSA algorithm with $\gamma=C_{\gamma}/(C_\gamma+C_{n})$,
 \item the output protein $O_\lambda$ of concentration $c_{\lambda}$, which provides the value for $\lambda$ to the SARSA algorithm with $\lambda=C_{\lambda}/(C_\lambda+C_{n})$.
