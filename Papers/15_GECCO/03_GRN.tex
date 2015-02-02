@@ -1,23 +1,29 @@
 \section{Gene Regulatory Network}
 %%%% FROM IJCNN %%%%
-Our model uses an optimized network of abstract proteins. The inputs of the
+
+Artificial gene regulatory networks (GRNs) are a class of biologically-inspired
+algorithms. In living systems, gene regulatory networks are used within the cell
+to control DNA transcription and, correspondingly, the phenotypic gene
+expression. Although the inner workings of the cell are governed by a large collection
+of complex machines, simplified models of cells as entities with protein sensors and actuators
+both exhibit complex behavior and offer insights into natural systems \cite{Davidson2006}.
+These protein sensors represent receptor molecules localized to the cellular membrane
+which transduce external activity into excitatory and/or inhibitory regulatory signals.
+Cells use external signals collected from protein sensors localized
+on the membrane to activate or inhibit the transcription of the genes.
+
+Our computational model uses an optimized network of abstract proteins. The inputs of the
 agent are translated to protein concentrations that feed the GRN. Output
 proteins regulate the reinforcement learning parameters previously described.
 This kind of controller has been used in many developmental models of the
 literature \cite{Joachimczak08, Doursat09, CussatBlanc2012a} and to control
-virtual and real robots \cite{ziegler2001evolving, Nicolau10, Joachimczak10, CussatBlanc2012b}.
+virtual and real robots \cite{ziegler2001evolving, Nicolau10, Joachimczak10, CussatBlanc2012b}. 
 
-We have based our regulatory network on Banzhaf's model
-\cite{Banzhaf03}. It is designed to be as close as possible to a real
-gene regulatory network but neither to be evolved nor to control any kind of
-agent. However, Nicolau used an evolution strategy to evolve the GRN to control
-a pole-balancing cart \cite{Nicolau10}. Though this experiment behaved
-consistently, the evolution of the GRN has been an issue. We have decided to
-modify the encoding of the regulatory network and its dynamics. In our model, a
+In our model, a
 gene regulatory network is defined as a set of proteins. Each protein has the
 following properties:
-
 \begin{itemize}
+\item The \emph{concentration} is the quantity of each protein avalaible in the network. This concentration influences the regulation of other proteins: the higher the concentration, the higher the enhancing or the inhibiting impact on other proteins.
 
 \item The protein \emph{tag} coded as an integer between 0 and $p$. The
 	upper value $p$ of the domain can be changed in order to control the

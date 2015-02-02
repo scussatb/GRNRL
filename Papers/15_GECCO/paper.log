@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.12.11)  31 JAN 2015 17:42
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.12.11)  2 FEB 2015 18:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -191,46 +191,45 @@ LaTeX Font Info:    Try loading font information for T1+aer on input line 100.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/ae/t1aer.fd
 File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
-))) (./paper.aux
+)))
+(/usr/local/texlive/2013/texmf-dist/tex/latex/dblfloatfix/dblfloatfix.sty
+Package: dblfloatfix 2012/12/31 v1.0a (JAW)
 
-LaTeX Warning: Label `fig:MC:problem' multiply defined.
-
-
-LaTeX Warning: Label `fig:MC:problem' multiply defined.
-
-
-LaTeX Warning: Label `fig:MC:problem' multiply defined.
-
-
-LaTeX Warning: Label `fig:MC:GRNvsSARSA' multiply defined.
-
+(/usr/local/texlive/2013/texmf-dist/tex/latex/base/fixltx2e.sty
+Package: fixltx2e 2006/09/13 v1.1m fixes to LaTeX
+LaTeX Info: Redefining \em on input line 420.
+LaTeX Info: The control sequence `\[' is already robust on input line 471.
+LaTeX Info: The control sequence `\]' is already robust on input line 472.
 )
+\@dblbotnum=\count109
+\c@dblbotnumber=\count110
+) (./paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
- (/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+(/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count109
+\scratchcounter=\count111
 \scratchdimen=\dimen123
 \scratchbox=\box30
-\nofMPsegments=\count110
-\nofMParguments=\count111
+\nofMPsegments=\count112
+\nofMParguments=\count113
 \everyMPshowfont=\toks36
-\MPscratchCnt=\count112
+\MPscratchCnt=\count114
 \MPscratchDim=\dimen124
-\MPnumerator=\count113
-\makeMPintoPDFobject=\count114
+\MPnumerator=\count115
+\makeMPintoPDFobject=\count116
 \everyMPtoPDFconversion=\toks37
 ) (/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
@@ -280,30 +279,47 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Try loading font information for U+msa on input line 33.
+LaTeX Font Info:    Try loading font information for U+msa on input line 34.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 33.
+LaTeX Font Info:    Try loading font information for U+msb on input line 34.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 33.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 34.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-Overfull \hbox (1.37453pt too wide) in paragraph at lines 36--38
+Overfull \hbox (1.37453pt too wide) in paragraph at lines 37--39
 \T1/aer/m/n/9 Action-Reward-State-Action (SARSA) al-go-rithm. The GRN
  []
 
-(./01_introduction.tex) (./02_SARSA.tex [1{/usr/local/texlive/2013/texmf-var/fo
-nts/map/pdftex/updmap/pdftex.map}
+(./01_introduction.tex)
+Overfull \hbox (3.33609pt too wide) in paragraph at lines 3--44
+\T1/aer/m/n/9 genetically-regulated neu-ro-mod-u-la-tion (GRNM) ex-tends pre-
+ []
+
+(./02_SARSA.tex
+Underfull \vbox (badness 1406) has occurred while \output is active []
+
+ [1{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
-]) (./03_GRN.tex) (./04_GRNSARSA.tex
+]) (./03_GRN.tex
+Overfull \hbox (11.20428pt too wide) in paragraph at lines 26--27
+[]\T1/aer/m/n/9 The \T1/aer/m/it/9 con-cen-tra-tion \T1/aer/m/n/9 is the quan-t
+ity of each pro-tein avalaible
+ []
+
+
+Underfull \vbox (badness 1043) has occurred while \output is active []
+
+)
+(./04_GRNSARSA.tex
 Overfull \hbox (1.92249pt too wide) in paragraph at lines 2--13
 \T1/aer/m/n/9 hav-ior of neu-ral net-works within in-di-vid-ual neu-rons, among
 st
@@ -315,173 +331,183 @@ Overfull \hbox (3.4344pt too wide) in paragraph at lines 31--32
 eu-
  []
 
-<GRNSARSA.pdf, id=26, 367.3725pt x 349.305pt>
+<GRNSARSA.pdf, id=26, 454.69875pt x 229.85875pt>
 File: GRNSARSA.pdf Graphic file (type pdf)
  <use GRNSARSA.pdf>
 Package pdftex.def Info: GRNSARSA.pdf used on input line 64.
-(pdftex.def)             Requested size: 167.99927pt x 159.73885pt.
- [3 <./GRNSARSA.pdf>]) (./05_experiences.tex <MC_problem.pdf, id=65, 477.785pt 
-x 280.04625pt>
-File: MC_problem.pdf Graphic file (type pdf)
+(pdftex.def)             Requested size: 167.99927pt x 84.92714pt.
+ [3 <./GRNSARSA.pdf>]) (./05_experiences.tex
+<MC_convergence.pdf, id=65, 363.3575pt x 218.8175pt>
+File: MC_convergence.pdf Graphic file (type pdf)
+ <use MC_convergence.pdf>
+Package pdftex.def Info: MC_convergence.pdf used on input line 30.
+(pdftex.def)             Requested size: 127.56512pt x 76.82234pt.
 
-<use MC_problem.pdf>
-Package pdftex.def Info: MC_problem.pdf used on input line 9.
-(pdftex.def)             Requested size: 180.0pt x 105.50421pt.
- <MZ_problem.pdf, id=66, 642.4pt x 475.7775pt>
-File: MZ_problem.pdf Graphic file (type pdf)
+<MC_GRNBehavior.pdf, id=66, 1043.9pt x 523.9575pt>
+File: MC_GRNBehavior.pdf Graphic file (type pdf)
+ <use MC_GRNBehavior.pdf>
+Package pdftex.def Info: MC_GRNBehavior.pdf used on input line 31.
+(pdftex.def)             Requested size: 153.04208pt x 76.82234pt.
 
-<use MZ_problem.pdf>
-Package pdftex.def Info: MZ_problem.pdf used on input line 16.
-(pdftex.def)             Requested size: 180.0pt x 133.31116pt.
- <PW_problem.pdf, id=67, 449.68pt x 401.5pt>
-File: PW_problem.pdf Graphic file (type pdf)
+<MC_GRNvsSARSA.pdf, id=67, 779.91376pt x 347.2975pt>
+File: MC_GRNvsSARSA.pdf Graphic file (type pdf)
+ <use MC_GRNvsSARSA.pdf>
+Package pdftex.def Info: MC_GRNvsSARSA.pdf used on input line 32.
+(pdftex.def)             Requested size: 172.5098pt x 76.82234pt.
 
-<use PW_problem.pdf>
-Package pdftex.def Info: PW_problem.pdf used on input line 23.
-(pdftex.def)             Requested size: 180.0pt x 160.71355pt.
+<MZ_GRNBehavior.pdf, id=68, 1043.9pt x 523.9575pt>
+File: MZ_GRNBehavior.pdf Graphic file (type pdf)
+ <use MZ_GRNBehavior.pdf>
+Package pdftex.def Info: MZ_GRNBehavior.pdf used on input line 43.
+(pdftex.def)             Requested size: 170.05385pt x 85.35826pt.
+
+<MZ_GRNvsSARSA.pdf, id=69, 779.91376pt x 347.2975pt>
+File: MZ_GRNvsSARSA.pdf Graphic file (type pdf)
+ <use MZ_GRNvsSARSA.pdf>
+Package pdftex.def Info: MZ_GRNvsSARSA.pdf used on input line 44.
+(pdftex.def)             Requested size: 191.68152pt x 85.35826pt.
+
+Overfull \hbox (4.82213pt too wide) in paragraph at lines 54--55
+[]\T1/aer/m/n/9 The ac-ro-bat prob-lem has a long-standing his-tory in robotics
+
+ []
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<ACP_problem.pdf, id=68, 222.8325pt x 222.8325pt>
-File: ACP_problem.pdf Graphic file (type pdf)
- <use ACP_problem.pdf>
-Package pdftex.def Info: ACP_problem.pdf used on input line 46.
-(pdftex.def)             Requested size: 120.0pt x 120.00134pt.
-
-Overfull \hbox (5.37111pt too wide) in paragraph at lines 54--55
+Overfull \hbox (5.37111pt too wide) in paragraph at lines 58--59
 \T1/aer/m/n/9 neu-ro-mod-u-la-tion model in-de-pen-dently on each prob-lem abov
 e
  []
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+Underfull \vbox (badness 1721) has occurred while \output is active []
 
-[4 <./MC_problem.pdf> <./MZ_problem.pdf> <./PW_problem.pdf> <./ACP_problem.pdf>
-] <MC_GRNBehavior.pdf, id=551, 1043.9pt x 523.9575pt>
-File: MC_GRNBehavior.pdf Graphic file (type pdf)
- <use MC_GRNBehavior.pdf>
-Package pdftex.def Info: MC_GRNBehavior.pdf used on input line 75.
-(pdftex.def)             Requested size: 240.0pt x 120.45972pt.
+ [4]
 
-<MC_convergence.pdf, id=552, 363.3575pt x 218.8175pt>
-File: MC_convergence.pdf Graphic file (type pdf)
- <use MC_convergence.pdf>
-Package pdftex.def Info: MC_convergence.pdf used on input line 81.
-(pdftex.def)             Requested size: 180.0pt x 108.40013pt.
+LaTeX Warning: Reference `fig:MZ:Restults' on page \thepage  undefined on input
+ line 79.
 
+[5 <./MC_convergence.pdf> <./MC_GRNBehavior.pdf> <./MC_GRNvsSARSA.pdf> <./MZ_GR
+NBehavior.pdf> <./MZ_GRNvsSARSA.pdf>]
+<PW_GRNBehavior.pdf, id=266, 1043.9pt x 523.9575pt>
+File: PW_GRNBehavior.pdf Graphic file (type pdf)
+ <use PW_GRNBehavior.pdf>
+Package pdftex.def Info: PW_GRNBehavior.pdf used on input line 87.
+(pdftex.def)             Requested size: 170.05385pt x 85.35826pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<MC_GRNvsSARSA.pdf, id=553, 779.91376pt x 347.2975pt>
-File: MC_GRNvsSARSA.pdf Graphic file (type pdf)
- <use MC_GRNvsSARSA.pdf>
-Package pdftex.def Info: MC_GRNvsSARSA.pdf used on input line 87.
-(pdftex.def)             Requested size: 240.0pt x 106.8715pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: Reference `fig:MZ:GRNvsSARSA' on page \thepage  undefined on inp
-ut line 94.
-
-<MZ_GRNBehavior.pdf, id=554, 1043.9pt x 523.9575pt>
-File: MZ_GRNBehavior.pdf Graphic file (type pdf)
- <use MZ_GRNBehavior.pdf>
-Package pdftex.def Info: MZ_GRNBehavior.pdf used on input line 98.
-(pdftex.def)             Requested size: 240.0pt x 120.45972pt.
-
-<MZ_GRNvsSARSA.pdf, id=555, 779.91376pt x 347.2975pt>
-File: MZ_GRNvsSARSA.pdf Graphic file (type pdf)
- <use MZ_GRNvsSARSA.pdf>
-Package pdftex.def Info: MZ_GRNvsSARSA.pdf used on input line 104.
-(pdftex.def)             Requested size: 240.0pt x 106.8715pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[5 <./MC_GRNBehavior.pdf> <./MC_convergence.pdf> <./MC_GRNvsSARSA.pdf> <./MZ_GR
-NBehavior.pdf>] <PW_GRNvsSARSA.pdf, id=705, 779.91376pt x 347.2975pt>
+<PW_GRNvsSARSA.pdf, id=267, 779.91376pt x 347.2975pt>
 File: PW_GRNvsSARSA.pdf Graphic file (type pdf)
+ <use PW_GRNvsSARSA.pdf>
+Package pdftex.def Info: PW_GRNvsSARSA.pdf used on input line 88.
+(pdftex.def)             Requested size: 191.68152pt x 85.35826pt.
 
-<use PW_GRNvsSARSA.pdf>
-Package pdftex.def Info: PW_GRNvsSARSA.pdf used on input line 111.
-(pdftex.def)             Requested size: 240.0pt x 106.8715pt.
- <ACP_GRNBehavior.pdf, id=706, 1043.9pt x 523.9575pt>
+<ACP_GRNBehavior.pdf, id=268, 1043.9pt x 523.9575pt>
 File: ACP_GRNBehavior.pdf Graphic file (type pdf)
+ <use ACP_GRNBehavior.pdf>
+Package pdftex.def Info: ACP_GRNBehavior.pdf used on input line 98.
+(pdftex.def)             Requested size: 170.05385pt x 85.35826pt.
 
-<use ACP_GRNBehavior.pdf>
-Package pdftex.def Info: ACP_GRNBehavior.pdf used on input line 120.
-(pdftex.def)             Requested size: 240.0pt x 120.45972pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<ACP_GRNvsSARSA.pdf, id=707, 779.91376pt x 347.2975pt>
+<ACP_GRNvsSARSA.pdf, id=269, 779.91376pt x 347.2975pt>
 File: ACP_GRNvsSARSA.pdf Graphic file (type pdf)
 
 <use ACP_GRNvsSARSA.pdf>
-Package pdftex.def Info: ACP_GRNvsSARSA.pdf used on input line 125.
-(pdftex.def)             Requested size: 240.0pt x 106.8715pt.
+Package pdftex.def Info: ACP_GRNvsSARSA.pdf used on input line 99.
+(pdftex.def)             Requested size: 191.68152pt x 85.35826pt.
 
+Overfull \hbox (1.15662pt too wide) in paragraph at lines 120--121
+\T1/aer/m/n/9 fixed-parameter SARSA in all prob-lem, even on pud-dle world
+ []
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<MC_GRNMazeBehavior.pdf, id=708, 1043.9pt x 523.9575pt>
+<MC_GRNMazeBehavior.pdf, id=270, 1043.9pt x 523.9575pt>
 File: MC_GRNMazeBehavior.pdf Graphic file (type pdf)
 
 <use MC_GRNMazeBehavior.pdf>
-Package pdftex.def Info: MC_GRNMazeBehavior.pdf used on input line 157.
+Package pdftex.def Info: MC_GRNMazeBehavior.pdf used on input line 141.
 (pdftex.def)             Requested size: 161.28369pt x 80.94873pt.
 
-<PW_GRNMazeBehavior.pdf, id=709, 1043.9pt x 523.9575pt>
+<PW_GRNMazeBehavior.pdf, id=271, 1043.9pt x 523.9575pt>
 File: PW_GRNMazeBehavior.pdf Graphic file (type pdf)
 
 <use PW_GRNMazeBehavior.pdf>
-Package pdftex.def Info: PW_GRNMazeBehavior.pdf used on input line 158.
+Package pdftex.def Info: PW_GRNMazeBehavior.pdf used on input line 142.
 (pdftex.def)             Requested size: 161.28369pt x 80.94873pt.
 
-<ACP_GRNMazeBehavior.pdf, id=710, 1043.9pt x 523.9575pt>
+<ACP_GRNMazeBehavior.pdf, id=272, 1043.9pt x 523.9575pt>
 File: ACP_GRNMazeBehavior.pdf Graphic file (type pdf)
 
 <use ACP_GRNMazeBehavior.pdf>
-Package pdftex.def Info: ACP_GRNMazeBehavior.pdf used on input line 159.
+Package pdftex.def Info: ACP_GRNMazeBehavior.pdf used on input line 143.
 (pdftex.def)             Requested size: 161.28369pt x 80.94873pt.
 
-Overfull \hbox (12.25104pt too wide) in paragraph at lines 156--162
+Overfull \hbox (12.25104pt too wide) in paragraph at lines 140--146
  [] 
  []
 
-) (./06_conclusion.tex [6 <./MZ_GRNvsSARSA.pdf> <./PW_GRNvsSARSA.pdf> <./ACP_GR
-NBehavior.pdf> <./ACP_GRNvsSARSA.pdf>])
-Overfull \hbox (5.38876pt too wide) in paragraph at lines 9--53
-[]\T1/aer/m/n/9 Kyle Har-ring-ton is sup-ported by NIH grant 2T32HL007893-
+
+LaTeX Warning: Reference `fig:GRNGenericBehavior' on page \thepage  undefined o
+n input line 149.
+
+<MC_GRNGenericBehavior.pdf, id=273, 1043.9pt x 523.9575pt>
+File: MC_GRNGenericBehavior.pdf Graphic file (type pdf)
+
+<use MC_GRNGenericBehavior.pdf>
+Package pdftex.def Info: MC_GRNGenericBehavior.pdf used on input line 157.
+(pdftex.def)             Requested size: 120.96277pt x 60.71355pt.
+
+<MZ_GRNGenericBehavior.pdf, id=274, 1043.9pt x 523.9575pt>
+File: MZ_GRNGenericBehavior.pdf Graphic file (type pdf)
+
+<use MZ_GRNGenericBehavior.pdf>
+Package pdftex.def Info: MZ_GRNGenericBehavior.pdf used on input line 158.
+(pdftex.def)             Requested size: 120.96277pt x 60.71355pt.
+
+<PW_GRNGenericBehavior.pdf, id=275, 1043.9pt x 523.9575pt>
+File: PW_GRNGenericBehavior.pdf Graphic file (type pdf)
+
+<use PW_GRNGenericBehavior.pdf>
+Package pdftex.def Info: PW_GRNGenericBehavior.pdf used on input line 159.
+(pdftex.def)             Requested size: 120.96277pt x 60.71355pt.
+
+<ACP_GRNGenericBehavior.pdf, id=276, 1043.9pt x 523.9575pt>
+File: ACP_GRNGenericBehavior.pdf Graphic file (type pdf)
+
+<use ACP_GRNGenericBehavior.pdf>
+Package pdftex.def Info: ACP_GRNGenericBehavior.pdf used on input line 160.
+(pdftex.def)             Requested size: 120.96277pt x 60.71355pt.
+
+Overfull \hbox (2.61316pt too wide) in paragraph at lines 156--163
+ [] 
  []
 
-(./paper.bbl
+) (./06_conclusion.tex) (./paper.bbl [6]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [7 <./MC_GRNMazeBehavior.pdf> <./PW_GRNMazeBehavior.pdf> <./ACP_GRNMazeBehavio
-r.pdf>])
-[8
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7 <./PW_GRNBehavior.pdf> <./PW_GRNvsSARSA.pdf> <./ACP_GRNBehavior.pdf> <./ACP
+_GRNvsSARSA.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8 <./MC_GRNMazeBehavior.pdf> <./PW_GRNMazeBehavior.pdf> <./ACP_GRNMazeBehavio
+r.pdf> <./MC_GRNGenericBehavior.pdf> <./MZ_GRNGenericBehavior.pdf> <./PW_GRNGen
+ericBehavior.pdf> <./ACP_GRNGenericBehavior.pdf>]) [9
 
 ] (./paper.aux)
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
  ) 
 Here is how much of TeX's memory you used:
- 2925 strings out of 493315
- 37941 string characters out of 6137903
- 104953 words of memory out of 5000000
- 6271 multiletter control sequences out of 15000+600000
+ 2978 strings out of 493315
+ 39116 string characters out of 6137903
+ 111999 words of memory out of 5000000
+ 6316 multiletter control sequences out of 15000+600000
  54309 words of font info for 71 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 41i,14n,28p,953b,337s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,14n,28p,1041b,339s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/tex
 live/2013/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/
@@ -500,10 +526,10 @@ type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/times/u
 tmr8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/times/utmri8a.pfb
 >
-Output written on paper.pdf (8 pages, 1836091 bytes).
+Output written on paper.pdf (9 pages, 2504877 bytes).
 PDF statistics:
- 999 PDF objects out of 1000 (max. 8388607)
- 616 compressed objects within 7 object streams
+ 661 PDF objects out of 1000 (max. 8388607)
+ 460 compressed objects within 5 object streams
  0 named destinations out of 1000 (max. 500000)
- 81 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 86 words of extra memory for PDF output out of 10000 (max. 10000000)
 

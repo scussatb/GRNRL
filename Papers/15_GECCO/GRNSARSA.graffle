@@ -53,7 +53,7 @@
 	<array>
 		<dict>
 			<key>Bounds</key>
-			<string>{{331.00001525878906, 213.47122430801392}, {112, 52}}</string>
+			<string>{{184.07602763246706, 225.19185154674682}, {112, 52}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -78,6 +78,17 @@
 			</dict>
 			<key>ID</key>
 			<integer>15</integer>
+			<key>Line</key>
+			<dict>
+				<key>ID</key>
+				<integer>13</integer>
+				<key>Offset</key>
+				<real>3</real>
+				<key>Position</key>
+				<real>0.4517492949962616</real>
+				<key>RotationType</key>
+				<integer>0</integer>
+			</dict>
 			<key>Shape</key>
 			<string>Rectangle</string>
 			<key>Style</key>
@@ -118,7 +129,7 @@ parameters}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{78, 213.47122550010681}, {148, 52}}</string>
+			<string>{{194.79623237252235, 178.59592476994948}, {126, 52}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -143,6 +154,15 @@ parameters}</string>
 			</dict>
 			<key>ID</key>
 			<integer>14</integer>
+			<key>Line</key>
+			<dict>
+				<key>ID</key>
+				<integer>12</integer>
+				<key>Position</key>
+				<real>0.42476493120193481</real>
+				<key>RotationType</key>
+				<integer>0</integer>
+			</dict>
 			<key>Shape</key>
 			<string>Rectangle</string>
 			<key>Style</key>
@@ -173,7 +193,7 @@ parameters}</string>
 {\colortbl;\red255\green255\blue255;\red0\green167\blue0;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs44 \cf2 Episode time &amp;\
+\f0\fs44 \cf2 Time &amp;\
 past rewards}</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
@@ -183,7 +203,7 @@ past rewards}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{219, 178.78417266187051}, {121, 28.31654676258993}}</string>
+			<string>{{138.25, 155.00000060376505}, {37, 148.78778076171875}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FontInfo</key>
@@ -228,12 +248,14 @@ past rewards}</string>
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs50 \cf0 GRN}</string>
+\f0\fs50 \cf0 G\
+R\
+N}</string>
 			</dict>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{219, 271.84172661870502}, {121, 28.31654676258993}}</string>
+			<string>{{318.75, 155}, {37, 148.78778076171875}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FontInfo</key>
@@ -278,12 +300,16 @@ past rewards}</string>
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs50 \cf0 SARSA}</string>
+\f0\fs50 \cf0 S\
+A\
+R\
+S\
+A}</string>
 			</dict>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{158.00001335144043, 391.5}, {243, 61}}</string>
+			<string>{{457.5000171661377, 154.99999809265137}, {97.499984741210938, 148.78778076171875}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FontInfo</key>
@@ -316,7 +342,7 @@ past rewards}</string>
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs64 \cf0 Environment}</string>
+\f0\fs64 \cf0 World}</string>
 			</dict>
 		</dict>
 		<dict>
@@ -327,14 +353,14 @@ past rewards}</string>
 				<key>ID</key>
 				<integer>6</integer>
 				<key>Info</key>
-				<integer>5</integer>
+				<integer>17</integer>
 			</dict>
 			<key>ID</key>
 			<integer>13</integer>
 			<key>Points</key>
 			<array>
-				<string>{319.83333092927933, 207.10071942446046}</string>
-				<string>{319.83333633840078, 271.84172661870508}</string>
+				<string>{175.25, 254.19186183527989}</string>
+				<string>{318.75, 254.1918390604078}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -366,7 +392,7 @@ past rewards}</string>
 				<key>ID</key>
 				<integer>7</integer>
 				<key>Info</key>
-				<integer>11</integer>
+				<integer>9</integer>
 			</dict>
 		</dict>
 		<dict>
@@ -377,14 +403,14 @@ past rewards}</string>
 				<key>ID</key>
 				<integer>7</integer>
 				<key>Info</key>
-				<integer>15</integer>
+				<integer>7</integer>
 			</dict>
 			<key>ID</key>
 			<integer>12</integer>
 			<key>Points</key>
 			<array>
-				<string>{239.16666771844038, 271.84172661870508}</string>
-				<string>{239.16666907072067, 207.10071942446046}</string>
+				<string>{318.75, 204.59591509598249}</string>
+				<string>{175.25, 204.59593787085458}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -416,12 +442,12 @@ past rewards}</string>
 				<key>ID</key>
 				<integer>6</integer>
 				<key>Info</key>
-				<integer>1</integer>
+				<integer>19</integer>
 			</dict>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{332, 341}, {62, 26}}</string>
+			<string>{{371, 253.19186401367188}, {62, 26}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -485,7 +511,7 @@ past rewards}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{158.00001525878906, 328}, {73, 52}}</string>
+			<string>{{382.00001122723791, 178.59592241772236}, {73, 52}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -510,6 +536,15 @@ past rewards}</string>
 			</dict>
 			<key>ID</key>
 			<integer>10</integer>
+			<key>Line</key>
+			<dict>
+				<key>ID</key>
+				<integer>8</integer>
+				<key>Position</key>
+				<real>0.38329237699508667</real>
+				<key>RotationType</key>
+				<integer>0</integer>
+			</dict>
 			<key>Shape</key>
 			<string>Rectangle</string>
 			<key>Style</key>
@@ -556,14 +591,14 @@ reward}</string>
 				<key>ID</key>
 				<integer>5</integer>
 				<key>Info</key>
-				<integer>2</integer>
+				<integer>7</integer>
 			</dict>
 			<key>ID</key>
 			<integer>9</integer>
 			<key>Points</key>
 			<array>
-				<string>{319.83333092927933, 300.15827338129498}</string>
-				<string>{320.00002180039883, 391.5}</string>
+				<string>{355.75, 254.19186123151485}</string>
+				<string>{457.5000171661377, 254.19183715305917}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -595,7 +630,7 @@ reward}</string>
 				<key>ID</key>
 				<integer>6</integer>
 				<key>Info</key>
-				<integer>11</integer>
+				<integer>9</integer>
 			</dict>
 		</dict>
 		<dict>
@@ -606,14 +641,14 @@ reward}</string>
 				<key>ID</key>
 				<integer>6</integer>
 				<key>Info</key>
-				<integer>15</integer>
+				<integer>7</integer>
 			</dict>
 			<key>ID</key>
 			<integer>8</integer>
 			<key>Points</key>
 			<array>
-				<string>{239.00001757591963, 391.5}</string>
-				<string>{239.16666907072067, 300.15827338129498}</string>
+				<string>{457.5000171661377, 204.59591318863386}</string>
+				<string>{355.75, 204.59593726708954}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -648,7 +683,7 @@ reward}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{237.50001335144043, 127}, {84, 38}}</string>
+			<string>{{224.49999809265137, 113}, {84, 38}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -703,7 +738,7 @@ reward}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{191.00002861022949, 127}, {176.99996948242188, 190}}</string>
+			<string>{{125.99999809265137, 113}, {242, 207}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FontInfo</key>
@@ -775,7 +810,7 @@ reward}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2015-01-27 14:19:55 +0000</string>
+	<string>2015-02-02 12:29:32 +0000</string>
 	<key>Modifier</key>
 	<string>Sylvain</string>
 	<key>NotesVisible</key>

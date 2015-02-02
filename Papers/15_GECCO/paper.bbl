@@ -1,9 +1,11 @@
 \begin{thebibliography}{10}
 
-\bibitem{Banzhaf03}
-W.~Banzhaf.
-\newblock Artificial regulatory networks and genetic programming.
-\newblock {\em Genetic Programming Theory and Practice}, pages 43--62, 2003.
+\bibitem{Boyan1995}
+J.~Boyan and A.~Moore.
+\newblock {Generalization in reinforcement learning: Safely approximating the
+  value function}.
+\newblock In {\em Advances in neural information processing systems}, pages
+  369--376, 1995.
 
 \bibitem{cussatblanc2015grneat}
 S.~Cussat-Blanc, K.~Harrington, and J.~Pollack.
@@ -22,6 +24,12 @@ S.~Cussat-Blanc, S.~Sanchez, and Y.~Duthen.
   gene regulatory network.
 \newblock In {\em Conference on Computational Intelligence in Games (CIG'12)}.
   IEEE, 2012.
+
+\bibitem{Davidson2006}
+E.~H. Davidson.
+\newblock The regulatory genome: gene regulatory networks in development and
+  evolution.
+\newblock {\em Academic Press}, 2006.
 
 \bibitem{Destexhe2004}
 A.~Destexhe and E.~Marder.
@@ -112,6 +120,13 @@ P.~Montague, P.~Dayan, and T.~Sejnowski.
 \newblock {A framework for mesencephalic dopamine systems based on predictive
   Hebbian learning}.
 \newblock {\em The Journal of Neuroscience}, 16(5):1936--1947, 1996.
+
+\bibitem{Moore1991}
+A.~Moore.
+\newblock {Variable resolution dynamic programming: Efficiently learning action
+  maps in multivariate realvalued state-spaces}.
+\newblock In {\em Proceedings of the Eighth International Conference on Machine
+  Learning}, pages 333--337, 1991.
 
 \bibitem{Nicolau10}
 M.~Nicolau, M.~Schoenauer, and W.~Banzhaf.

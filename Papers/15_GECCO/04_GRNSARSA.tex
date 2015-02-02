@@ -34,7 +34,7 @@ To do so, the GRN uses three inputs that describes the current performance of th
 \begin{equation}
 C_{I_1}(t)=e^{-\frac{t^2}{t_{max}^2}}
 \end{equation}
-where $t_max$ is the expected duration of an episode. The second output protein's concentration $C_{I_2}(t)$ describes the quality of the current sequence of actions in term of rewards, smoothed on 25 steps:
+where $t_{max}$ is the expected duration of an episode. The second output protein's concentration $C_{I_2}(t)$ describes the quality of the current sequence of actions in term of rewards, smoothed on 25 steps:
 \begin{eqnarray}
 C_{I_2}(t)=\frac{\sum\limits_{s=1}^{25}{\Big((25-s)\times q_s(t-1)\Big)}}{\sum\limits_{s=1}^{25}s} \\
 \text{with }q_s(t)=
@@ -65,6 +65,33 @@ As depicted by figure \ref{fig:GRNSARSA}, the GRN updates SARSA's learning param
 \caption{At every time step, SARSA updates the GRN inputs. The GRN returns updated learning parameters that will be used by the SARSA algorithm.}\label{fig:GRNSARSA}
 \end{figure}
 
+%%% Problem figure from experiences %%%
+%\begin{figure*}[ht!]
+%\begin{minipage}[t]{0.2\linewidth}
+%\center
+%\includegraphics[height=2.4cm]{MZ_problem.pdf}
+%\caption{In the maze problem, the agent's task is to find its way in a maze from start (in red) to finish (in green). The agent receives a reward only when it escapes.}\label{fig:MC:problem}
+%\end{minipage}
+%\hspace{0.1mm}
+%\begin{minipage}[t]{0.24\linewidth}
+%\center
+%\includegraphics[height=2.4cm]{MC_problem.pdf}
+%\caption{In the mountain car problem, a car must escape from a valley. It cannot climb the hill without moving backward first to gain speed. The agent receives a reward only when it escapes.}\label{fig:MC:problem}
+%\end{minipage}
+%\hspace{0.1mm}
+%\begin{minipage}[t]{0.265\linewidth}
+%\center
+%\includegraphics[height=2.4cm]{PW_problem.pdf}
+%\caption{In the puddle world problem, the agent must navigate without sensor information with stochastic movements from start to finish. Rewards are given all along its exploration (stars) and when it escapes.}\label{fig:MC:problem}
+%\end{minipage}
+%\hspace{0.1mm}
+%\begin{minipage}[t]{0.24\linewidth}
+%\center
+%\includegraphics[height=2.4cm]{ACP_problem.pdf}
+%\caption{In the acrobat problem, the agent has to balance a pendulum in a perfectly upright position. The reward is given by the cosine of the angle between the pendulum and the resting position.}\label{fig:MC:problem}
+%\end{minipage}
+%\end{figure*}
+
 \subsection{GRN Optimization}
 Before using a gene regulatory network for neuromodulation, the network of proteins needs to be optimized. In this paper, we use an adapted genetic algorithm inspired from the NEAT algorithm \cite{stanley2002evolving}. Three features are modified in comparison to a standard genetic algorithm:
 \begin{itemize}
@@ -74,11 +101,22 @@ Before using a gene regulatory network for neuromodulation, the network of prote
 \end{itemize}
 This modified algorithm has been proven to converge faster to better solutions. More details can be find in \cite{cussatblanc2015grneat}.
 
-During its optimization, each GRN is evaluated independently on a given problem with 25 reruns in order to reduce stochasticity impact of the problems on the fitness. The fitness being problem dependent, more explanations will be provided in the experience section. To avoid any memory biais, SARSA is completely resetted before each evaluation. 
+During its optimization, each GRN is evaluated independently on a given problem with 25 reruns in order to reduce stochasticity impact of the problems on the fitness. The fitness being problem dependent, more explanations will be provided in the experience section. To avoid any memory biais, SARSA is completely resetted before each evaluation. The parameters used to evolved the GRNs in this work are given by table~\ref{tab:GREAT:params}. They are common to all evolutions.
 
-!!! Provides GREAT's parameters here !!!
-
-
+\begin{table}
+\center
+\begin{tabular}{rl}
+Parameter			& value 					\\\hline
+Population size		& 500					\\
+Initial duplicates		& 19					\\
+Speciation threshold 	& 0.15					\\
+Species min size		& 15					\\
+Selection				& 3-players tournament	\\
+Crossover rate		& 0.2					\\
+Mutation rate			& 0.8					\\
+\end{tabular}
+\caption{Parameters used for evolutions}\label{tab:GREAT:params}
+\end{table}
 
 
 
