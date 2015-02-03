@@ -55,7 +55,7 @@ Acrobate				& 0.05		& 0.928571	& 0.785714	\\\hline
 \caption{Fixed learning parameters for the SARSA algorithm obtained by parameter sampling.}\label{tab:SARSAFixedParams}
 \end{table}
 
-\subsubsection{Mountain car}
+\subsubsection{Mountain Car}
 Figure \ref{fig:MC:Results}(a) shows the evolutionary convergence curve on the Mountain Car problem. We can observe that the best GRN is found very quickly (lower green curve) before being slowly optimized to regulate the learning parameters more efficiently. Figure \ref{fig:MC:Results}(b) plots the behavior of the best GRN obtained after 150 iterations. This figure plots the input proteins' concentrations and the three learning parameters calculated by the gene regulatory network. The GRN maintains almost constant parameter values over each episode time, except at the beginning where $\alpha$ and $\gamma$ are increased. This reinforces learned values for the initial part of the agent's trajectory. In this experiment, it should also to be noticed that $\lambda$ is kept at zero all over time, suggesting that on this simple problem sequence learning may not be necessary.
 
 \begin{figure}[b!]
@@ -66,7 +66,7 @@ Figure \ref{fig:MC:Results}(a) shows the evolutionary convergence curve on the M
 (a) Best GRN's behavior &
 (b) GRNM vs SARSA
 \end{tabular}
-\caption{Maze: (a) Regulation of the learning parameters of the besst GRN obtained; (b) Comparison of the fitnesses per episode (abscissa) obtained by our neuromodulation with a GRN trained on maze (green) and with fixed-parameter SARSA algorithm (red). Results are averaged on 100 independent runs. Lower is better.}\label{fig:MZ:Results}
+\caption{Maze: (a) GRN dynamics of genetically-regulated neuromodulation with the best GRN obtained; (b) Comparison of the fitnesses per episode (abscissa) obtained by GRNM with a GRN trained on Maze (green) and with fixed-parameter SARSA (red). Results are averaged on 100 independent runs. Lower is better.}\label{fig:MZ:Results}
 \end{figure}
 
 This GRN is then compared to the SARSA algorithm with fixed learning parameters on 100 independent reruns of mountain car with different random seeds. Figure \ref{fig:MC:Results}(c) shows the results obtained for each episode averaged on the 100 runs. We can observe that GRNM trained on the mountain car (in green) beats the SARSA algorithm with fixed parameters (in red) on every episodes. More specifically, the first episodes (from 1 to 3) show that GRNM learns faster than the SARSA algorithm and later episodes (from 3 to 25) show that neuromodulation leads to agents that solve the problem faster than fixed-parameter SARSA. When comparing detailed results on table \ref{tab:results}, the GRN-based neuromodulation gives better results on the mountain car problem when averaged on 100 independent runs. 
@@ -76,7 +76,7 @@ This GRN is then compared to the SARSA algorithm with fixed learning parameters 
 \setlength{\tabcolsep}{.5mm}
 \begin{tabular}{|c|cccc|ccc|cccc|cccc|cccc|}
 \cline{2-16}
-\multicolumn{1}{c}{ }	& \multicolumn{4}{|c}{Mountain car}	& \multicolumn{3}{|c}{Maze}	 			& \multicolumn{4}{|c}{Puddle world}				& \multicolumn{4}{|c|}{Acrobat} \\
+\multicolumn{1}{c}{ }	& \multicolumn{4}{|c}{Mountain Car}	& \multicolumn{3}{|c}{Maze}	 			& \multicolumn{4}{|c}{Puddle world}				& \multicolumn{4}{|c|}{Acrobat} \\
 \multicolumn{1}{c|}{ }	
 		& GRN	& SARSA	& GRN$_{m}$	& GRN$_{g}$		& GRN$_{m}$	& SARSA	& GRN$_{g}$		& GRN & SARSA & GRN$_{m}$ & GRN$_{g}$		& GRN & SARSA & GRN$_{m}$ & GRN$_{g}$ 			\\\hline
 avg		& \textbf{170.5} & 294.2 & \emph{225.3} & 228.3 	& \emph{56.8} & \textbf{53.2} & 83.5	& \textbf{661.9} & \emph{639.0} & 533.7 & 569.5	& \textbf{420.1} & 231.86 & 320.0 & \emph{330.0}		\\
@@ -84,7 +84,7 @@ stdev	& \emph{16.7} & \textbf{4.1} & 17.2 & 41.6	  	& \emph{6.1}	& \textbf{4.3}	
 best		& \textbf{152.3} & 286.0 & 191.0 & \emph{183.9} 	& \emph{44.0} & \textbf{43.7} & 68.1	& 728.7& \textbf{907.1} & 728.7 & \emph{757.1}	& \emph{453.2} & \textbf{555.0} & 376.7& 404.2		\\
 worst	&\textbf{227.4} & 308.1 & \emph{269.6} & 573.2	& \emph{73.2} & \textbf{73.1} & 127.2	& \textbf{281.1}	& -49.5 & 164.6 &	\emph{183.8}	& \textbf{382.2} & 93.5 & \emph{156.8}& 149.3		\\\hline
 \end{tabular}
-\caption{Detailed results of the 100 runs done on the four problems with the best GRN specifically trained on the problem, with the SARSA algorithm without neuromodulation, with the GRN trained on the maze (noted GRN$_{m}$ in the table), and a generic GRN trained both on the maze and the mountain car problems (noted GRN$_{g}$). Notice that, for the first two problems (mountain car and maze), lower is better and for the two others (puddle world and acrobat), higher is better. Bold values are best per problem and per row and italic ones are second best.}\label{tab:results}
+\caption{Detailed results of the 100 runs done on the four problems with the best GRN trained on the specific problem, the SARSA algorithm with fixed parameters, the GRN trained on Maze (noted GRN$_{m}$ in the table), and a generic GRN trained both on the Maze and Mountain Car problems (noted GRN$_{g}$). Notice that, for the first two problems (Mountain Car and Maze), lower is better and for the two others (Puddle World and Acrobat), higher is better. Bold values are best per problem and per row and italic ones are second best.}\label{tab:results}
 \end{table*}
 
 \begin{figure*}[b!]
@@ -98,7 +98,7 @@ worst	&\textbf{227.4} & 308.1 & \emph{269.6} & 573.2	& \emph{73.2} & \textbf{73.
 (a) Best GRN's behavior &
 (b) GRNM vs SARSA
 \end{tabular}
-\caption{Puddle world: (b) Comparison of the fitnesses per episode (abscissa) obtained by our neuromodulation with a GRN trained on this problem (green), a GRN trained on maze (blue), a GRN trained on maze and mountain car (gray) and with the fixed-parameter SARSA algorithm (red). Results are averaged on 100 independent runs. Higher is better.}\label{fig:PW:Results}
+\caption{Puddle World: (b) Comparison of the fitnesses per episode (abscissa) obtained by genetically-regulated neuromodulation with a GRN trained on this problem (green), a GRN trained on Maze (blue), a GRN trained on Maze and Mountain Car (gray) and with the fixed-parameter SARSA algorithm (red). Results are averaged on 100 independent runs. Higher is better.}\label{fig:PW:Results}
 \end{minipage}
 \hspace{1.5mm}
 %%%%%%
@@ -111,7 +111,7 @@ worst	&\textbf{227.4} & 308.1 & \emph{269.6} & 573.2	& \emph{73.2} & \textbf{73.
 (a) Best GRN's behavior &
 (b) GRNM vs SARSA
 \end{tabular}
-\caption{Acrobat: (a) Regulation of the learning parameters of the best GRN obtained; (b)Comparison of the fitnesses per episode (abscissa) obtained by our neuromodulation with a GRN trained on this problem (green) and a GRN trained on maze (blue) and with the fixed-parameter SARSA algorithm (red). Results are averaged on 100 independent runs. Higher is better. }\label{fig:ACP:Results}
+\caption{Acrobat: (a) Regulation of the learning parameters of the best GRN obtained; (b) Comparison of the fitnesses per episode (abscissa) obtained by genetically-regulated neuromodulation with a GRN trained on this problem (green) and a GRN trained on Maze (blue) and with the fixed-parameter SARSA algorithm (red). Results are averaged on 100 independent runs. Higher is better. }\label{fig:ACP:Results}
 \end{minipage}
 \end{figure*}
 
@@ -120,7 +120,7 @@ The same procedure has been used to evolve a gene regulatory network to regulate
 
 When compared to the fixed-parameter SARSA algorithm (figure \ref{fig:MZ:Results}(b)), we can observe that GRNM is learning faster than the SARSA algorithm (episodes 2 to 5). However, the advantage turns to the fixed-parameter SARSA algorithm in the remaining episodes: the latter is doing slightly better than GRNM from episode 6 to the end. When referring to the detailed results given by table \ref{tab:results}, GRNM and fixed-parameter SARSA give comparable results. 
 
-\subsubsection{Puddle world}
+\subsubsection{Puddle World}
 Figure \ref{fig:PW:Results}(a) presents the behavior of the best GRN obtained when neuromodulation is optimized on the puddle world problem. Once again, the GRN chooses to use higher learning parameters $\alpha$ and $\lambda$ at the beginning of the simulation to learn from initial experiences  faster. After this initial phase, the GRN increases the discounting factor and reduces the amount of memorization in order to better exploit learned experiences. This gives good results in comparison to fixed-parameter SARSA: as depicted in figure \ref{fig:PW:Results}(b), GRNM learns the value of states and actions faster and converges to an equivalent solution to fixed-parameter SARSA. When comparing the results in detail (table \ref{tab:results}), neuromodulation obtains equivalent results when averaged on 100 independent runs but the standard deviation and worst result are better: the GRNM is capable of modulating the learning parameters when harder scenarios are encountered. 
 
 \subsubsection{Acrobat}
@@ -134,9 +134,9 @@ Figure \ref{fig:ACP:Results}(a) shows the regulation obtained with the best GRN 
 \includegraphics[width=0.32\linewidth]{MC_GRNMazeBehavior.pdf} &
 \includegraphics[width=0.32\linewidth]{PW_GRNMazeBehavior.pdf} &
 \includegraphics[width=0.32\linewidth]{ACP_GRNMazeBehavior.pdf} \\
-(a) Mountain Car & (b) Puddle world & (c) Acrobat
+(a) Mountain Car & (b) Puddle World & (c) Acrobat
 \end{tabular}
-\caption{Behavior of the GRN trained on the maze when used to regulate learning parameters on mountain car, puddle world and acrobat.}\label{fig:all:GRNMazeBehavior}
+\caption{Behavior of the GRN trained on the Maze problem when used to regulate learning parameters on Mountain Car, Puddle World and Acrobat.}\label{fig:all:GRNMazeBehavior}
 \end{figure*}
 
 \begin{figure*}[b!]
@@ -147,12 +147,12 @@ Figure \ref{fig:ACP:Results}(a) shows the regulation obtained with the best GRN 
 \includegraphics[width=0.245\linewidth]{MZ_GRNGenericBehavior.pdf} &
 \includegraphics[width=0.245\linewidth]{PW_GRNGenericBehavior.pdf} &
 \includegraphics[width=0.245\linewidth]{ACP_GRNGenericBehavior.pdf} \\
-(a) Mountain Car & (b) Maze & (c) Puddle world & (d) Acrobat
+(a) Mountain Car & (b) Maze & (c) Puddle World & (d) Acrobat
 \end{tabular}
-\caption{Behavior of the GRN trained on the maze and mountain car when used to regulate learning parameters on other problems.}\label{fig:GRNGenericBehavior}
+\caption{Behavior of the GRN trained on the Maze and Mountain Car problems when used to regulate learning parameters on other problems.}\label{fig:GRNGenericBehavior}
 \end{figure*}
 
-\subsection{Using the GRN trained on the maze}
+\subsection{Using the GRN trained on Maze}
 A powerful property of artificial gene regulatory networks is their capacity to generalize to unknown situations \cite{sanchez2014gene}. In the case of genetically-regulated neuromodulation, we considered the best GRN trained on the maze problem and tested it on other problems and noticed that it performs well in comparison to the fixed-parameter SARSA algorithm. As presented in Table \ref{tab:results}, GRNM trained on maze (noted GRN$_{m}$) obtains better results than the fixed-parameter SARSA algorithm on all other problems we have tested. In our opinion, the regulatory dynamics are very generic: when the rewards start to increase, the learning rate is lowered to preserve previously learned experiences. This regulatory dynamic appears to be appropriate for most problems.However, this generic regulatory network does not beat GRNs trained on specific problems. This can be explained by the fact that optimizing the GRN on an individual problem allows the system to exploit problem-specific features and thus improves the quality of the parameter regulation.
 
 Figure \ref{fig:all:GRNMazeBehavior} shows the behavior of the GRN trained on the Maze problem and used on other problems. The behaviors are slightly different on each problem: the GRN is able to adapt to problem specificities. In particular, when the episodes are taking to much time, this GRN increases $\lambda$ first and then $\alpha$. It is also interesting to notice that the stabilized values of the learning parameters different from a problem to another. For example, $\lambda$ is kept around 0.8 on the mountain car problem, around 0.65 for the puddle world and the acrobat problems whereas it is equal to 0.7 on the maze problem. It shows the capacity of the GRN to approximate the best learning parameters to a problem without further learning.
