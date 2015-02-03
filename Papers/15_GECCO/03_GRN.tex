@@ -9,21 +9,17 @@ of complex machines, simplified models of cells as entities with protein sensors
 both exhibit complex behavior and offer insights into natural systems \cite{Davidson2006}.
 These protein sensors represent receptor molecules localized to the cellular membrane
 which transduce external activity into excitatory and/or inhibitory regulatory signals.
-Cells use external signals collected from protein sensors localized
+Cells can use external signals collected from protein sensors localized
 on the membrane to activate or inhibit the transcription of the genes.
-
-Our computational model uses an optimized network of abstract proteins. The inputs of the
-agent are translated to protein concentrations that feed the GRN. Output
-proteins regulate the reinforcement learning parameters previously described.
 This kind of controller has been used in many developmental models of the
 literature \cite{Joachimczak08, Doursat09, CussatBlanc2012a} and to control
 virtual and real robots \cite{ziegler2001evolving, Nicolau10, Joachimczak10, CussatBlanc2012b}. 
 
 In our model, a
-gene regulatory network is defined as a set of proteins. Each protein has the
+gene regulatory network is defined as a set of abstract proteins. Each protein has the
 following properties:
 \begin{itemize}
-\item The \emph{concentration} is the quantity of each protein avalaible in the network. This concentration influences the regulation of other proteins: the higher the concentration, the higher the enhancing or the inhibiting impact on other proteins.
+\item The \emph{concentration} is the quantity of each protein avalaible in the network. This concentration influences the regulation of other proteins: the higher the concentration, the greater the enhancement/inhibition of other proteins.
 
 \item The protein \emph{tag} coded as an integer between 0 and $p$. The
 	upper value $p$ of the domain can be changed in order to control the
@@ -51,7 +47,7 @@ of a site, 16 bits.
 
 \end{itemize}
 
-The dynamics of the GRN is calculated as follow. First, the affinity of a
+The dynamics of the GRN are calculated as follows. First, the affinity of a
 protein $a$ with another protein $b$ is given by the enhancing factor
 $u^{+}_{ab}$ and the inhibiting $u^{-}_{ab}$:
 \begin{equation}

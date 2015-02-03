@@ -1,5 +1,6 @@
 %\section{SARSA Algorithm}
 \section{Reinforcement Learning}
+\label{sec:RL}
 %%%%% from IJCNN %%%%
 Reinforcement learning is a reward-based learning algorithm that allows agents
 to learn from experience. More formally, reinforcement
@@ -10,15 +11,13 @@ for learning optimal behavior from changes in state and reinforcement by error
 prediction \cite{sutton1988learning}. TD-RL agents learn an expected return that will be
 received after taking an action in any state. Strong correlations with this type of
 error predictive behavior have been found in studies of dopamine neurons
-\cite{schultz1993responses}. This line of research has continued and is now been
-supported by fMRI data of reward processing for tastes, money, and love
-\cite{haber2009reward}.
+\cite{schultz1993responses}. 
 
 TD-RL is used to solve Markov decision processes, which are an extension of
 Markov chains to problems framed in terms of state, action, and reward. Reward signals are learned and encoded
 in a table which associates action preferences with states. The basic
 TD($\gamma$) algorithm updates one state-action association at a time which
-prohibits sequence learning. Eligibility traces are used to associate reward
+restricts sequence learning. Eligibility traces are used to associate reward
 with sequences of actions by reinforcing a weighted history of most recent
 actions. In this study the online version of TD-RL, SARSA (short for,
 state-action-reward-state-action), is used. A review of the nuances of
@@ -30,9 +29,7 @@ We include a few of the key equations from the SARSA algorithm. If we are in sta
 $s_t$ at time $t$, then we will take some action $a_t$ which will bring us a
 reward $r_t$. This action will also cause us to transition to the state
 $s_{t+1}$. The SARSA algorithm learns a Q-function, which maps a value to each 
-state-action pair $(s_t,a_t)$. From each state multiple actions $A_t$, may be taken
-which may be a function of $s_t$ (for example, an obstacle may prevent an action
-in a given state). Given an optimal Q-function the best action to take is
+state-action pair $(s_t,a_t)$. From each state multiple actions, $A_t$, may be taken. Given an optimal Q-function the best action to take is
 \begin{equation} argmin_{a_t \in A_t} Q(s_t,a_t).
 \end{equation}
 \noindent The Q-function is approximated by SARSA with the following update rule
