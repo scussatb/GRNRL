@@ -1,8 +1,11 @@
 \section{Conclusion}
 % discrete problems seem harder for the GRN... we need to say that in the conclusion
 
-%\section{Future Work}
+In this paper, we proposed to evolve a gene regulatory network to control reinforcement learning paramaters on four state-of-the-art problems. We have evolve GRN specificially on each task, which produce better or equivalent results than parameter-fixed SARSA on average. In all cases, the worst case scenario is always better handle by GRN-based neuromodulation because of its capacity to modify the learning parameters on-the-fly to escape dead ends. 
 
-As was noted in \cite{Schweighofer2003}, neuromodulation is neither problem nor RL-algorithm specific, thus future work may investigate the application of GRN-neuromodulation on alternative RL algorithms. We have shown that a simple feedback controller can optimize community features of agent-based swarm simulations, the use of GRN-based neuromodulation is likely to further optimize these environmental controllers \cite{Gold2014}.
+In addition, the GRN evolved on the maze as well as a generic GRN have been tested on the problems and provides encouraging results with no further learning. Once again, the worst case scenario is better handled by neuromodulation with generic GRNs than without neuromodulation. However, generic GRNs are not as good as GRN specifically evolved on each task. Other inputs might be usefull to the GRN to estimate the quality of the current neuromodulation and the quality of the agent behavior. Finding a generic GRN able to perfectly modulate the learning parameter would make possible not to evolve the GRN anymore and use it as is on all possible problems. That would make the parameter sampling phase of reinforcement learning out of date.
+
+%\section{Future Work}
+As was noted in \cite{Schweighofer2003}, neuromodulation is neither problem nor RL-algorithm specific, thus future work may investigate the application of GRN-neuromodulation on alternative RL algorithms. We have shown that a simple feedback controller can optimize community features of agent-based swarm simulations, the use of GRN-based neuromodulation is likely to further optimize these environmental controllers \cite{Gold2014}. Having a problem-independent and algorithm-independent neuromodulation architecture would save a large amount of set up for both the problem and the algorithm.
 
 \textbf{Acknowledgements:} Kyle Harrington is supported by NIH grant 2T32HL007893-16A1.
