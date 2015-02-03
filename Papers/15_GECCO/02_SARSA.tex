@@ -15,8 +15,7 @@ supported by fMRI data of reward processing for tastes, money, and love
 \cite{haber2009reward}.
 
 TD-RL is used to solve Markov decision processes, which are an extension of
-Markov chains to problems framed in terms of state, action, and reward.
-Reward signals are learned and encoded
+Markov chains to problems framed in terms of state, action, and reward. Reward signals are learned and encoded
 in a table which associates action preferences with states. The basic
 TD($\gamma$) algorithm updates one state-action association at a time which
 prohibits sequence learning. Eligibility traces are used to associate reward
@@ -27,11 +26,11 @@ reinforcement learning can be found in \cite{sutton1998introduction}.
 
 %\subsection{SARSA Algorithm}
 
-We include a few of the key equations from the SARSA algorithm. If we are in state,
+We include a few of the key equations from the SARSA algorithm. If we are in state
 $s_t$ at time $t$, then we will take some action $a_t$ which will bring us a
-reward $r_t$. This action will also cause us to transition to a new state,
+reward $r_t$. This action will also cause us to transition to the state
 $s_{t+1}$. The SARSA algorithm learns a Q-function, which maps a value to each 
-state-action pair, $(s_t,a_t)$. From each state multiple actions, $A_t$, may be taken
+state-action pair $(s_t,a_t)$. From each state multiple actions $A_t$, may be taken
 which may be a function of $s_t$ (for example, an obstacle may prevent an action
 in a given state). Given an optimal Q-function the best action to take is
 \begin{equation} argmin_{a_t \in A_t} Q(s_t,a_t).
@@ -42,7 +41,7 @@ in a given state). Given an optimal Q-function the best action to take is
 & \alpha \big[r_{t+1}+\gamma Q(s_{t+1},a_{t+1}) - Q(s_t,a_t)\big] 
 \end{eqnarray}
 \noindent where $\alpha$ is the learning rate, and $\gamma$ is the discounting
-factor. Given only this update rule it can be difficult to compute the Q-value
+factor. Given only this update rule, it can be difficult to compute the Q-value
 for state-action pairs which indirectly contribute to obtaining a reward. This
 update method propagates information only to the preceding state-action pair,
 for those that are very distant from the reward, such as in the case of maze

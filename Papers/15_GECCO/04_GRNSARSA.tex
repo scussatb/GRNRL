@@ -80,7 +80,7 @@ As depicted by figure \ref{fig:GRNSARSA}, the GRN updates SARSA's learning param
 \includegraphics[height=3.2cm]{MZ_problem.pdf}
 \caption{Maze
 %In the maze problem, the agent's task is to find its way in a maze from start (in red) to finish (in green). The agent receives a reward only when it escapes.
-}\label{fig:MC:problem}
+}\label{fig:MZ:problem}
 \end{minipage}
 \hspace{0.1mm}
 \begin{minipage}[t]{0.22\linewidth}
@@ -88,7 +88,7 @@ As depicted by figure \ref{fig:GRNSARSA}, the GRN updates SARSA's learning param
 \includegraphics[height=3.2cm]{PW_problem.pdf}
 \caption{Puddle world
 %In the puddle world problem, the agent must navigate without sensor information with stochastic movements from start to finish. Rewards are given all along its exploration (stars) and when it escapes.
-}\label{fig:MC:problem}
+}\label{fig:PW:problem}
 \end{minipage}
 \hspace{0.1mm}
 \begin{minipage}[t]{0.19\linewidth}
@@ -96,7 +96,7 @@ As depicted by figure \ref{fig:GRNSARSA}, the GRN updates SARSA's learning param
 \includegraphics[height=3.2cm]{ACP_problem.pdf}
 \caption{Acrobat
 %In the acrobat problem, the agent has to balance a pendulum in a perfectly upright position. The reward is given by the cosine of the angle between the pendulum and the resting position.
-}\label{fig:MC:problem}
+}\label{fig:ACP:problem}
 \end{minipage}
 \end{figure*}
 
@@ -107,9 +107,9 @@ Before using a gene regulatory network for neuromodulation, the network of prote
 \item the \emph{speciation} protects newly appeared solutions by giving them some time to optimize their structures before competing with the whole population, and
 \item the \emph{alignment crossover} with the use of a distance metric between proteins to keep subnetwork architecture during the crossover operation.
 \end{itemize}
-This modified algorithm has been proven to converge faster to better solutions. More details can be find in \cite{cussatblanc2015grneat}.
+This modified algorithm has been proven to converge faster to better solutions. More details on this evolutionary algorithm can be find in \cite{cussatblanc2015grneat}.
 
-During its optimization, each GRN is evaluated independently on a given problem with 25 reruns in order to reduce stochasticity impact of the problems on the fitness. The fitness being problem dependent, more explanations will be provided in the experience section. To avoid any memory biais, SARSA is completely resetted before each evaluation. The parameters used to evolved the GRNs in this work are given by table~\ref{tab:GREAT:params}. They are common to all evolutions.
+During its optimization, each GRN is evaluated independently on a given problem with 25 reruns in order to reduce stochasticity impact of the problems on the fitness. The fitness being problem dependent, more explanations will be provided in the experience section. To avoid any memory biais, SARSA is completely resetted before each evaluation. The parameters used to evolved the GRNs in this work are given by table~\ref{tab:GREAT:params}. They are the same for all evolutions.
 
 \begin{table}
 \center

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.12.11)  3 FEB 2015 11:24
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.12.11)  3 FEB 2015 12:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -203,17 +203,7 @@ LaTeX Info: The control sequence `\]' is already robust on input line 472.
 )
 \@dblbotnum=\count109
 \c@dblbotnumber=\count110
-) (./paper.aux
-
-LaTeX Warning: Label `fig:MC:problem' multiply defined.
-
-
-LaTeX Warning: Label `fig:MC:problem' multiply defined.
-
-
-LaTeX Warning: Label `fig:MC:problem' multiply defined.
-
-)
+) (./paper.aux)
 \openout1 = `paper.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
@@ -228,7 +218,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
 LaTeX Font Info:    ... okay on input line 33.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
 LaTeX Font Info:    ... okay on input line 33.
- (/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii
+(/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count111
 \scratchdimen=\dimen123
@@ -313,10 +303,8 @@ Overfull \hbox (3.33609pt too wide) in paragraph at lines 3--44
 \T1/aer/m/n/9 genetically-regulated neu-ro-mod-u-la-tion (GRNM) ex-tends pre-
  []
 
-(./02_SARSA.tex
-Underfull \vbox (badness 1406) has occurred while \output is active []
-
- [1{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+(./02_SARSA.tex [1{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pd
+ftex.map}
 
 
 ]) (./03_GRN.tex
@@ -325,11 +313,7 @@ Overfull \hbox (11.20428pt too wide) in paragraph at lines 26--27
 ity of each pro-tein avalaible
  []
 
-
-Underfull \vbox (badness 1043) has occurred while \output is active []
-
-)
-(./04_GRNSARSA.tex
+) (./04_GRNSARSA.tex
 Overfull \hbox (1.92249pt too wide) in paragraph at lines 2--13
 \T1/aer/m/n/9 hav-ior of neu-ral net-works within in-di-vid-ual neu-rons, among
 st
@@ -503,54 +487,50 @@ Overfull \hbox (1.29114pt too wide) in paragraph at lines 146--153
 
 [6 <./PW_GRNBehavior.pdf> <./PW_GRNvsSARSA.pdf> <./ACP_GRNBehavior.pdf> <./ACP_
 GRNvsSARSA.pdf>]
-Overfull \hbox (1.15662pt too wide) in paragraph at lines 163--164
-\T1/aer/m/n/9 parameter-fixed SARSA in all prob-lem, even on pud-dle world
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+)
+(./06_conclusion.tex [7 <./MC_GRNMazeBehavior.pdf> <./PW_GRNMazeBehavior.pdf> <
+./ACP_GRNMazeBehavior.pdf> <./MC_GRNGenericBehavior.pdf> <./MZ_GRNGenericBehavi
+or.pdf> <./PW_GRNGenericBehavior.pdf> <./ACP_GRNGenericBehavior.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 9--10
+
  []
 
-) (./06_conclusion.tex [7 <./MC_GRNMazeBehavior.pdf> <./PW_GRNMazeBehavior.pdf>
- <./ACP_GRNMazeBehavior.pdf> <./MC_GRNGenericBehavior.pdf> <./MZ_GRNGenericBeha
-vior.pdf> <./PW_GRNGenericBehavior.pdf> <./ACP_GRNGenericBehavior.pdf>])
-(./paper.bbl
-Underfull \vbox (badness 1755) has occurred while \output is active []
-
-
+) (./paper.bbl
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [8])
 [9
 
-] (./paper.aux)
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
+] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 2997 strings out of 493315
- 39448 string characters out of 6137903
- 111048 words of memory out of 5000000
- 6331 multiletter control sequences out of 15000+600000
+ 3000 strings out of 493315
+ 39497 string characters out of 6137903
+ 111033 words of memory out of 5000000
+ 6334 multiletter control sequences out of 15000+600000
  54309 words of font info for 71 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 41i,14n,28p,1318b,419s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/tex
-live/2013/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/
-texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/te
-xlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texl
-ive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texliv
-e/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2
-013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2013
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2013/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2013/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2013/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2013/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2013/texmf-dist
-/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/
-type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/u
-rw/times/utmb8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/times/u
-tmr8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/times/utmri8a.pfb
->
-Output written on paper.pdf (9 pages, 2708259 bytes).
+ 41i,14n,28p,1303b,419s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/base/8r.en
+c}</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb>
+</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.p
+fb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb
+></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><
+/usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></u
+sr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/
+local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/loc
+al/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/
+texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/te
+xlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texl
+ive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texliv
+e/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/
+2013/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2013/te
+xmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2013/texmf-dis
+t/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/ty
+pe1/urw/times/utmr8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/ti
+mes/utmri8a.pfb>
+Output written on paper.pdf (9 pages, 2708695 bytes).
 PDF statistics:
  1145 PDF objects out of 1200 (max. 8388607)
  719 compressed objects within 8 object streams
