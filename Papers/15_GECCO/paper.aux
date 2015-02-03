@@ -41,10 +41,16 @@
 \citation{Moore1991}
 \citation{Sutton1990}
 \citation{Handa2007}
-\citation{Moore1991}
 \citation{Boyan1995}
 \citation{sutton1996generalization}
-\citation{sutton1998introduction}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces In the maze problem, the agent's task is to find its way in a maze from start (in red) to finish (in green). The agent receives a reward only when it escapes.}}{\thepage }}
+\newlabel{fig:MC:problem}{{2}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces In the mountain car problem, a car must escape from a valley. It cannot climb the hill without moving backward first to gain speed. The agent receives a reward only when it escapes.}}{\thepage }}
+\newlabel{fig:MC:problem}{{3}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces In the puddle world problem, the agent must navigate without sensor information with stochastic movements from start to finish. Rewards are given all along its exploration (stars) and when it escapes.}}{\thepage }}
+\newlabel{fig:MC:problem}{{4}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces In the acrobat problem, the agent has to balance a pendulum in a perfectly upright position. The reward is given by the cosine of the angle between the pendulum and the resting position.}}{\thepage }}
+\newlabel{fig:MC:problem}{{5}{\thepage }}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Parameters used for evolutions}}{\thepage }}
 \newlabel{tab:GREAT:params}{{1}{\thepage }}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{\thepage }}
@@ -52,27 +58,35 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}Mountain Car}{\thepage }}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}Maze}{\thepage }}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.3}Puddle World}{\thepage }}
+\citation{sutton1998introduction}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Mountain car: (a) Convergence curve of the genetic algorithm (lower is better); (b) Regulation of the learning parameters of the best GRN obtained; (c) Comparison of the fitnesses per episode (abscissa) obtained by our neuromodulation with a GRN trained on mountain car (green), with a GRN trained on maze (blue) and with parameter-fixed SARSA (red). Results are averaged on 100 independent runs. Lower is better.}}{\thepage }}
+\newlabel{fig:MC:Results}{{6}{\thepage }}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.4}Acrobat}{\thepage }}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Training GRN on one specific problem}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Mountain car: (a) Convergence curve of the genetic algorithm (lower is better); (b) Regulation of the learning parameters of the best GRN obtained; (c) Comparison of the fitnesses per episode (abscissa) obtained by our neuromodulation with a GRN trained on mountain car (green), with a GRN trained on maze (blue) and with parameter-fixed SARSA (red). Results are averaged on 100 independent runs. Lower is better.}}{\thepage }}
-\newlabel{fig:MC:Results}{{2}{\thepage }}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Mountain car}{\thepage }}
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Fixed learning parameters for SARSA obtained by parameter sampling}}{\thepage }}
 \newlabel{tab:SARSAFixedParams}{{2}{\thepage }}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Mountain car}{\thepage }}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}Maze}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Maze: (a) Regulation of the learning parameters of the besst GRN obtained; (b) Comparison of the fitnesses per episode (abscissa) obtained by our neuromodulation with a GRN trained on maze (green) and with parameter-fixed SARSA (red). Results are averaged on 100 independent runs. Lower is better.}}{\thepage }}
-\newlabel{fig:MZ:Results}{{3}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Maze: (a) Regulation of the learning parameters of the besst GRN obtained; (b) Comparison of the fitnesses per episode (abscissa) obtained by our neuromodulation with a GRN trained on maze (green) and with parameter-fixed SARSA (red). Results are averaged on 100 independent runs. Lower is better.}}{\thepage }}
+\newlabel{fig:MZ:Results}{{7}{\thepage }}
 \citation{sanchez2014gene}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}Maze}{\thepage }}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.3}Puddle world}{\thepage }}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.4}Acrobat}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Generalization of the regulation}{\thepage }}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Using the GRN trained on the maze}{\thepage }}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}Evolving a generic GRN}{\thepage }}
 \citation{Schweighofer2003}
 \citation{Gold2014}
 \bibstyle{abbrv}
 \bibdata{bibtex}
 \bibcite{Boyan1995}{1}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.3}Puddle world}{\thepage }}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.4}Acrobat}{\thepage }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Generalization of the regulation}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Puddle world: (b) Comparison of the fitnesses per episode (abscissa) obtained by our neuromodulation with a GRN trained on this problem (green), a GRN trained on maze (blue), a GRN trained on maze and mountain car (gray) and with parameter-fixed SARSA (red). Results are averaged on 100 independent runs. Higher is better.}}{\thepage }}
+\newlabel{fig:PW:Results}{{8}{\thepage }}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Detailed results of the 100 runs done on the four problems with the best GRN specifically trained on the problem, with SARSA with no neuromodulation, with the GRN trained on the maze (noted GRN$_{m}$ in the table), and a generic GRN trained both on the maze and the mountain car problems (noted GRN$_{g}$). Notice that, for the first two problems (mountain car and maze), lower is better and for the two others (puddle world and acrobat), higher is better. Bold values are best per problem and per row and italic ones are second best.}}{\thepage }}
+\newlabel{tab:results}{{3}{\thepage }}
 \@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{\thepage }}
-\@writefile{toc}{\contentsline {section}{\numberline {7}References}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Acrobat: (a) Regulation of the learning parameters of the besst GRN obtained; (b)Comparison of the fitnesses per episode (abscissa) obtained by our neuromodulation with a GRN trained on this problem (green) and a GRN trained on maze (blue) and with parameter-fixed SARSA (red). Results are averaged on 100 independent runs. Higher is better. }}{\thepage }}
+\newlabel{fig:ACP:Results}{{9}{\thepage }}
 \bibcite{cussatblanc2015grneat}{2}
 \bibcite{CussatBlanc2012a}{3}
 \bibcite{CussatBlanc2012b}{4}
@@ -82,12 +96,6 @@
 \bibcite{Doya2002}{8}
 \bibcite{Doya2008}{9}
 \bibcite{Fellous1998}{10}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Puddle world: (b) Comparison of the fitnesses per episode (abscissa) obtained by our neuromodulation with a GRN trained on this problem (green), a GRN trained on maze (blue), a GRN trained on maze and mountain car (gray) and with parameter-fixed SARSA (red). Results are averaged on 100 independent runs. Higher is better.}}{\thepage }}
-\newlabel{fig:PW:Results}{{4}{\thepage }}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Detailed results of the 100 runs done on the four problems with the best GRN specifically trained on the problem, with SARSA with no neuromodulation, with the GRN trained on the maze (noted GRN$_{m}$ in the table), and a generic GRN trained both on the maze and the mountain car problems (noted GRN$_{g}$). Notice that, for the first two problems (mountain car and maze), lower is better and for the two others (puddle world and acrobat), higher is better. Bold values are best per problem and per row and italic ones are second best.}}{\thepage }}
-\newlabel{tab:results}{{3}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Acrobat: (a) Regulation of the learning parameters of the besst GRN obtained; (b)Comparison of the fitnesses per episode (abscissa) obtained by our neuromodulation with a GRN trained on this problem (green) and a GRN trained on maze (blue) and with parameter-fixed SARSA (red). Results are averaged on 100 independent runs. Higher is better. }}{\thepage }}
-\newlabel{fig:ACP:Results}{{5}{\thepage }}
 \bibcite{Gold2014}{11}
 \bibcite{haber2009reward}{12}
 \bibcite{Handa2007}{13}
@@ -99,6 +107,11 @@
 \bibcite{Marder2012}{19}
 \bibcite{Marder2002}{20}
 \bibcite{Montague1996}{21}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Behavior of the GRN trained on the maze when used to regulate learning parameters on mountain car, puddle world and acrobat.}}{\thepage }}
+\newlabel{fig:all:GRNMazeBehavior}{{10}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Behavior of the GRN trained on the maze and mountain car when used to regulate learning parameters on other problems.}}{\thepage }}
+\newlabel{fig:GRNGenericBehavior}{{11}{\thepage }}
+\@writefile{toc}{\contentsline {section}{\numberline {7}References}{\thepage }}
 \bibcite{Moore1991}{22}
 \bibcite{Nicolau10}{23}
 \bibcite{sanchez2014gene}{24}
@@ -107,10 +120,6 @@
 \bibcite{Schweighofer2003}{27}
 \bibcite{stanley2002evolving}{28}
 \bibcite{Sutton1990}{29}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Behavior of the GRN trained on the maze when used to regulate learning parameters on mountain car, puddle world and acrobat.}}{\thepage }}
-\newlabel{fig:all:GRNMazeBehavior}{{6}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Behavior of the GRN trained on the maze and mountain car when used to regulate learning parameters on other problems.}}{\thepage }}
-\newlabel{fig:all:GRNGenericBehavior}{{7}{\thepage }}
 \bibcite{sutton1988learning}{30}
 \bibcite{sutton1996generalization}{31}
 \bibcite{sutton1998introduction}{32}

@@ -5,10 +5,10 @@
 #SBATCH --mail-user=cussat@irit.fr
 #SBATCH --cpus-per-task=64
 #SBATCH --nodes=1
-#SBATCH --time=96:00:00
+#SBATCH --time=168:00:00
 #SBATCH --exclusive
 
-/users/vortex/cussat/GRNRL/launcher.sh ActorCriticPendulum
+/users/vortex/cussat/GRNRL/launcher.sh Maze MountainCar
 
 
 
