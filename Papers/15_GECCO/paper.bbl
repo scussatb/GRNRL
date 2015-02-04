@@ -1,5 +1,10 @@
 \begin{thebibliography}{10}
 
+\bibitem{Banzhaf03}
+W.~Banzhaf.
+\newblock Artificial regulatory networks and genetic programming.
+\newblock {\em Genetic Programming Theory and Practice}, pages 43--62, 2003.
+
 \bibitem{Boyan1995}
 J.~Boyan and A.~Moore.
 \newblock {Generalization in reinforcement learning: Safely approximating the
@@ -30,6 +35,10 @@ E.~H. Davidson.
 \newblock The regulatory genome: gene regulatory networks in development and
   evolution.
 \newblock {\em Academic Press}, 2006.
+
+\bibitem{Degris2014}
+T.~Degris.
+\newblock {RLPark}, 2014.
 
 \bibitem{Destexhe2004}
 A.~Destexhe and E.~Marder.
@@ -63,11 +72,6 @@ J.~Gold, A.~Wang, and K.~Harrington.
 \newblock {Feedback Control of Evolving Swarms}.
 \newblock In {\em Proceedings of Artificial Life XIV}, pages 884--891, 2014.
 
-\bibitem{haber2009reward}
-S.~N. Haber and B.~Knutson.
-\newblock The reward circuit: linking primate anatomy and human imaging.
-\newblock {\em Neuropsychopharmacology}, 35(1):4--26, 2009.
-
 \bibitem{Handa2007}
 H.~Handa.
 \newblock {Evolutionary Computation on Multitask Reinforcement Learning
@@ -94,11 +98,6 @@ M.~Joachimczak and B.~Wr{\'o}bel.
 \newblock In {\em Proceedings of the 12th International Conference on
   Artificial Life}, 2010.
 
-\bibitem{Katz1995}
-P.~Katz.
-\newblock {Intrinsic and extrinsic neuromodulation of motor circuits}.
-\newblock {\em Current opinion in neurobiology}, 5(6):799--808, 1995.
-
 \bibitem{Li2009}
 H.~Li, X.~Liao, and L.~Carin.
 \newblock {Multi-task reinforcement learning in partially observable stochastic
@@ -114,12 +113,6 @@ E.~Marder.
 E.~Marder and V.~Thirumalai.
 \newblock {Cellular, synaptic and network effects of neuromodulation}.
 \newblock {\em Neural Networks}, 15(4):479--493, 2002.
-
-\bibitem{Montague1996}
-P.~Montague, P.~Dayan, and T.~Sejnowski.
-\newblock {A framework for mesencephalic dopamine systems based on predictive
-  Hebbian learning}.
-\newblock {\em The Journal of Neuroscience}, 16(5):1936--1947, 1996.
 
 \bibitem{Moore1991}
 A.~Moore.
@@ -157,6 +150,12 @@ N.~Schweighofer and K.~Doya.
 \newblock {Meta-learning in reinforcement learning}.
 \newblock {\em Neural Networks}, 16(1):5--9, 2003.
 
+\bibitem{Soltoggio2008}
+A.~Soltoggio, J.~Bullinaria, and C.~Mattiussi.
+\newblock {Evolutionary advantages of neuromodulated plasticity in dynamic,
+  reward-based scenarios}.
+\newblock In {\em Artificial Life}, volume~11, pages 569--576, 2008.
+
 \bibitem{stanley2002evolving}
 K.~Stanley and R.~Miikkulainen.
 \newblock {Evolving neural networks through augmenting topologies}.
@@ -190,12 +189,6 @@ R.~S. Sutton and A.~G. Barto.
 M.~Taylor and P.~Stone.
 \newblock {Transfer learning for reinforcement learning domains: A survey}.
 \newblock {\em The Journal of Machine Learning Research}, 10:1633--1685, 2009.
-
-\bibitem{Zhurov2006}
-Y.~Zhurov and V.~Brezina.
-\newblock {Variability of motor neuron spike timing maintains and shapes
-  contractions of the accessory radula closer muscle of Aplysia}.
-\newblock {\em The Journal of neuroscience}, 26(26):7056--7070, 2006.
 
 \bibitem{ziegler2001evolving}
 J.~Ziegler and W.~Banzhaf.

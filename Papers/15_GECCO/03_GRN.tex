@@ -11,11 +11,11 @@ These protein sensors represent receptor molecules localized to the cellular mem
 which transduce external activity into excitatory and/or inhibitory regulatory signals.
 Cells can use external signals collected from protein sensors localized
 on the membrane to activate or inhibit the transcription of the genes.
-This kind of controller has been used in many developmental models of the
+Computational models have been designed and used in many developmental models of the
 literature \cite{Joachimczak08, Doursat09, CussatBlanc2012a} and to control
 virtual and real robots \cite{ziegler2001evolving, Nicolau10, Joachimczak10, CussatBlanc2012b}. 
 
-In our model, a
+In our model inspired from Banzhaf's bio-realistic model \cite{Banzhaf03}, a
 gene regulatory network is defined as a set of abstract proteins. Each protein has the
 following properties:
 \begin{itemize}
@@ -23,8 +23,7 @@ following properties:
 
 \item The protein \emph{tag} coded as an integer between 0 and $p$. The
 	upper value $p$ of the domain can be changed in order to control the
-	precision of the GRN. In Banzhaf's work, $p$ is equivalent to the size
-of a site, 16 bits. 
+	precision of the GRN. 
 % We have reduced the precision to 16 because the
 % precision of the output values are not a particular requirement in that
 % particular application.
