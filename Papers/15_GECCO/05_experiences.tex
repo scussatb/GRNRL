@@ -7,7 +7,8 @@
 \section{Problems}
 
 We have studied GRNM on four classic problems: Mountain Car, Maze, Puddle World and Acrobat. These problems are implemented within the RLPark software package \cite{Degris2014}. In all cases agents do not have prior information about the specific task. Before detailing results obtained with GRNM, this section presents each problem.
-\subsubsection{Mountain Car}
+
+\subsection{Mountain Car}
 The Mountain Car problem was introduced by Moore to promote the broad applicability of dynamic programming \cite{Moore1991}. In the mountain car problem, depicted in figure \ref{fig:MC:problem}, the agent is placed at the bottom of a valley with no initial velocity and must drive to the top of the right hill. The agent can take one of 3 actions: full thrust forward, full thrust in reverse, or no thrust. The difficulty of the task lies in the fact that the right hill is too steep to be climbed at full thrust, and thus the agent must first reverse up the left hill to gain sufficient momentum to climb the right hill. The agent experiences a negative reward for all time steps that it has not reached the top of the right hill, at which point the episode is completed. For evolution of GRNs, the fitness of an evaluation is given by the number of step necessary to complete a series of 25 episodes.
 
 \subsection{Maze}
