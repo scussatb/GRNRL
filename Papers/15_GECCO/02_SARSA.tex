@@ -14,13 +14,13 @@ error predictive behavior have been found in studies of dopamine neurons
 \cite{schultz1993responses}. 
 
 TD-RL is used to solve Markov decision processes, which are an extension of
-Markov chains to problems framed in terms of state, action, and reward. Reward signals are learned and encoded
+Markov chains to problems framed in terms of state, action, and reward. Reward signals are encoded
 in a table which associates action preferences with states. The basic
-TD($\gamma$) algorithm updates one state-action association at a time which
+TD($\gamma$) algorithm updates one state-action association at a timestep, which
 restricts sequence learning. Eligibility traces are used to associate reward
-with sequences of actions by reinforcing a weighted history of most recent
-actions. In this study the online version of TD-RL, SARSA (short for,
-state-action-reward-state-action), is used. A review of the nuances of
+with sequences of actions by reinforcing a weighted history of recent
+actions. In this study an online version of TD-RL, SARSA (short for,
+state-action-reward-state-action), is used. A review of 
 reinforcement learning can be found in \cite{sutton1998introduction}.
 
 %\subsection{SARSA Algorithm}
@@ -43,7 +43,7 @@ for state-action pairs which indirectly contribute to obtaining a reward. This
 update method propagates information only to the preceding state-action pair,
 for those that are very distant from the reward, such as in the case of maze
 solving problems, this can require a large number of repeated trials. However,
-this problem of reward propagation can be partially alleviated by the use of
+ reward propagation can be partially alleviated by 
 eligibility traces. Eligibility traces store an accumulating trace of
 state-action pairs. The ``memory'' of these state-action pairs can be tuned with
 the trace decay parameter $\lambda$. Eligibility traces are updated with

@@ -56,7 +56,7 @@ As depicted by figure \ref{fig:GRNSARSA}, the GRN updates SARSA's learning param
 \begin{minipage}[t]{0.31\linewidth}
 \center
 \includegraphics[height=3.2cm]{MC_problem.pdf}
-\caption{Mountain car
+\caption{Mountain Car
 %In the mountain car problem, a car must escape from a valley. It cannot climb the hill without moving backward first to gain speed. The agent receives a reward only when it escapes.
 }\label{fig:MC:problem}
 \end{minipage}
@@ -72,7 +72,7 @@ As depicted by figure \ref{fig:GRNSARSA}, the GRN updates SARSA's learning param
 \begin{minipage}[t]{0.22\linewidth}
 \center
 \includegraphics[height=3.2cm]{PW_problem.pdf}
-\caption{Puddle world
+\caption{Puddle World
 %In the puddle world problem, the agent must navigate without sensor information with stochastic movements from start to finish. Rewards are given all along its exploration (stars) and when it escapes.
 }\label{fig:PW:problem}
 \end{minipage}
@@ -91,7 +91,6 @@ Before a gene regulatory network can be used for successful neuromodulation, the
 (1) \emph{initialization} of the algorithm  - as opposed to initializing with network sizes randomly sampled from the complete distribution, only small networks are used in the initial population so as to allow for a more progressive complexification,
 (2) \emph{speciation} protects newly appeared solutions by giving them some time to optimize their structures before competing with the whole population, and
 (3) \emph{alignment crossover} uses of a distance metric between proteins to maintain subnetwork architecture during the crossover operation.
-
 This modified algorithm has been shown to converge faster and to better solutions than standard genetic algorithms. More details on GRNEAT can be found in \cite{cussatblanc2015grneat}.
 
 During optimization, each GRN is evaluated independently on a given problem with 25 reruns in order to reduce the effect of stochasticity on fitness. As fitness is problem dependent, more detail is provided in the corresponding experiment sections. To avoid any memory bias, SARSA is completely reset before each evaluation. The parameters used for GRNEAT in this work are given by Table~\ref{tab:GREAT:params}, and are consistent for all problems. 
