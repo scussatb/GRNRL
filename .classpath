@@ -10,6 +10,7 @@
 	<classpathentry kind="src" path="src/rlpark/rlpark.plugin.rltoysview/srctests"/>
 	<classpathentry kind="src" path="src/rlpark/rlpark.plugin.robot/jvsrc"/>
 	<classpathentry kind="src" path="src/rlpark/rlpark.plugin.robot/jvsrctests"/>
+	<classpathentry kind="src" path="src/RL"/>
 	<classpathentry kind="lib" path="src/rlpark/rlpark.plugin.apache/apache/commons-io-2.0.1-javadoc.jar"/>
 	<classpathentry kind="lib" path="src/rlpark/rlpark.plugin.apache/apache/commons-io-2.0.1-sources.jar"/>
 	<classpathentry kind="lib" path="src/rlpark/rlpark.plugin.apache/apache/commons-io-2.0.1.jar"/>
@@ -24,7 +25,6 @@
 	<classpathentry kind="lib" path="src/rlpark/rlpark.plugin.opencv/javacv/javacv-windows-x86.jar"/>
 	<classpathentry kind="lib" path="src/rlpark/rlpark.plugin.opencv/javacv/javacv.jar"/>
 	<classpathentry kind="lib" path="src/rlpark/rlpark.plugin.rltoys/rltoys-client.jar"/>
-	<classpathentry kind="lib" path="/Users/cussat/Recherche/Projets/Neuromodulation/GRNRL/lib/zephyr.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
