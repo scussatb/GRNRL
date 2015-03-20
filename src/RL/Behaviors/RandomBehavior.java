@@ -10,6 +10,7 @@ public class RandomBehavior extends Behavior {
 	Random rng;
 	
 	public RandomBehavior(long rngSeed) {
+		super(0,0);
 		rng=new Random(rngSeed);
 	}
 
