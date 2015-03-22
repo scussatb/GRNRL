@@ -8,8 +8,8 @@ import Problems.Problem;
 import Problems.State;
 
 public abstract class Behavior {
-	int nActions;
-	int nStates;
+	public int nActions;
+	public int nStates;
 	
 	public Behavior(int nStates, int nActions) {
 		this.nStates=nStates;
