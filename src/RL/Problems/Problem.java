@@ -2,16 +2,11 @@ package Problems;
 
 import Behaviors.Behavior;
 
-
 public abstract class Problem {
-	protected Behavior behavior;
-
-	public Problem(Behavior b) {
-		this.behavior = b;
+	public Problem() {
 	}
 	
-	public abstract double run(int maxSteps);
-	public abstract void stepForward();
+	public abstract double run(Behavior behavior, int maxSteps);
 	public abstract boolean isSolved();
 	
 	public abstract double getReward(State s);
@@ -19,4 +14,6 @@ public abstract class Problem {
 	public String displayCurrentState() {
 		return "";
 	}
+
+	public abstract void stepForward(Behavior behavior);		
 }

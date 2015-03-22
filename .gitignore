@@ -5,3 +5,7 @@ Papers/15_GECCO/paper.blg
 Papers/15_GECCO/paper.log
 Papers/15_GECCO/paper.pdf
 Papers/15_GECCO/paper.synctex.gz
+bin/
+.DS_Store
+.classpath
+src/.DS_Store

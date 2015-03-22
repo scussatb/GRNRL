@@ -64,8 +64,7 @@ public class Maze extends Problem {
 	int height;
 	
 	// build a default maze, from sutton book
-	public Maze(Behavior b) {
-		super(b);
+	public Maze() {
 		
 		out = new Position(9, 1);
 		in =new Position(1, 3);
@@ -104,15 +103,15 @@ public class Maze extends Problem {
 	
 	
 	@Override
-	public double run(int maxSteps) {
+	public double run(Behavior behavior, int maxSteps) {
 		while (curStep<maxSteps && !isSolved()) {
-			stepForward();
+			stepForward(behavior);
 		}
 		return (curPos.equals(out)?1.0:0.0);
 	}
 	
 	@Override
-	public void stepForward() {
+	public void stepForward(Behavior behavior) {
 		Move a = (Move)behavior.chooseAction(curPos, possibleActions);
 		if (map[curPos.x+a.dx][curPos.y+a.dy] != WALL) {
 			curPos.x+=a.dx;
@@ -158,10 +157,10 @@ public class Maze extends Problem {
 
 	public static void main(String[] args) {
 		RandomBehavior behavior = new RandomBehavior(System.currentTimeMillis());
-		Maze maze=new Maze(behavior);
+		Maze maze=new Maze();
 		System.out.println(maze.displayCurrentState());
 		while (maze.curStep<1000 && !maze.isSolved()) {
-			maze.stepForward();
+			maze.stepForward(behavior);
 			System.out.println("============\t"+maze.curStep+"\t============");
 			System.out.println(maze.displayCurrentState());
 		}
