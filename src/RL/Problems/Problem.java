@@ -13,8 +13,6 @@ public abstract class Problem {
 	
 	public abstract double run(Behavior behavior, int maxSteps);
 	public abstract boolean isSolved();
-	public abstract int getNStates();
-	public abstract int getNActions();
 	
 	public abstract double getReward(State s);
 	

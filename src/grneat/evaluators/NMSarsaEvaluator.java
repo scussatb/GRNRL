@@ -279,6 +279,7 @@ public class NMSarsaEvaluator extends GRNGenomeEvaluator {
 			sarsa = new GRNSarsa(alpha, gamma, lambda,
 					toStateAction.vectorSize(), new RTraces(), grn,
 					projector.vectorNorm());
+//			System.err.println(toStateAction.vectorSize());
 			((GRNSarsa) sarsa).minDelta = -33.5031963543928;
 			((GRNSarsa) sarsa).maxDelta = 17.841888320550;
 			((GRNSarsa) sarsa).displayGRN=displayGRN;

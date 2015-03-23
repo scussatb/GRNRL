@@ -1,8 +1,6 @@
 package Problems;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Vector;
 
 import Behaviors.Behavior;
 import Behaviors.RandomBehavior;
@@ -172,16 +170,6 @@ public class Maze extends Problem {
 		return res;
 	}
 	
-	@Override
-	public int getNStates() {
-		return width*height;
-	}
-	
-	@Override
-	public int getNActions() {
-		return possibleActions.size();
-	}
-
 	public static void main(String[] args) {
 		RandomBehavior behavior = new RandomBehavior(System.currentTimeMillis());
 		Maze maze=new Maze();
