@@ -16,7 +16,7 @@ public class RandomBehavior extends Behavior {
 
 	@Override
 	public Action chooseAction(State s, ArrayList<Action> possibleActions) {
-		return possibleActions.get(rng.nextInt(possibleActions.size()));
+		return possibleActions.get(1/*rng.nextInt(possibleActions.size())*/);
 	}
 
 }
